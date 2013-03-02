@@ -1,0 +1,69 @@
+!SESSION 2013-03-02 07:17:24.567 -----------------------------------------------
+eclipse.buildId=M20080221-1800
+java.version=1.6.0_41
+java.vendor=Apple Inc.
+BootLoader constants: OS=macosx, ARCH=x86, WS=carbon, NL=en_US
+Framework arguments:  -keyring /Users/chrismadden/.eclipse_keyring -showlocation
+Command-line arguments:  -os macosx -ws carbon -arch x86 -data /Users/chrismadden/Dropbox/BlockGame2/Java Version/Client -keyring /Users/chrismadden/.eclipse_keyring -consoleLog -showlocation
+
+!ENTRY org.eclipse.core.net 1 0 2013-03-02 07:17:26.719
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences
+
+!ENTRY org.eclipse.ui 4 0 2013-03-02 07:18:26.092
+!MESSAGE Unhandled event loop exception
+!STACK 0
+java.lang.IndexOutOfBoundsException: Index: 0, Size: 0
+	at java.util.ArrayList.RangeCheck(ArrayList.java:547)
+	at java.util.ArrayList.get(ArrayList.java:322)
+	at org.eclipse.jdt.internal.ui.wizards.buildpaths.newsourcepage.AddFolderToBuildpathAction.run(AddFolderToBuildpathAction.java:117)
+	at org.eclipse.jface.action.Action.runWithEvent(Action.java:498)
+	at org.eclipse.jface.action.ActionContributionItem.handleWidgetSelection(ActionContributionItem.java:546)
+	at org.eclipse.jface.action.ActionContributionItem.access$2(ActionContributionItem.java:490)
+	at org.eclipse.jface.action.ActionContributionItem$5.handleEvent(ActionContributionItem.java:402)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:66)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1495)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1519)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1504)
+	at org.eclipse.swt.widgets.Widget.notifyListeners(Widget.java:1295)
+	at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:3350)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:2950)
+	at org.eclipse.ui.internal.Workbench.runEventLoop(Workbench.java:2389)
+	at org.eclipse.ui.internal.Workbench.runUI(Workbench.java:2353)
+	at org.eclipse.ui.internal.Workbench.access$4(Workbench.java:2219)
+	at org.eclipse.ui.internal.Workbench$4.run(Workbench.java:466)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:289)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:461)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:149)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:106)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:169)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:106)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:76)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:363)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:176)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:508)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:447)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1173)
+!SESSION 2013-03-02 10:27:57.216 -----------------------------------------------
+eclipse.buildId=M20120914-1800
+java.version=1.6.0_41
+java.vendor=Apple Inc.
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.java.product -product org.eclipse.epp.package.java.product -keyring /Users/ryan/.eclipse_keyring -showlocation
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.epp.package.java.product -data /Users/ryan/Dropbox/BlockGame2 (1)/Java Version/Client -product org.eclipse.epp.package.java.product -keyring /Users/ryan/.eclipse_keyring -showlocation
+
+!ENTRY org.eclipse.core.net 1 0 2013-03-02 10:28:01.651
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences
+!SESSION 2013-03-02 10:30:12.317 -----------------------------------------------
+eclipse.buildId=M20120914-1800
+java.version=1.6.0_41
+java.vendor=Apple Inc.
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.java.product -keyring /Users/ryan/.eclipse_keyring -showlocation
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.epp.package.java.product -keyring /Users/ryan/.eclipse_keyring -showlocation
+
+!ENTRY org.eclipse.core.net 1 0 2013-03-02 10:30:18.913
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences
