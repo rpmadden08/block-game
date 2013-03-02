@@ -1,3 +1,5 @@
+//This is a test
+
 package net.ulixava.adventurecraft;
 
 import java.applet.*;
