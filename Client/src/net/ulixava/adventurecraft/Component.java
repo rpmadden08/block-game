@@ -1,6 +1,3 @@
-//Test 3
-//Test 4
-//Test 5
 package net.ulixava.adventurecraft;
 
 import java.applet.*;
