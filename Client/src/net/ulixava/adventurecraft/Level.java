@@ -57,7 +57,7 @@ public class Level {
 //		}
 		for(int y=0; y<block.length;y++) {
 			for(int x=0; x<block[0].length;x++) {
-				if(x == 0 || y == 0 || x == block.length-1 || y == block.length -1) {
+				if(x == 1 || y == 1 || x == block.length-2 || y == block.length -2) {
 					block[x][y].id = Tile.bedrock;
 				}
 			}
