@@ -12,6 +12,12 @@ public class Character extends DoubleRectangle {
 	public static boolean isMovingDown = false;
 	public static boolean isMovingRight = false;
 	public static boolean isMovingLeft = false;
+	
+	public static boolean isFacingUp = false;
+	public static boolean isFacingDown = true;
+	public static boolean isFacingRight = false;
+	public static boolean isFacingLeft = false;
+	
 	public int xVelocity = 0;
 	public int yVelocity = 0;
 	public int offsetX = 0;
@@ -22,21 +28,21 @@ public class Character extends DoubleRectangle {
 	public double moveX = 0;
 	public double moveY = 0;
 	
-	public double frameOffsetLeft = 0;
-	public double frameOffsetRight = 16;
+	public double frameOffsetLeft = 1;
+	public double frameOffsetRight = 14;
 	public double frameOffsetBottom = 31;
 	public double frameOffsetTop = 16;
 	
 	public int jumpingHeight = 8, jumpingCount = 0;
 	public int animation = 0;  
-	public int animationFrame = 0, animationTime = 25;
+	public int animationFrame = 0, animationTime = 5;
 	
 	public Character(int width, int height) {
 		setBounds((Component.pixel.width / 2) - (width / 2), (Component.pixel.height / 2) - (height / 2), width, height);
 	}
 	
 	public void tick() {		
-		if(Component.isMoving && !Inventory.isOpen) {
+		if(isMovingLeft || isMovingRight || isMovingUp || isMovingDown && !Inventory.isOpen) {
 			boolean canMove = false;
 			moveX = 0;
 			moveY = 0;
@@ -44,35 +50,54 @@ public class Character extends DoubleRectangle {
 			
 			if(isMovingRight) {
 				moveX += maxSpeed;
+				Character.isFacingUp = false;
+				Character.isFacingDown = false;
+				Character.isFacingLeft = false;
+				Character.isFacingRight = true;
 			}
 			if(isMovingLeft) {
 				moveX += -maxSpeed;
+				Character.isFacingUp = false;
+				Character.isFacingDown = false;
+				Character.isFacingLeft = true;
+				Character.isFacingRight = false;
 			}
 			if(isMovingDown) {
 				moveY += maxSpeed;
+				Character.isFacingUp = false;
+				Character.isFacingDown = true;
+				Character.isFacingLeft = false;
+				Character.isFacingRight = false;
 			}
 			if(isMovingUp) {
 				moveY += -maxSpeed;
+				Character.isFacingUp = true;
+				Character.isFacingDown = false;
+				Character.isFacingLeft = false;
+				Character.isFacingRight = false;
 			}
 			moveX = getCollisionX();
 			moveY = getCollisionY();
+			
+
 			
 			if(!canMove) {
 				x += moveX;
 				y += moveY;
 				Component.sX += moveX;
 				Component.sY += moveY;
-			}
-			if(animationFrame >= animationTime) {
-				if(animation > 1) {
-					animation = 1;
+				
+				if(animationFrame >= animationTime) {
+					if(animation > 0) {
+						animation = 0;
+					} else {
+						animation += 1;
+						
+					}
+					animationFrame = 0;
 				} else {
-					animation += 1;
-					
+					animationFrame += 1;
 				}
-				animationFrame = 0;
-			} else {
-				animationFrame += 1;
 			}
 			
 		} else {
@@ -125,10 +150,71 @@ public class Character extends DoubleRectangle {
 	}
 	
 	public void render(Graphics g) {
-		if (Component.dir == movementSpeed) {
-			g.drawImage(Tile.tileset_terrain, (int) x - (int) Component.sX, (int) y - (int) Component.sY, (int) (x + width) - (int) Component.sX, (int) (y + height) - (int) Component.sY, /*Where it's cut out*/(Tile.character[0] * Tile.tileSize) + (Tile.tileSize*animation), Tile.character[1] * Tile.tileSize, Tile.character[0] * Tile.tileSize +(Tile.tileSize * animation) + (int) width, Tile.character[1] * Tile.tileSize +(int) height, null);
+		if (isFacingDown) {
+			g.drawImage(Tile.tileset_terrain, 
+					(int) x - (int) Component.sX, 
+					(int) y - (int) Component.sY, 
+					(int) (x + width) - (int) Component.sX, 
+					(int) (y + height) - (int) Component.sY, 
+					/*Where it's cut out*/
+					(Tile.character[0] * Tile.tileSize) + (Tile.tileSize*animation), 
+					Tile.character[1] * Tile.tileSize, 
+					Tile.character[0] * Tile.tileSize +(Tile.tileSize * animation) + (int) width, 
+					Tile.character[1] * Tile.tileSize +(int) height, 
+					null);
+		} else if(isFacingRight) {
+			int a = animation + 3;
+			g.drawImage(Tile.tileset_terrain, 
+					(int) x - (int) Component.sX, 
+					(int) y - (int) Component.sY, 
+					(int) (x + width) - (int) Component.sX, 
+					(int) (y + height) - (int) Component.sY, 
+					/*Where it's cut out*/
+					(Tile.character[0] * Tile.tileSize) + (Tile.tileSize*a), 
+					Tile.character[1] * Tile.tileSize, 
+					Tile.character[0] * Tile.tileSize +(Tile.tileSize * a) + (int) width, 
+					Tile.character[1] * Tile.tileSize +(int) height, 
+					null);
+		} else if(isFacingUp) {
+			int a = animation + 6;
+			g.drawImage(Tile.tileset_terrain, 
+					(int) x - (int) Component.sX, 
+					(int) y - (int) Component.sY, 
+					(int) (x + width) - (int) Component.sX, 
+					(int) (y + height) - (int) Component.sY, 
+					/*Where it's cut out*/
+					(Tile.character[0] * Tile.tileSize) + (Tile.tileSize*a), 
+					Tile.character[1] * Tile.tileSize, 
+					Tile.character[0] * Tile.tileSize +(Tile.tileSize * a) + (int) width, 
+					Tile.character[1] * Tile.tileSize +(int) height, 
+					null);
+		} else if (isFacingLeft || isMovingLeft) {
+			int a = animation + 9;
+			g.drawImage(Tile.tileset_terrain, 
+					(int) x - (int) Component.sX, 
+					(int) y - (int) Component.sY, 
+					(int) (x + width) - (int) Component.sX, 
+					(int) (y + height) - (int) Component.sY, 
+					/*Where it's cut out*/
+					(Tile.character[0] * Tile.tileSize) + (Tile.tileSize*a), 
+					Tile.character[1] * Tile.tileSize, 
+					Tile.character[0] * Tile.tileSize +(Tile.tileSize * a) + (int) width, 
+					Tile.character[1] * Tile.tileSize +(int) height, 
+					null);
 		} else {
-			g.drawImage(Tile.tileset_terrain, (int) x - (int) Component.sX, (int) y - (int) Component.sY, (int) (x + width) - (int) Component.sX, (int) (y + height) - (int) Component.sY, /*Where it's cut out*/Tile.character[0] * Tile.tileSize +(Tile.tileSize * animation) + (int) width, Tile.character[1] * Tile.tileSize, (Tile.character[0] * Tile.tileSize) + (Tile.tileSize*animation), Tile.character[1] * Tile.tileSize +(int) height, null);
+			g.drawImage(Tile.tileset_terrain, 
+					//Where to place the character
+					(int) x - (int) Component.sX, 
+					(int) y - (int) Component.sY, 
+					(int) (x + width) - (int) Component.sX, 
+					(int) (y + height) - (int) Component.sY, 
+					/*Where it's cut out*/
+					(Tile.character[0] * Tile.tileSize) + (Tile.tileSize*animation), 
+					Tile.character[1] * Tile.tileSize, 
+					Tile.character[0] * Tile.tileSize +(Tile.tileSize * animation) + (int) width, 
+					Tile.character[1] * Tile.tileSize +(int) height, 
+					null);
+			
 		}
 	}
 }

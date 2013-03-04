@@ -10,27 +10,37 @@ public class Listening implements KeyListener, MouseListener, MouseMotionListene
 		case KeyEvent.VK_W:
 			Component.isMoving = true;
 			Character.isMovingUp = true;
-			Component.dir = 0;
+			Character.isFacingUp = true;
+			Character.isFacingDown = false;
+			Character.isFacingLeft = false;
+			Character.isFacingRight = false;
 			break;
 			
 		case KeyEvent.VK_D:
 			Component.isMoving = true;
 			Character.isMovingRight = true;
-			
-			Component.dir = 90;
+			Character.isFacingUp = false;
+			Character.isFacingDown = false;
+			Character.isFacingLeft = false;
+			Character.isFacingRight = true;
 			break;
 			
 		case KeyEvent.VK_S:
 			Component.isMoving = true;
 			Character.isMovingDown = true;
-			Component.dir = 180;
+			Character.isFacingUp = false;
+			Character.isFacingDown = true;
+			Character.isFacingLeft = false;
+			Character.isFacingRight = false;
 			break;
 		
 		case KeyEvent.VK_A:
 			Component.isMoving = true;
 			Character.isMovingLeft = true;
-			
-			Component.dir = 270;
+			Character.isFacingUp = false;
+			Character.isFacingDown = false;
+			Character.isFacingLeft = true;
+			Character.isFacingRight = false;
 			break;
 		
 		

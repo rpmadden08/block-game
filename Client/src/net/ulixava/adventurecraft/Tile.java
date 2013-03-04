@@ -28,15 +28,15 @@ public class Tile {
 	public static BufferedImage tile_select;
 	
 	public Tile() {
-	try {
-		Tile.tileset_terrain = ImageIO.read(new File("res/tileset_terrain.png"));
-		Tile.tile_cell = ImageIO.read(new File("res/tile_cell.png"));
-		Tile.tile_select = ImageIO.read(new File("res/tile_select.png"));
-
+		try {
+			Tile.tileset_terrain = ImageIO.read(new File("res/tileset_terrain.png"));
+			Tile.tile_cell = ImageIO.read(new File("res/tile_cell.png"));
+			Tile.tile_select = ImageIO.read(new File("res/tile_select.png"));
 	
-	} catch(Exception e){
 		
-	}
+		} catch(Exception e){
+			
+		}
 		
 	}
 }

@@ -31,7 +31,9 @@ public class Level {
 				}
 			}
 		}
+		block[15][15] = new Bedrock(new Rectangle(15 * Tile.tileSize + (int) Component.sX, 15 * Tile.tileSize + (int) Component.sY, Tile.tileSize, Tile.tileSize), Tile.bedrock);
 	}
+	
 	public void generateLevel() {
 		for(int y=0; y<block.length;y++) {
 			for(int x=0; x<block[0].length;x++) {
