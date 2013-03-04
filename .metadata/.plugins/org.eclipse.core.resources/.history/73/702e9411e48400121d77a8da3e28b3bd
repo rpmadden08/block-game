@@ -1,0 +1,11 @@
+package net.ulixava.adventurecraft;
+
+import java.awt.Rectangle;
+
+public class Grass extends Block{
+	private static final long serialVersionUID = 1L;
+	public Grass(Rectangle size, int[] id) { 
+		super(size, id);
+	}
+
+}
