@@ -25,7 +25,7 @@ public class Character extends DoubleRectangle {
 	public int xDistance = 0;
 	public int yDistance = 0;
 	public int step = 0;
-	public int[] stepArr = {0,1,0,2};
+	public int[] stepArr = {0,1,2,1,0};
 	
 	public double moveX = 0;
 	public double moveY = 0;
@@ -37,7 +37,7 @@ public class Character extends DoubleRectangle {
 	
 	public int jumpingHeight = 8, jumpingCount = 0;
 	public int animation = 0;  
-	public int animationFrame = 0, animationTime = 5;
+	public int animationFrame = 0, animationTime = 25;
 	
 	public Character(int width, int height) {
 		setBounds((Component.pixel.width / 2) - (width / 2), (Component.pixel.height / 2) - (height / 2), width, height);
@@ -93,7 +93,7 @@ public class Character extends DoubleRectangle {
 				if(animationFrame >= animationTime) {
 					
 					
-					if(step > 2) {
+					if(step > 3) {
 						step = 0;
 					} else {
 						step += 1;

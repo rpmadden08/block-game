@@ -24,8 +24,6 @@ public class Character extends DoubleRectangle {
 	public int offsetY = 0;
 	public int xDistance = 0;
 	public int yDistance = 0;
-	public int step = 0;
-	public int[] stepArr = {0,1,0,2};
 	
 	public double moveX = 0;
 	public double moveY = 0;
@@ -43,8 +41,7 @@ public class Character extends DoubleRectangle {
 		setBounds((Component.pixel.width / 2) - (width / 2), (Component.pixel.height / 2) - (height / 2), width, height);
 	}
 	
-	public void tick() {
-
+	public void tick() {		
 		if(isMovingLeft || isMovingRight || isMovingUp || isMovingDown && !Inventory.isOpen) {
 			boolean canMove = false;
 			moveX = 0;
@@ -91,15 +88,12 @@ public class Character extends DoubleRectangle {
 				Component.sY += moveY;
 				
 				if(animationFrame >= animationTime) {
-					
-					
-					if(step > 2) {
-						step = 0;
+					if(animation > 0) {
+						animation = 0;
 					} else {
-						step += 1;
+						animation += 1;
 						
 					}
-					animation = stepArr[step];
 					animationFrame = 0;
 				} else {
 					animationFrame += 1;

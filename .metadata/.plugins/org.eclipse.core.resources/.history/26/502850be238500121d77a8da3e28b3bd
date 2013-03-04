@@ -25,7 +25,7 @@ public class Character extends DoubleRectangle {
 	public int xDistance = 0;
 	public int yDistance = 0;
 	public int step = 0;
-	public int[] stepArr = {0,1,0,2};
+	public int[] stepArr = {0,1,2,1};
 	
 	public double moveX = 0;
 	public double moveY = 0;
@@ -93,13 +93,13 @@ public class Character extends DoubleRectangle {
 				if(animationFrame >= animationTime) {
 					
 					
-					if(step > 2) {
+					if(step > 3) {
 						step = 0;
 					} else {
 						step += 1;
 						
 					}
-					animation = stepArr[step];
+					animation = arr[step];
 					animationFrame = 0;
 				} else {
 					animationFrame += 1;
