@@ -5,6 +5,7 @@ import java.awt.*;
 
 import net.ulixava.adventurecraft.BlockTypes.Grass;
 import net.ulixava.adventurecraft.BlockTypes.Bedrock;
+import net.ulixava.adventurecraft.BlockTypes.Hole;
 
 public class Level {
 	public int worldW = 50, worldH = 50;
@@ -60,11 +61,14 @@ public class Level {
 							int sid[] = Inventory.invBar[Inventory.selected].id;
 							
 							if(Component.isMouseLeft) {
-								if(block[x][y].id != Tile.bedrock) {
-									block[x][y].id = Tile.air;
+								if(block[x][y].id != Tile.bedrock && block[x][y].id != Tile.hole) {
+									block[x][y].hitPoints --;
+									if(block[x][y].hitPoints < 1) {
+										block[x][y] = new Hole(new Rectangle(x * Tile.tileSize, y * Tile.tileSize,Tile.tileSize, Tile.tileSize),Tile.hole);
+									}
 								}
 							} else if (Component.isMouseRight) {
-								if(block[x][y].id == Tile.air) {
+								if(block[x][y].id == Tile.hole) {
 									if(sid == Tile.earth || sid == Tile.grass || sid == Tile.sand) {
 										block[x][y].id = sid;
 									}
@@ -95,7 +99,7 @@ public class Level {
 					if(block[x][y].id != Tile.air && block[x][y].id != Tile.bedrock && !Inventory.isOpen) {
 						if(block[x][y].contains(new Point((Component.mse.x / Component.pixelSize) + (int) Component.sX, (Component.mse.y / Component.pixelSize) + (int) Component.sY))) {
 							g.setColor(new Color(255,255,255, 40));
-							g.fillRect(block[x][y].x - camX, block[x][y].y - camY, block[x][y].width, block[x][y].height);
+							g.drawRect(block[x][y].x - camX, block[x][y].y - camY, block[x][y].width-1, block[x][y].height-1);
 						}
 					}
 				}
