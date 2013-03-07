@@ -21,6 +21,7 @@ public class Tile {
 	public static final int[] sand = {2, 0};
 	public static final int[] bedrock = {3, 0};
 	public static final int[] hole = {4, 0};
+	public static final int[] tree = {0, 4};
 	
 	//Tile Breaking Animations
 	public static final int[] breaking1 = {0, 1};
@@ -30,7 +31,9 @@ public class Tile {
 	public static final int[] breaking5 = {4, 1};
 	
 	//Items
+	public static final int[] grassSeed = {0, 2};
 	public static final int[] earthClump = {1, 2};
+	public static final int[] sandClump = {2, 2};
 	
 	//Characters
 	public static int[] mobChicken = {0, 12};

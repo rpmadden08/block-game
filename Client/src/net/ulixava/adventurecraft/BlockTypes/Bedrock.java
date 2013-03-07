@@ -1,6 +1,7 @@
 package net.ulixava.adventurecraft.BlockTypes;
 
 import java.awt.Rectangle;
+import net.ulixava.adventurecraft.Tile;
 
 import net.ulixava.adventurecraft.Block;
 //import net.ulixava.adventurecraft.Tile;
@@ -11,6 +12,7 @@ public class Bedrock extends Block{
 	public Bedrock(Rectangle size, int[] id) { 
 		super(size, id);
 		isPassable = false;
+		dropId = Tile.air;
 	}
 
 }

@@ -2,6 +2,8 @@ package net.ulixava.adventurecraft;
 
 import java.awt.*;
 
+import net.ulixava.adventurecraft.BlockTypes.Hole;
+
 //import net.ulixava.adventurecraft.BlockTypes.Hole;
 
 
@@ -9,7 +11,8 @@ public class Block extends Rectangle {
 	private static final long serialVersionUID = 1L;
 	
 	public int[] id = {-1, -1};
-	public boolean isPassable = false;
+	public int[] dropId = {-1, -1};
+	public boolean isPassable = true;
 	public int maxHitPoints = 25;
 	public int hitPoints = 25;
 	public boolean isMouseTouching = false;
@@ -19,15 +22,11 @@ public class Block extends Rectangle {
 		setBounds(size);
 		this.id = id;
 	}
-	public void destroy() {
-		//50,10,Tile.tileSize,Tile.tileSize * 2, Tile.mobChicken
-		
+	public void destroy(int x2,int y2) {
+		Component.level.block[x2][y2] = new Hole(new Rectangle(x2 * Tile.tileSize, y2 * Tile.tileSize,Tile.tileSize, Tile.tileSize),Tile.hole);
 		int collectibleID = Component.collectible.size();
-		Component.collectible.add(new Collectible(x,y, Component.collectibleID));
+		Component.collectible.add(new Collectible(x,y, Component.collectibleID, dropId));
 		Component.collectibleID = collectibleID+1;
-		
-		
-		
 	}
 	
 //	public boolean isPassable() {

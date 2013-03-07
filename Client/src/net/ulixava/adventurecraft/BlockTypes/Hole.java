@@ -2,6 +2,7 @@ package net.ulixava.adventurecraft.BlockTypes;
 
 import java.awt.Rectangle;
 
+import net.ulixava.adventurecraft.Tile;
 import net.ulixava.adventurecraft.Block;
 //import net.ulixava.adventurecraft.Tile;
 
@@ -10,7 +11,8 @@ public class Hole extends Block{
 	
 	public Hole(Rectangle size, int[] id) {
 		super(size, id);
-		isPassable = false;
+		isPassable = true;
+		dropId = Tile.air;
 	}
 
 }

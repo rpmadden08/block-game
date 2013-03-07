@@ -28,11 +28,9 @@ public class Inventory {
 		}
 		}
 		
-		invBar[0].id = Tile.earth;
+		invBar[0].id = Tile.earthClump;
 		invBar[0].stack = +12;
-		invBar[1].id = Tile.grass;
-		invBar[1].stack = +45;
-		invBar[2].id = Tile.sand;
+		invBar[2].id = Tile.sandClump;
 		invBar[2].stack = +78;
 		
 	}
