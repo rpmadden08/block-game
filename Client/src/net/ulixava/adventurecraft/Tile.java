@@ -14,12 +14,7 @@ public class Tile {
 	public static int invBorderSpace = 4;
 	public static int invItemBorder = 4;
 	
-	public static final int[] breaking1 = {0, 1};
-	public static final int[] breaking2 = {1, 1};
-	public static final int[] breaking3 = {2, 1};
-	public static final int[] breaking4 = {3, 1};
-	public static final int[] breaking5 = {4, 1};
-	
+	//Blocks
 	public static final int[] air = {-1, -1};
 	public static final int[] earth = {0, 0};
 	public static final int[] grass = {1, 0};
@@ -27,6 +22,17 @@ public class Tile {
 	public static final int[] bedrock = {3, 0};
 	public static final int[] hole = {4, 0};
 	
+	//Tile Breaking Animations
+	public static final int[] breaking1 = {0, 1};
+	public static final int[] breaking2 = {1, 1};
+	public static final int[] breaking3 = {2, 1};
+	public static final int[] breaking4 = {3, 1};
+	public static final int[] breaking5 = {4, 1};
+	
+	//Items
+	public static final int[] earthClump = {1, 2};
+	
+	//Characters
 	public static int[] mobChicken = {0, 12};
 	public static int[] character = {0, 14};
 	

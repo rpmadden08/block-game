@@ -2,19 +2,32 @@ package net.ulixava.adventurecraft;
 
 import java.awt.*;
 
+//import net.ulixava.adventurecraft.BlockTypes.Hole;
+
 
 public class Block extends Rectangle {
 	private static final long serialVersionUID = 1L;
 	
 	public int[] id = {-1, -1};
 	public boolean isPassable = false;
-	public int maxHitPoints = 100;
-	public int hitPoints = 100;
+	public int maxHitPoints = 25;
+	public int hitPoints = 25;
+	public boolean isMouseTouching = false;
 	
 	
 	public Block(Rectangle size, int[] id) {
 		setBounds(size);
 		this.id = id;
+	}
+	public void destroy() {
+		//50,10,Tile.tileSize,Tile.tileSize * 2, Tile.mobChicken
+		
+		int collectibleID = Component.collectible.size();
+		Component.collectible.add(new Collectible(x,y, Component.collectibleID));
+		Component.collectibleID = collectibleID+1;
+		
+		
+		
 	}
 	
 //	public boolean isPassable() {
@@ -25,11 +38,14 @@ public class Block extends Rectangle {
 //	}
 	
 	public void render(Graphics g) {
+		
 		if (id != Tile.air) {
 			g.drawImage(Tile.tileset_terrain, x - (int) Component.sX, y - (int) Component.sY, x + width - (int) Component.sX, y + height - (int) Component.sY,id[0] * Tile.tileSize, id[1] * Tile.tileSize, id[0] * Tile.tileSize + Tile.tileSize, id[1] * Tile.tileSize + Tile.tileSize, null);
 		}
-		if(Component.isMouseLeft == true) {
-			if(hitPoints < 20) {
+		if(Component.isMouseLeft == true && hitPoints != maxHitPoints) {  //At some point I should change the second condition to add "&& Mouse is touching this block"
+			double hitPointsPercentage = (double) hitPoints / (double)maxHitPoints* 100;
+			//System.out.println(hitPointsPercentage);
+			if(hitPointsPercentage < 20) {
 				g.drawImage(Tile.tileset_terrain, 
 						//Where to place the character
 						(int) x - (int) Component.sX, 
@@ -42,7 +58,7 @@ public class Block extends Rectangle {
 						Tile.breaking5[0] * Tile.tileSize +(Tile.tileSize),
 						Tile.breaking5[1] * Tile.tileSize +(Tile.tileSize), 
 						null);
-			} else if(hitPoints < 40) {
+			} else if(hitPointsPercentage < 40) {
 				g.drawImage(Tile.tileset_terrain, 
 						//Where to place the character
 						(int) x - (int) Component.sX, 
@@ -55,7 +71,7 @@ public class Block extends Rectangle {
 						Tile.breaking4[0] * Tile.tileSize +(Tile.tileSize),
 						Tile.breaking4[1] * Tile.tileSize +(Tile.tileSize), 
 						null);
-			} else if(hitPoints < 60) {
+			} else if(hitPointsPercentage < 60) {
 				g.drawImage(Tile.tileset_terrain, 
 						//Where to place the character
 						(int) x - (int) Component.sX, 
@@ -68,7 +84,7 @@ public class Block extends Rectangle {
 						Tile.breaking3[0] * Tile.tileSize +(Tile.tileSize),
 						Tile.breaking3[1] * Tile.tileSize +(Tile.tileSize), 
 						null);
-			} else if(hitPoints < 80) {
+			} else if(hitPointsPercentage < 80) {
 				g.drawImage(Tile.tileset_terrain, 
 						//Where to place the character
 						(int) x - (int) Component.sX, 
@@ -81,7 +97,7 @@ public class Block extends Rectangle {
 						Tile.breaking2[0] * Tile.tileSize +(Tile.tileSize),
 						Tile.breaking2[1] * Tile.tileSize +(Tile.tileSize), 
 						null);
-			} else if(hitPoints < 100) {
+			} else if(hitPointsPercentage < 100) {
 				g.drawImage(Tile.tileset_terrain, 
 						//Where to place the character
 						(int) x - (int) Component.sX, 
@@ -96,7 +112,7 @@ public class Block extends Rectangle {
 						null);
 			} 
 		} else {
-			hitPoints = 100;
+			hitPoints = maxHitPoints;
 		}
 		
 	}

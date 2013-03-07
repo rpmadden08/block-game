@@ -29,8 +29,48 @@ public class Inventory {
 		}
 		
 		invBar[0].id = Tile.earth;
+		invBar[0].stack = +12;
 		invBar[1].id = Tile.grass;
+		invBar[1].stack = +45;
 		invBar[2].id = Tile.sand;
+		invBar[2].stack = +78;
+		
+	}
+	
+	public static void addToInventory(int[] itemType, int amount) {
+		for(int i = 0; i <invBar.length; i++) {
+			if(invBar[i].id == itemType) {
+				if(invBar[i].stack < 99) {
+					//Need to account for "amount" being more than one and going over 100...
+					invBar[i].stack += amount;
+					return;
+				}
+			}
+		}
+		for(int i = 0; i <invBar.length; i++) {
+			if(invBar[i].id == Tile.air) {
+				invBar[i].id = itemType;
+				invBar[i].stack += amount;
+				return;
+			}
+		}
+		for(int i = 0; i <invBag.length; i++) {
+			if(invBag[i].id == itemType) {
+				if(invBag[i].stack < 99) {
+					//Need to account for "amount" being more than one and going over 100...
+					invBag[i].stack += amount;
+					return;
+				}
+			}
+		}
+		for(int i = 0; i <invBag.length; i++) {
+			if(invBag[i].id == Tile.air) {
+				invBag[i].id = itemType;
+				invBag[i].stack += amount;
+				return;
+			}
+		}
+		
 	}
 	
 	public static void click(MouseEvent e) {
@@ -108,7 +148,6 @@ public class Inventory {
 					holdingID[0] * Tile.tileSize + Tile.tileSize,
 					holdingID[1] * Tile.tileSize + Tile.tileSize,
 					null);
-
 		}
 	}
 	

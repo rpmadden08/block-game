@@ -1,0 +1,24 @@
+package net.ulixava.adventurecraft;
+
+import java.awt.*;
+
+public class Collectible {
+	
+	public Collectible() {
+		
+	}
+	
+	public void render(Graphics g) {
+		System.out.println("test");
+		g.drawImage(Tile.tileset_terrain,
+				100 - (int) Component.sX,
+				100 - (int) Component.sY,
+				100 + Tile.tileSize - (int) Component.sX,
+				100 + Tile.tileSize - (int) Component.sY,
+				Tile.earthClump[0] * Tile.tileSize,
+				Tile.earthClump[1] * Tile.tileSize,
+				Tile.earthClump[0] * Tile.tileSize + Tile.tileSize,
+				Tile.earthClump[1] * Tile.tileSize + Tile.tileSize,
+				null);
+	}
+}

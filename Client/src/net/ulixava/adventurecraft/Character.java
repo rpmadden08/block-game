@@ -5,7 +5,7 @@ import java.awt.*;
 public class Character extends DoubleRectangle {
 	public double fallingSpeed = 1;
 	public double movementSpeed = 1;
-	public double maxSpeed = 3;
+	public double maxSpeed = 1;
 	public double jumpingSpeed = 8;
 	
 	public static boolean isMovingUp = false;
@@ -30,10 +30,10 @@ public class Character extends DoubleRectangle {
 	public double moveX = 0;
 	public double moveY = 0;
 	
-	public double frameOffsetLeft = 1;
-	public double frameOffsetRight = 14;
-	public double frameOffsetBottom = 31;
-	public double frameOffsetTop = 16;
+	public static double frameOffsetLeft = 1;
+	public static double frameOffsetRight = 14;
+	public static double frameOffsetBottom = 31;
+	public static double frameOffsetTop = 16;
 	
 	public int jumpingHeight = 8, jumpingCount = 0;
 	public int animation = 0;  
@@ -153,6 +153,10 @@ public class Character extends DoubleRectangle {
 			}
 		}
 		return moveY;	
+	}
+	
+	public Rectangle bounds() {
+		return (new Rectangle((int) x + (int) frameOffsetLeft,(int) y + 9,(int) frameOffsetRight,(int)frameOffsetBottom - 8));
 	}
 	
 	public void render(Graphics g) {

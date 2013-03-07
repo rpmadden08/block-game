@@ -32,7 +32,7 @@ public class Level {
 				}
 			}
 		}
-		block[15][15] = new Bedrock(new Rectangle(15 * Tile.tileSize + (int) Component.sX, 15 * Tile.tileSize + (int) Component.sY, Tile.tileSize, Tile.tileSize), Tile.bedrock);
+		block[12][12] = new Bedrock(new Rectangle(12 * Tile.tileSize + (int) Component.sX, 12 * Tile.tileSize + (int) Component.sY, Tile.tileSize, Tile.tileSize), Tile.bedrock);
 	}
 	
 	public void generateLevel() {
@@ -59,28 +59,29 @@ public class Level {
 					if(x >= 0 && y >= 0 && x < worldW && y < worldH) {
 						if(block[x][y].contains(new Point((Component.mse.x / Component.pixelSize) + (int) Component.sX, (Component.mse.y / Component.pixelSize) + (int) Component.sY))) {
 							int sid[] = Inventory.invBar[Inventory.selected].id;
-							
 							if(Component.isMouseLeft) {
 								if(block[x][y].id != Tile.bedrock && block[x][y].id != Tile.hole) {
 									block[x][y].hitPoints --;
 									if(block[x][y].hitPoints < 1) {
+										block[x][y].destroy();
 										block[x][y] = new Hole(new Rectangle(x * Tile.tileSize, y * Tile.tileSize,Tile.tileSize, Tile.tileSize),Tile.hole);
 									}
 								}
+								
 							} else if (Component.isMouseRight) {
 								if(block[x][y].id == Tile.hole) {
 									if(sid == Tile.earth || sid == Tile.grass || sid == Tile.sand) {
 										block[x][y].id = sid;
 									}
 								}
-							}
+							} 
 							break;
 							
 						}
 					}
 				}
 			}
-		}
+		} 
 	}
 	
 	public void tick(int camX, int camY, int renW, int renH) {

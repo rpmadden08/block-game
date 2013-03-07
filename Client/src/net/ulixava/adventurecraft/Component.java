@@ -34,6 +34,8 @@ public class Component extends Applet implements Runnable {
 	public static Inventory inventory;
 	public static Sky sky;
 	public static ArrayList<Mob> mob = new ArrayList<Mob>();
+	public static ArrayList<Collectible> collectible = new ArrayList<Collectible>();
+	public static int collectibleID = 0;
 	
 	public Component() {
 		setPreferredSize(size);
@@ -89,6 +91,9 @@ public class Component extends Applet implements Runnable {
 		for(int i = 0; i < mob.toArray().length; i ++) {
 			mob.get(i).tick();
 		}
+		for(int i = 0; i < collectible.size(); i ++) {
+			collectible.get(i).tick();
+		}
 	}
 	
 	public void render() {
@@ -101,6 +106,11 @@ public class Component extends Applet implements Runnable {
 		
 		for(int i = 0; i < mob.toArray().length; i ++) {
 			mob.get(i).render(g);
+		}
+		
+		for(int i = 0; i < collectible.toArray().length; i ++) {
+			collectible.get(i).render(g);
+			
 		}
 		
 		g = getGraphics();

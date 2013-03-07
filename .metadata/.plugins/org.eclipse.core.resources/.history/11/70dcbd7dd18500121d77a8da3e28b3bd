@@ -1,0 +1,14 @@
+package net.ulixava.adventurecraft;
+
+import java.awt.*;
+
+public class Collectible {
+	
+	public Collectible() {
+		
+	}
+	
+	public void render(Graphics g) {
+		
+	}
+}
