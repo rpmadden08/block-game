@@ -102,6 +102,7 @@ public class Component extends Applet implements Runnable {
 		
 		level.render(g, (int) sX, (int) sY, (pixel.width /Tile.tileSize) + 2, (pixel.height / Tile.tileSize) + 2);
 		character.render(g);
+		level.render2(g,(int) sX, (int) sY, (pixel.width /Tile.tileSize) + 2, (pixel.height / Tile.tileSize) + 2);
 		inventory.render(g);
 		
 		for(int i = 0; i < mob.toArray().length; i ++) {

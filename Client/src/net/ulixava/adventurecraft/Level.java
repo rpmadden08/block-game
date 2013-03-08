@@ -1,7 +1,7 @@
 package net.ulixava.adventurecraft;
 
 import java.awt.*;
-//import java.util.*;
+import java.util.*;
 
 //import net.ulixava.adventurecraft.BlockTypes.Grass;
 //import net.ulixava.adventurecraft.BlockTypes.Bedrock;
@@ -25,6 +25,14 @@ public class Level {
 				block[x][y] = new Grass(new Rectangle(x * Tile.tileSize + (int) Component.sX, y * Tile.tileSize + (int) Component.sY, Tile.tileSize, Tile.tileSize), Tile.grass);
 			}
 		}
+		
+		for(int y=0; y<block.length;y++) {
+			for(int x=0; x<block[0].length;x++) {
+				if(y == 10) {
+					block[x][y] = new Hole(new Rectangle(x * Tile.tileSize + (int) Component.sX, y * Tile.tileSize + (int) Component.sY, Tile.tileSize, Tile.tileSize), Tile.hole);
+				}
+			}
+		}
 
 		for(int y=0; y<block.length;y++) {
 			for(int x=0; x<block[0].length;x++) {
@@ -33,27 +41,37 @@ public class Level {
 				}
 			}
 		}
-		block[12][12] = new Bedrock(new Rectangle(12 * Tile.tileSize + (int) Component.sX, 12 * Tile.tileSize + (int) Component.sY, Tile.tileSize, Tile.tileSize), Tile.bedrock);
-		block[11][12] = new Dirt(new Rectangle(11 * Tile.tileSize + (int) Component.sX, 12 * Tile.tileSize + (int) Component.sY, Tile.tileSize, Tile.tileSize), Tile.earth);
-		block[10][12] = new Sand(new Rectangle(10 * Tile.tileSize + (int) Component.sX, 12 * Tile.tileSize + (int) Component.sY, Tile.tileSize, Tile.tileSize), Tile.sand);
-	}
-	
-	public void generateLevel() {
 		for(int y=0; y<block.length;y++) {
 			for(int x=0; x<block[0].length;x++) {
-				//block[x][y].id = Tile.earth;
-				block[x][y] = new Grass(new Rectangle(x * Tile.tileSize + (int) Component.sX, y * Tile.tileSize + (int) Component.sY, Tile.tileSize, Tile.tileSize), Tile.air);
-			}
-		}
-
-		for(int y=0; y<block.length;y++) {
-			for(int x=0; x<block[0].length;x++) {
-				if(x == 1 || y == 1 || x == block.length-2 || y == block.length -2) {
-					block[x][y].id = Tile.bedrock;
+				Random rand = new Random();
+				int  n = rand.nextInt(10) + 1;
+				if(n == 1) {
+					block[x][y] = new Tree(new Rectangle(x * Tile.tileSize + (int) Component.sX, y * Tile.tileSize + (int) Component.sY, Tile.tileSize, Tile.tileSize), Tile.tree);
 				}
 			}
 		}
+//		block[9][9] = new Bedrock(new Rectangle(9 * Tile.tileSize + (int) Component.sX, 9 * Tile.tileSize + (int) Component.sY, Tile.tileSize, Tile.tileSize), Tile.bedrock);
+//		block[11][12] = new Dirt(new Rectangle(11 * Tile.tileSize + (int) Component.sX, 12 * Tile.tileSize + (int) Component.sY, Tile.tileSize, Tile.tileSize), Tile.earth);
+//		//block[10][12] = new Sand(new Rectangle(10 * Tile.tileSize + (int) Component.sX, 12 * Tile.tileSize + (int) Component.sY, Tile.tileSize, Tile.tileSize), Tile.sand);
+//		block[10][12] = new Tree(new Rectangle(10 * Tile.tileSize + (int) Component.sX, 12 * Tile.tileSize + (int) Component.sY, Tile.tileSize, Tile.tileSize), Tile.tree);
 	}
+	
+//	public void generateLevel() {
+//		for(int y=0; y<block.length;y++) {
+//			for(int x=0; x<block[0].length;x++) {
+//				//block[x][y].id = Tile.earth;
+//				block[x][y] = new Grass(new Rectangle(x * Tile.tileSize + (int) Component.sX, y * Tile.tileSize + (int) Component.sY, Tile.tileSize, Tile.tileSize), Tile.air);
+//			}
+//		}
+//
+//		for(int y=0; y<block.length;y++) {
+//			for(int x=0; x<block[0].length;x++) {
+//				if(x == 1 || y == 1 || x == block.length-2 || y == block.length -2) {
+//					block[x][y].id = Tile.bedrock;
+//				}
+//			}
+//		}
+//	}
 	
 	public void building(int camX, int camY, int renW, int renH) {
 		if(Component.isMouseLeft || Component.isMouseRight) {
@@ -61,12 +79,13 @@ public class Level {
 				for(int y=(camY / Tile.tileSize); y<(camY / Tile.tileSize) + renH;y++) {
 					if(x >= 0 && y >= 0 && x < worldW && y < worldH) {
 						if(block[x][y].contains(new Point((Component.mse.x / Component.pixelSize) + (int) Component.sX, (Component.mse.y / Component.pixelSize) + (int) Component.sY))) {
+							block[x][y].isDigAnimationVisible = true;
 							int sid[] = Inventory.invBar[Inventory.selected].id;
 							if(Component.isMouseLeft) {
 								if(block[x][y].id != Tile.bedrock && block[x][y].id != Tile.hole) {
 									block[x][y].hitPoints --;
 									if(block[x][y].hitPoints < 1) {
-										block[x][y].destroy(x,y);
+										block[x][y].destroy(x,y);										
 									}
 								}
 								
@@ -75,17 +94,27 @@ public class Level {
 									
 									if(sid == Tile.earthClump) {
 										block[x][y] = new Dirt(new Rectangle(x * Tile.tileSize, y * Tile.tileSize,Tile.tileSize, Tile.tileSize),Tile.earth);
+										Inventory.removeFromInventory(sid, 1);
 									} else if(sid == Tile.grassSeed) {
 										block[x][y] = new Grass(new Rectangle(x * Tile.tileSize, y * Tile.tileSize,Tile.tileSize, Tile.tileSize),Tile.grass);
+										Inventory.removeFromInventory(sid, 1);
 									} else if(sid == Tile.sandClump) {
 										block[x][y] = new Sand(new Rectangle(x * Tile.tileSize, y * Tile.tileSize,Tile.tileSize, Tile.tileSize),Tile.sand);
+										Inventory.removeFromInventory(sid, 1);
 									} 
+									
+									
 								}
-							} 
+							}
+							
 							break;
 							
 						}
+						block[x][y].isDigAnimationVisible = false;
+						
+						
 					}
+					
 				}
 			}
 		} 
@@ -113,5 +142,9 @@ public class Level {
 				}
 			}
 		}
+	}
+	//For overhead graphics...
+	public void render2(Graphics g, int camX, int camY, int renW, int renH) {
+		
 	}
 }

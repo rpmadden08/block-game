@@ -34,6 +34,9 @@ public class Tile {
 	public static final int[] grassSeed = {0, 2};
 	public static final int[] earthClump = {1, 2};
 	public static final int[] sandClump = {2, 2};
+	public static final int[] log = {3, 2};
+	public static final int[] plank = {4, 2};
+
 	
 	//Characters
 	public static int[] mobChicken = {0, 12};

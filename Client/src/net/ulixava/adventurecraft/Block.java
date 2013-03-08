@@ -16,6 +16,7 @@ public class Block extends Rectangle {
 	public int maxHitPoints = 25;
 	public int hitPoints = 25;
 	public boolean isMouseTouching = false;
+	public boolean isDigAnimationVisible = false;
 	
 	
 	public Block(Rectangle size, int[] id) {
@@ -29,19 +30,14 @@ public class Block extends Rectangle {
 		Component.collectibleID = collectibleID+1;
 	}
 	
-//	public boolean isPassable() {
-//		if(id == Tile.earth) {
-//			return true;
-//		}
-//		return false;
-//	}
 	
 	public void render(Graphics g) {
 		
 		if (id != Tile.air) {
 			g.drawImage(Tile.tileset_terrain, x - (int) Component.sX, y - (int) Component.sY, x + width - (int) Component.sX, y + height - (int) Component.sY,id[0] * Tile.tileSize, id[1] * Tile.tileSize, id[0] * Tile.tileSize + Tile.tileSize, id[1] * Tile.tileSize + Tile.tileSize, null);
 		}
-		if(Component.isMouseLeft == true && hitPoints != maxHitPoints) {  //At some point I should change the second condition to add "&& Mouse is touching this block"
+		
+		if(Component.isMouseLeft == true && hitPoints != maxHitPoints && isDigAnimationVisible == true) {  //At some point I should change the second condition to add "&& Mouse is touching this block"
 			double hitPointsPercentage = (double) hitPoints / (double)maxHitPoints* 100;
 			//System.out.println(hitPointsPercentage);
 			if(hitPointsPercentage < 20) {
