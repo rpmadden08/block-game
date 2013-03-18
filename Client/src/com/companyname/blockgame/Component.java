@@ -2,124 +2,172 @@ package com.companyname.blockgame;
 
 import java.applet.*;
 import javax.swing.*;
+
+import com.companyname.blockgame.GameStates.MainState;
+
 import java.awt.*;
+//import java.awt.event.*;
 import java.util.*;
 
 public class Component extends Applet implements Runnable {
 	private static final long serialVersionUID = 1L;
 	
+	public static final int MAIN_STATE = 0;
+	public static final int INVENTORY_STATE = 1;
+
+	private Thread animator;
+
+	public static int maxPixelSize = 4;
+	public static int minPixelSize = 1;
 	public static int pixelSize = 2;
+	public static int initialFrameWidth;
+	public static int initialFrameHeight;
+	public static int initialGameWidth = 700;
+	public static int initialGameHeight = 560;
+	
 	public static double sX = 0, sY = 0;
-	public static int dir = 0;
-	
-	
-	public static Dimension realSize;
-	public static Dimension size = new Dimension(700, 560);
+
+	public static Dimension size = new Dimension(initialGameWidth, initialGameHeight); //700, 560
 	public static Dimension pixel = new Dimension(size.width / pixelSize, size.height / pixelSize);
-	
+
 	public static Point mse = new Point(0, 0);
-	
+
 	public static String name = "AWESOME GAME!";
-	
+
 	public static boolean isRunning = false;
-	public static boolean isMoving = false;
-	public static boolean isJumping = false;
 	public static boolean isMouseLeft = false;
 	public static boolean isMouseRight = false;
 	
-	private Image screen;
-	
+	public static GameState currentState;
+	public static Sleeper sleeper;
+	public static Debugger debugger;
 	public static Level level;
 	public static Character character;
 	public static Inventory inventory;
-	public static Sky sky;
+	public static Day day;
 	public static ArrayList<Mob> mob = new ArrayList<Mob>();
-	
+	public static ArrayList<Collectible> collectible = new ArrayList<Collectible>();
+	public static int collectibleID = 0;
+
 	public Component() {
 		setPreferredSize(size);
 		addKeyListener(new Listening());
 		addMouseListener(new Listening());
 		addMouseMotionListener(new Listening());
 		addMouseWheelListener(new Listening());
+		setFocusable(true);
+		requestFocus();
+
+		debugger = new Debugger();
 	}
-	
-	
-	
+
 	public void start() {
-		
+		currentState = new MainState();
 		new Tile();
 		level = new Level();
 		character = new Character(Tile.tileSize, Tile.tileSize*2);
+		
 		inventory = new Inventory();
-		sky = new Sky();
+		day = new Day();
+		
 		//mob.add(new Chicken(50,10,Tile.tileSize,Tile.tileSize * 2, Tile.mobChicken));
 		
-		isRunning = true;
-		new Thread(this).start();
+		/*
+		// screen resize stuff...
+		//needs to account for applets and sX/sY changing both through movement and screen resize...
+		initialFrameWidth = frame.getWidth();
+		initialFrameHeight = frame.getHeight();
 		
+        frame.getRootPane().addComponentListener(new ComponentAdapter() {
+            public void componentResized(ComponentEvent e) {
+            	int diffWidth = frame.getWidth() - initialFrameWidth;
+            	int diffHeight = frame.getHeight() - initialFrameHeight;
+            	
+            	size = new Dimension(initialGameWidth + diffWidth, initialGameHeight + diffHeight);
+            	pixel = new Dimension(size.width / pixelSize, size.height / pixelSize);
+            	
+            	//sX = -(diffWidth / 3);
+            	//sY = -(diffHeight / 3);
+          
+                //System.out.println("gameSize: " + size.width + ", " + size.height);
+                //System.out.println("frameSize: " + frame.getWidth() + ", " + frame.getHeight());
+            	
+            	//size = new Dimension(700, 560); //700, 560
+            	//pixel = new Dimension(size.width / pixelSize, size.height / pixelSize);
+            }
+        });
+        */
+        
+		isRunning = true;
+		animator = new Thread(this);
+		animator.start();
 	}
-	
+
 	public void stop() {
 		isRunning = false;
 	}
+
 	private static JFrame frame;
+
 	public static void main(String args[]) {
 		Component component = new Component();
+
 		
 		frame = new JFrame();
 		frame.add(component);
 		frame.pack();
 		
+		frame.setMinimumSize(new Dimension(500, 560));
 		frame.setTitle(name);
 		frame.setResizable(true);
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
-		
-		
+
+
 		component.start();
 	}
-	
-	public void tick() {
-		
-		character.tick();
-		level.tick((int) sX, (int) sY, (pixel.width /Tile.tileSize) + 2, (pixel.height / Tile.tileSize) + 2);
-		sky.tick();
-		
-		for(int i = 0; i < mob.toArray().length; i ++) {
-			mob.get(i).tick();
+
+	private void renderToScreen() { 
+		Graphics g;
+		try {
+			g = this.getGraphics();
+			if ((g != null) && (currentState.dbImage != null))
+				g.drawImage(currentState.dbImage, 0, 0, size.width, size.height, 0, 0, pixel.width, pixel.height, null);
+			g.dispose();
+		}
+		catch (Exception e) {
+			System.out.println("Graphics context error: " + e);
 		}
 	}
 	
-	public void render() {
-		Graphics g = screen.getGraphics();
-		sky.render(g);
-		
-		level.render(g, (int) sX, (int) sY, (pixel.width /Tile.tileSize) + 2, (pixel.height / Tile.tileSize) + 2);
-		character.render(g);
-		inventory.render(g);
-		
-		for(int i = 0; i < mob.toArray().length; i ++) {
-			mob.get(i).render(g);
+	private void clearScreen() {
+		if (currentState.dbImage == null) {
+			currentState.dbImage = createImage(Component.size.width, Component.size.height);
+			if (currentState.dbImage == null) {
+				System.out.println("dbImage is null");
+				return;
+			}
+			else
+				currentState.dbg = currentState.dbImage.getGraphics();
 		}
 		
-		g = getGraphics();
-		
-		g.drawImage(screen, 0, 0, size.width, size.height, 0, 0, pixel.width, pixel.height, null);
-		g.dispose();
-		
-		
+		currentState.dbg.setColor(Color.black);
+		currentState.dbg.fillRect (0, 0, size.width, size.height);
 	}
 	
 	public void run() {
-		screen = createVolatileImage(pixel.width, pixel.height);
+		debugger.start();
+		sleeper = new Sleeper();
+		
 		while(isRunning) {
-			tick();
-			render();
-			
-			try {
-				Thread.sleep(5);
-			} catch(Exception e) { }
+			currentState.tick();
+			clearScreen();
+			currentState.renderToBuffer();
+			renderToScreen();
+			sleeper.sleep();
+			debugger.updateStats();
 		}
+		System.exit(0);
 	}
 }

@@ -1,5 +1,6 @@
 package com.companyname.blockgame;
 
+//import java.awt.Dimension;
 import java.awt.event.*;
 
 public class Listening implements KeyListener, MouseListener, MouseMotionListener, MouseWheelListener{
@@ -8,32 +9,44 @@ public class Listening implements KeyListener, MouseListener, MouseMotionListene
 		
 		switch(key) {
 		case KeyEvent.VK_W:
-			Component.isMoving = true;
 			Character.isMovingUp = true;
-			Component.dir = 0;
+			Character.isFacingUp = true;
+			Character.isFacingDown = false;
+			Character.isFacingLeft = false;
+			Character.isFacingRight = false;
 			break;
 			
 		case KeyEvent.VK_D:
-			Component.isMoving = true;
 			Character.isMovingRight = true;
-			
-			Component.dir = 90;
+			Character.isFacingUp = false;
+			Character.isFacingDown = false;
+			Character.isFacingLeft = false;
+			Character.isFacingRight = true;
 			break;
 			
 		case KeyEvent.VK_S:
-			Component.isMoving = true;
 			Character.isMovingDown = true;
-			Component.dir = 180;
+			Character.isFacingUp = false;
+			Character.isFacingDown = true;
+			Character.isFacingLeft = false;
+			Character.isFacingRight = false;
 			break;
 		
 		case KeyEvent.VK_A:
-			Component.isMoving = true;
 			Character.isMovingLeft = true;
-			
-			Component.dir = 270;
+			Character.isFacingUp = false;
+			Character.isFacingDown = false;
+			Character.isFacingLeft = true;
+			Character.isFacingRight = false;
 			break;
-		
-		
+		case KeyEvent.VK_M:
+			Debugger.toggle();
+			break;
+		/*
+		case KeyEvent.VK_Y:
+			Component.pixelSize = 4;
+			Component.pixel = new Dimension(Component.size.width / Component.pixelSize, Component.size.height / Component.pixelSize);
+			break; */
 		}
 	}
 	
@@ -42,42 +55,29 @@ public class Listening implements KeyListener, MouseListener, MouseMotionListene
 		
 		switch(key) {
 		case KeyEvent.VK_W:
-			//Component.isMoving = false;
 			Character.isMovingUp = false;
-			Component.dir = 0;
 			break;
 			
 		case KeyEvent.VK_D:
-			//Component.isMoving = false;
 			Character.isMovingRight = false;
-			Component.dir = 90;
 			break;
 			
 		case KeyEvent.VK_S:
-			//Component.isMoving = false;
 			Character.isMovingDown = false;
-			Component.dir = 180;
 			break;
 		
 		case KeyEvent.VK_A:
-			//Component.isMoving = false;
 			Character.isMovingLeft = false;
-			Component.dir = 270;
 			break;
 			
 		case KeyEvent.VK_E:
-			if(Inventory.isOpen) {
-				Inventory.isOpen = false;
-			} else {
-				Inventory.isOpen = true;
-			}
+			Inventory.toggleInventoryState();
 			break;
 		}
-		
 	}
 	
 	public void keyTyped(KeyEvent e) {
-		
+
 	}
 	
 	public void mouseWheelMoved(MouseWheelEvent e) {

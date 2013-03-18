@@ -111,6 +111,7 @@ public class Mob extends DoubleRectangle {
 	}
 	
 	public void render(Graphics g) {
+		/*
 		if (Component.dir == movementSpeed) {
 			g.drawImage(Tile.tileset_terrain,
 					(int) x - (int) Component.sX,
@@ -134,5 +135,6 @@ public class Mob extends DoubleRectangle {
 					id[1] * Tile.tileSize +(int) height,
 					null);
 		}
+		*/
 	}
 }
