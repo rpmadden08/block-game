@@ -32,6 +32,7 @@ public class Component extends Applet implements Runnable {
 	public static Level level;
 	public static Character character;
 	public static Inventory inventory;
+	public static Weapon weapon;
 	public static Sky sky;
 	public static ArrayList<Mob> mob = new ArrayList<Mob>();
 	public static ArrayList<Collectible> collectible = new ArrayList<Collectible>();
@@ -52,6 +53,7 @@ public class Component extends Applet implements Runnable {
 		new Tile();
 		level = new Level();
 		character = new Character(Tile.tileSize, Tile.tileSize*2);
+		weapon = new Weapon(Tile.tileSize, Tile.tileSize, Tile.sword);
 		inventory = new Inventory();
 		sky = new Sky();
 		//mob.add(new Chicken(50,10,Tile.tileSize,Tile.tileSize * 2, Tile.mobChicken));
@@ -87,6 +89,7 @@ public class Component extends Applet implements Runnable {
 		character.tick();
 		level.tick((int) sX, (int) sY, (pixel.width /Tile.tileSize) + 2, (pixel.height / Tile.tileSize) + 2);
 		sky.tick();
+		weapon.tick();
 		
 		for(int i = 0; i < mob.toArray().length; i ++) {
 			mob.get(i).tick();
@@ -101,9 +104,11 @@ public class Component extends Applet implements Runnable {
 		sky.render(g);
 		
 		level.render(g, (int) sX, (int) sY, (pixel.width /Tile.tileSize) + 2, (pixel.height / Tile.tileSize) + 2);
+		weapon.render(g);
 		character.render(g);
 		level.render2(g,(int) sX, (int) sY, (pixel.width /Tile.tileSize) + 2, (pixel.height / Tile.tileSize) + 2);
 		inventory.render(g);
+		
 		
 		for(int i = 0; i < mob.toArray().length; i ++) {
 			mob.get(i).render(g);

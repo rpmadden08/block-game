@@ -36,6 +36,9 @@ public class Tile {
 	public static final int[] sandClump = {2, 2};
 	public static final int[] log = {3, 2};
 	public static final int[] plank = {4, 2};
+	
+	//Weapons
+	public static final int[] sword = {0, 5};
 
 	
 	//Characters
@@ -45,12 +48,14 @@ public class Tile {
 	public static BufferedImage tileset_terrain;
 	public static BufferedImage tile_cell;
 	public static BufferedImage tile_select;
+	public static BufferedImage tile_sword;
 	
 	public Tile() {
 		try {
 			Tile.tileset_terrain = ImageIO.read(new File("res/tileset_terrain.png"));
 			Tile.tile_cell = ImageIO.read(new File("res/tile_cell.png"));
 			Tile.tile_select = ImageIO.read(new File("res/tile_select.png"));
+			Tile.tile_sword = ImageIO.read(new File("res/sword.png"));
 	
 		
 		} catch(Exception e){

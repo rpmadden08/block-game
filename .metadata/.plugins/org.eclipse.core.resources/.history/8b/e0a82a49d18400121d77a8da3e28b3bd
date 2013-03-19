@@ -1,7 +1,0 @@
-package net.ulixava.adventurecraft;
-
-public class Grass extends Block{
-	//private static final long serialVersionUID = 1L;
-	
-
-}

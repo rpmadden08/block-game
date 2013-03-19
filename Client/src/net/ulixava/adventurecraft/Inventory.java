@@ -56,12 +56,11 @@ public class Inventory {
 		
 		
 		
-		invBar[0].id = Tile.earthClump;
-		invBar[0].stack = +4;
 		invBar[1].id = Tile.log;
 		invBar[1].stack = +3;
 		invBar[2].id = Tile.log;
 		invBar[2].stack = +98;
+		invBar[0].id = Tile.sword;
 		
 	}
 	

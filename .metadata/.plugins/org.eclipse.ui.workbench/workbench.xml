@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<workbench progressCount="25" version="2.0">
+<workbench progressCount="18" version="2.0">
 <workbenchAdvisor/>
-<window height="801" width="986" x="0" y="22">
+<window height="804" width="1435" x="0" y="22">
 <fastViewData fastViewLocation="1024">
 <orientation position="512" view="org.eclipse.ui.views.ResourceNavigator"/>
 </fastViewData>
@@ -19,6 +19,7 @@
 <coolItem id="group.nav" itemType="typeGroupMarker"/>
 <coolItem id="org.eclipse.ui.workbench.navigate" itemType="typeToolBarContribution" x="156" y="22"/>
 <coolItem id="group.editor" itemType="typeGroupMarker"/>
+<coolItem id="org.eclipse.jdt.ui.ClassFileEditor" itemType="typePlaceholder" x="-1" y="-1"/>
 <coolItem id="org.eclipse.jdt.ui.CompilationUnitEditor" itemType="typeToolBarContribution" x="-1" y="-1"/>
 <coolItem id="group.help" itemType="typeGroupMarker"/>
 <coolItem id="org.eclipse.ui.workbench.help" itemType="typeToolBarContribution" x="-1" y="-1"/>
@@ -29,14 +30,54 @@
 <info part="DefaultEditorWorkbook">
 <folder appearance="1" expanded="2">
 <presentation id="org.eclipse.ui.internal.presentations.r33.WorkbenchPresentationFactory_33">
+<part id="5"/>
 <part id="0"/>
+<part id="1"/>
+<part id="2"/>
+<part id="3"/>
+<part id="4"/>
+<part id="6"/>
+<part id="7"/>
+<part id="8"/>
 </presentation>
 </folder>
 </info>
 </editorArea>
-<editor activePart="true" focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Character.java" partName="Character.java" path="/Users/chrismadden/Documents/java/github/block-game/Client/src/net/ulixava/adventurecraft/Character.java" title="Character.java" tooltip="Client/src/net/ulixava/adventurecraft/Character.java" workbook="DefaultEditorWorkbook">
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Block.java" partName="Block.java" path="/Users/chrismadden/Documents/java/github/block-game/Client/src/net/ulixava/adventurecraft/Block.java" title="Block.java" tooltip="Client/src/net/ulixava/adventurecraft/Block.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Client/src/net/ulixava/adventurecraft/Block.java"/>
+<editorState selectionHPixel="0" selectionLength="4282" selectionOffset="36"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Tile.java" partName="Tile.java" path="/Users/chrismadden/Documents/java/github/block-game/Client/src/net/ulixava/adventurecraft/Tile.java" title="Tile.java" tooltip="Client/src/net/ulixava/adventurecraft/Tile.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Client/src/net/ulixava/adventurecraft/Tile.java"/>
+<editorState selectionHPixel="0" selectionLength="0" selectionOffset="1839"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Collectible.java" partName="Collectible.java" path="/Users/chrismadden/Documents/java/github/block-game/Client/src/net/ulixava/adventurecraft/Collectible.java" title="Collectible.java" tooltip="Client/src/net/ulixava/adventurecraft/Collectible.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Client/src/net/ulixava/adventurecraft/Collectible.java"/>
+<editorState selectionHPixel="0" selectionLength="0" selectionOffset="540"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Level.java" partName="Level.java" path="/Users/chrismadden/Documents/java/github/block-game/Client/src/net/ulixava/adventurecraft/Level.java" title="Level.java" tooltip="Client/src/net/ulixava/adventurecraft/Level.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Client/src/net/ulixava/adventurecraft/Level.java"/>
+<editorState selectionHPixel="0" selectionLength="0" selectionOffset="3955"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Inventory.java" partName="Inventory.java" path="/Users/chrismadden/Documents/java/github/block-game/Client/src/net/ulixava/adventurecraft/Inventory.java" title="Inventory.java" tooltip="Client/src/net/ulixava/adventurecraft/Inventory.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Client/src/net/ulixava/adventurecraft/Inventory.java"/>
+<editorState selectionHPixel="0" selectionLength="0" selectionOffset="2380"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Component.java" partName="Component.java" path="/Users/chrismadden/Documents/java/github/block-game/Client/src/net/ulixava/adventurecraft/Component.java" title="Component.java" tooltip="Client/src/net/ulixava/adventurecraft/Component.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Client/src/net/ulixava/adventurecraft/Component.java"/>
+<editorState selectionHPixel="0" selectionLength="0" selectionOffset="2780"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Character.java" partName="Character.java" path="/Users/chrismadden/Documents/java/github/block-game/Client/src/net/ulixava/adventurecraft/Character.java" title="Character.java" tooltip="Client/src/net/ulixava/adventurecraft/Character.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Client/src/net/ulixava/adventurecraft/Character.java"/>
-<editorState selectionHPixel="0" selectionLength="0" selectionOffset="0"/>
+<editorState selectionHPixel="0" selectionLength="20" selectionOffset="757"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Cell.java" partName="Cell.java" path="/Users/chrismadden/Documents/java/github/block-game/Client/src/net/ulixava/adventurecraft/Cell.java" title="Cell.java" tooltip="Client/src/net/ulixava/adventurecraft/Cell.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Client/src/net/ulixava/adventurecraft/Cell.java"/>
+<editorState selectionHPixel="0" selectionLength="120" selectionOffset="1276"/>
+</editor>
+<editor focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Weapon.java" partName="Weapon.java" path="/Users/chrismadden/Documents/java/github/block-game/Client/src/net/ulixava/adventurecraft/Weapon.java" title="Weapon.java" tooltip="Client/src/net/ulixava/adventurecraft/Weapon.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Client/src/net/ulixava/adventurecraft/Weapon.java"/>
+<editorState selectionHPixel="0" selectionLength="0" selectionOffset="381"/>
 </editor>
 </editors>
 <views>
@@ -81,8 +122,7 @@
 </view>
 <view id="org.eclipse.mylyn.tasks.ui.views.tasks" partName="Task List">
 <viewState linkWithEditor="true" presentation="org.eclipse.mylyn.tasks.ui.categorized">
-<org.eclipse.mylyn.tasklist.ui.views.tasklist.sortIndex>
-<sorter sortDirection="1" sortIndex="0"/>
+<org.eclipse.mylyn.tasklist.ui.views.tasklist.sortIndex>&#x0A;<sorter sortDirection="1" sortIndex="0"/>
 </org.eclipse.mylyn.tasklist.ui.views.tasklist.sortIndex>
 </viewState>
 </view>
@@ -92,7 +132,7 @@
 <view id="org.eclipse.jdt.ui.SourceView" partName="Declaration"/>
 <view id="org.eclipse.jdt.ui.JavadocView" partName="Javadoc"/>
 </views>
-<perspectives activePart="org.eclipse.jdt.ui.CompilationUnitEditor" activePerspective="org.eclipse.jdt.ui.JavaPerspective">
+<perspectives activePart="org.eclipse.jdt.ui.PackageExplorer" activePerspective="org.eclipse.jdt.ui.JavaPerspective">
 <perspective editorAreaTrimState="2" editorAreaVisible="1" fixed="0" version="0.016">
 <descriptor class="org.eclipse.jdt.internal.ui.JavaPerspectiveFactory" id="org.eclipse.jdt.ui.JavaPerspective" label="Java"/>
 <alwaysOnActionSet id="org.eclipse.mylyn.context.ui.actionSet"/>
@@ -150,10 +190,19 @@
 <view id="org.eclipse.jdt.ui.JavadocView"/>
 <view id="org.eclipse.jdt.ui.SourceView"/>
 <view id="org.eclipse.ui.console.ConsoleView"/>
-<view id="org.eclipse.ui.views.ContentOutline"/>
-<view id="org.eclipse.mylyn.tasks.ui.views.tasks"/>
 <view id="org.eclipse.jdt.ui.PackageExplorer"/>
-<fastViewBars/>
+<fastViewBars>
+<fastViewBar fastViewLocation="131072" id="org.eclipse.ui.internal.ViewStack@40f3c1" orientation="512" selectedTabId="org.eclipse.mylyn.tasks.ui.views.tasks" style="0">
+<fastViews>
+<view id="org.eclipse.mylyn.tasks.ui.views.tasks" ratio="0.3"/>
+</fastViews>
+</fastViewBar>
+<fastViewBar fastViewLocation="131072" id="org.eclipse.ui.internal.ViewStack@6af18d" orientation="512" selectedTabId="org.eclipse.ui.views.ContentOutline" style="0">
+<fastViews>
+<view id="org.eclipse.ui.views.ContentOutline" ratio="0.3"/>
+</fastViews>
+</fastViewBar>
+</fastViewBars>
 <layout>
 <mainWindow>
 <info folder="true" part="left">
@@ -176,7 +225,7 @@
 </folder>
 </info>
 <info part="org.eclipse.ui.editorss" ratio="0.25" ratioLeft="254" ratioRight="762" relationship="2" relative="left"/>
-<info folder="true" part="bottom" ratio="0.7493225" ratioLeft="553" ratioRight="185" relationship="4" relative="org.eclipse.ui.editorss">
+<info folder="true" part="bottom" ratio="0.81527776" ratioLeft="587" ratioRight="133" relationship="4" relative="org.eclipse.ui.editorss">
 <folder activePageID="org.eclipse.ui.console.ConsoleView" appearance="2" expanded="2">
 <page content="org.eclipse.ui.views.ProblemView" label="Problems"/>
 <page content="org.eclipse.jdt.ui.JavadocView" label="Javadoc"/>
@@ -194,20 +243,16 @@
 </folder>
 </info>
 <info folder="true" part="org.eclipse.ui.internal.ViewStack@40f3c1" ratio="0.7493438" ratioLeft="571" ratioRight="191" relationship="2" relative="org.eclipse.ui.editorss">
-<folder activePageID="org.eclipse.mylyn.tasks.ui.views.tasks" appearance="2" expanded="2">
-<page content="org.eclipse.mylyn.tasks.ui.views.tasks" label="Task List"/>
-<presentation id="org.eclipse.ui.internal.presentations.r33.WorkbenchPresentationFactory_33">
-<part id="0"/>
-</presentation>
+<folder appearance="2" expanded="2">
+<page content="org.eclipse.mylyn.tasks.ui.views.tasks" label="LabelNotFound"/>
+<presentation id="org.eclipse.ui.internal.presentations.r33.WorkbenchPresentationFactory_33"/>
 </folder>
 </info>
 <info folder="true" part="org.eclipse.ui.internal.ViewStack@6af18d" ratio="0.49909583" ratioLeft="276" ratioRight="277" relationship="4" relative="org.eclipse.ui.internal.ViewStack@40f3c1">
-<folder activePageID="org.eclipse.ui.views.ContentOutline" appearance="2" expanded="2">
-<page content="org.eclipse.ui.views.ContentOutline" label="Outline"/>
+<folder appearance="2" expanded="2">
+<page content="org.eclipse.ui.views.ContentOutline" label="LabelNotFound"/>
 <page content="org.eclipse.ant.ui.views.AntView" label="LabelNotFound"/>
-<presentation id="org.eclipse.ui.internal.presentations.r33.WorkbenchPresentationFactory_33">
-<part id="0"/>
-</presentation>
+<presentation id="org.eclipse.ui.internal.presentations.r33.WorkbenchPresentationFactory_33"/>
 </folder>
 </info>
 </mainWindow>
@@ -217,10 +262,165 @@
 <workingSets/>
 <navigationHistory>
 <editors>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Client/src/net/ulixava/adventurecraft/Level.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Client/src/net/ulixava/adventurecraft/Weapon.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Client/src/net/ulixava/adventurecraft/Component.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Client/src/net/ulixava/adventurecraft/Tile.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Client/src/net/ulixava/adventurecraft/Block.java"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Client/src/net/ulixava/adventurecraft/Character.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Client/src/net/ulixava/adventurecraft/Collectible.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Client/src/net/ulixava/adventurecraft/Inventory.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Client/src/net/ulixava/adventurecraft/Cell.java"/>
 </editors>
-<item active="true" historyLabel="Character.java" index="0">
+<item historyLabel="Character.java" index="5">
+<position info="not_deleted" x="1228" y="113"/>
+</item>
+<item historyLabel="Weapon.java" index="1">
+<position info="not_deleted" x="1442" y="0"/>
+</item>
+<item historyLabel="Character.java" index="5">
+<position info="not_deleted" x="1097" y="79"/>
+</item>
+<item historyLabel="Weapon.java" index="1">
+<position info="not_deleted" x="404" y="0"/>
+</item>
+<item historyLabel="Character.java" index="5">
+<position info="not_deleted" x="2463" y="236"/>
+</item>
+<item historyLabel="Weapon.java" index="1">
+<position info="not_deleted" x="938" y="0"/>
+</item>
+<item historyLabel="Character.java" index="5">
+<position info="not_deleted" x="765" y="12"/>
+</item>
+<item historyLabel="Weapon.java" index="1">
+<position info="not_deleted" x="938" y="0"/>
+</item>
+<item historyLabel="Character.java" index="5">
+<position info="not_deleted" x="757" y="20"/>
+</item>
+<item historyLabel="Weapon.java" index="1">
 <position/>
+</item>
+<item historyLabel="Character.java" index="5">
+<position info="not_deleted" x="757" y="20"/>
+</item>
+<item historyLabel="Weapon.java" index="1">
+<position info="not_deleted" x="1902" y="0"/>
+</item>
+<item historyLabel="Component.java" index="2">
+<position info="not_deleted" x="2388" y="0"/>
+</item>
+<item historyLabel="Weapon.java" index="1">
+<position info="not_deleted" x="1902" y="0"/>
+</item>
+<item historyLabel="Weapon.java" index="1">
+<position info="not_deleted" x="965" y="0"/>
+</item>
+<item historyLabel="Weapon.java" index="1">
+<position info="not_deleted" x="1653" y="0"/>
+</item>
+<item historyLabel="Component.java" index="2">
+<position info="not_deleted" x="2780" y="0"/>
+</item>
+<item historyLabel="Weapon.java" index="1">
+<position info="not_deleted" x="1589" y="0"/>
+</item>
+<item historyLabel="Character.java" index="5">
+<position info="not_deleted" x="757" y="20"/>
+</item>
+<item historyLabel="Weapon.java" index="1">
+<position/>
+</item>
+<item historyLabel="Level.java" index="0">
+<position info="not_deleted" x="5396" y="69"/>
+</item>
+<item historyLabel="Weapon.java" index="1">
+<position info="not_deleted" x="670" y="0"/>
+</item>
+<item historyLabel="Collectible.java" index="6">
+<position info="not_deleted" x="540" y="0"/>
+</item>
+<item historyLabel="Level.java" index="0">
+<position info="not_deleted" x="3945" y="0"/>
+</item>
+<item historyLabel="Weapon.java" index="1">
+<position info="not_deleted" x="673" y="0"/>
+</item>
+<item historyLabel="Weapon.java" index="1">
+<position info="not_deleted" x="1549" y="0"/>
+</item>
+<item historyLabel="Weapon.java" index="1">
+<position info="not_deleted" x="941" y="0"/>
+</item>
+<item historyLabel="Level.java" index="0">
+<position info="not_deleted" x="3987" y="0"/>
+</item>
+<item historyLabel="Weapon.java" index="1">
+<position info="not_deleted" x="1549" y="0"/>
+</item>
+<item historyLabel="Component.java" index="2">
+<position info="not_deleted" x="2780" y="0"/>
+</item>
+<item historyLabel="Level.java" index="0">
+<position info="not_deleted" x="3955" y="0"/>
+</item>
+<item historyLabel="Weapon.java" index="1">
+<position info="not_deleted" x="1549" y="7"/>
+</item>
+<item historyLabel="Level.java" index="0">
+<position info="not_deleted" x="3909" y="0"/>
+</item>
+<item historyLabel="Weapon.java" index="1">
+<position info="not_deleted" x="1549" y="7"/>
+</item>
+<item historyLabel="Weapon.java" index="1">
+<position info="not_deleted" x="1457" y="0"/>
+</item>
+<item historyLabel="Level.java" index="0">
+<position info="not_deleted" x="3909" y="0"/>
+</item>
+<item historyLabel="Component.java" index="2">
+<position info="not_deleted" x="2780" y="0"/>
+</item>
+<item historyLabel="Block.java" index="4">
+<position info="not_deleted" x="36" y="4282"/>
+</item>
+<item historyLabel="Tile.java" index="3">
+<position info="not_deleted" x="1839" y="0"/>
+</item>
+<item historyLabel="Collectible.java" index="6">
+<position info="not_deleted" x="540" y="0"/>
+</item>
+<item historyLabel="Level.java" index="0">
+<position info="not_deleted" x="3972" y="7"/>
+</item>
+<item historyLabel="Inventory.java" index="7">
+<position info="not_deleted" x="2380" y="0"/>
+</item>
+<item historyLabel="Character.java" index="5">
+<position info="not_deleted" x="757" y="20"/>
+</item>
+<item historyLabel="Cell.java" index="8">
+<position info="not_deleted" x="1276" y="120"/>
+</item>
+<item historyLabel="Weapon.java" index="1">
+<position info="not_deleted" x="665" y="0"/>
+</item>
+<item historyLabel="Level.java" index="0">
+<position info="not_deleted" x="3955" y="0"/>
+</item>
+<item historyLabel="Weapon.java" index="1">
+<position info="not_deleted" x="873" y="0"/>
+</item>
+<item historyLabel="Character.java" index="5">
+<position info="not_deleted" x="757" y="20"/>
+</item>
+<item historyLabel="Level.java" index="0">
+<position info="not_deleted" x="3955" y="0"/>
+</item>
+<item active="true" historyLabel="Weapon.java" index="1">
+<position info="not_deleted" x="873" y="0"/>
 </item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
@@ -228,6 +428,10 @@
 <workbenchWindowAdvisor/>
 <actionBarAdvisor/>
 <trimLayout>
+<trimArea IMemento.internal.id="131072">
+<trimItem IMemento.internal.id="org.eclipse.ui.internal.ViewStack@40f3c1"/>
+<trimItem IMemento.internal.id="org.eclipse.ui.internal.ViewStack@6af18d"/>
+</trimArea>
 <trimArea IMemento.internal.id="128">
 <trimItem IMemento.internal.id="org.eclipse.ui.internal.WorkbenchWindow.topBar"/>
 </trimArea>
@@ -239,17 +443,47 @@
 </trimLayout>
 </window>
 <mruList>
+<file factoryID="org.eclipse.jdt.ui.ClassFileEditorInputFactory" id="org.eclipse.jdt.ui.ClassFileEditor" name="AffineTransformOp.class" tooltip="java.awt.image.AffineTransformOp">
+<persistable org.eclipse.jdt.ui.ClassFileIdentifier="=Client/\/System\/Library\/Java\/JavaVirtualMachines\/1.6.0.jdk\/Contents\/Classes\/classes.jar&lt;java.awt.image(AffineTransformOp.class"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Weapon.java" tooltip="Client/src/net/ulixava/adventurecraft/Weapon.java">
+<persistable path="/Client/src/net/ulixava/adventurecraft/Weapon.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Cell.java" tooltip="Client/src/net/ulixava/adventurecraft/Cell.java">
+<persistable path="/Client/src/net/ulixava/adventurecraft/Cell.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Dirt.java" tooltip="Client/src/net/ulixava/adventurecraft/BlockTypes/Dirt.java">
+<persistable path="/Client/src/net/ulixava/adventurecraft/BlockTypes/Dirt.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Bedrock.java" tooltip="Client/src/net/ulixava/adventurecraft/BlockTypes/Bedrock.java">
+<persistable path="/Client/src/net/ulixava/adventurecraft/BlockTypes/Bedrock.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Hole.java" tooltip="Client/src/net/ulixava/adventurecraft/BlockTypes/Hole.java">
+<persistable path="/Client/src/net/ulixava/adventurecraft/BlockTypes/Hole.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Sky.java" tooltip="Client/src/net/ulixava/adventurecraft/Sky.java">
+<persistable path="/Client/src/net/ulixava/adventurecraft/Sky.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="DoubleRectangle.java" tooltip="Client/src/net/ulixava/adventurecraft/DoubleRectangle.java">
+<persistable path="/Client/src/net/ulixava/adventurecraft/DoubleRectangle.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="DoubleBlock.java" tooltip="Client/src/net/ulixava/adventurecraft/DoubleBlock.java">
+<persistable path="/Client/src/net/ulixava/adventurecraft/DoubleBlock.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Tree.java" tooltip="Client/src/net/ulixava/adventurecraft/BlockTypes/Tree.java">
+<persistable path="/Client/src/net/ulixava/adventurecraft/BlockTypes/Tree.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Sand.java" tooltip="Client/src/net/ulixava/adventurecraft/BlockTypes/Sand.java">
+<persistable path="/Client/src/net/ulixava/adventurecraft/BlockTypes/Sand.java"/>
+</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Character.java" tooltip="Client/src/net/ulixava/adventurecraft/Character.java">
 <persistable path="/Client/src/net/ulixava/adventurecraft/Character.java"/>
 </file>
-<file factoryID="org.eclipse.ui.ide.FileStoreEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Character.java" tooltip="/Users/chrismadden/Documents/java/workspace/Client/src/net/ulixava/adventurecraft/Character.java">
-<persistable uri="file:/Users/chrismadden/Documents/java/workspace/Client/src/net/ulixava/adventurecraft/Character.java"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Grass.java" tooltip="Client/src/net/ulixava/adventurecraft/BlockTypes/Grass.java">
+<persistable path="/Client/src/net/ulixava/adventurecraft/BlockTypes/Grass.java"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Level.java" tooltip="Client/src/net/ulixava/adventurecraft/Level.java">
-<persistable path="/Client/src/net/ulixava/adventurecraft/Level.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Tile.java" tooltip="Client/src/net/ulixava/adventurecraft/Tile.java">
-<persistable path="/Client/src/net/ulixava/adventurecraft/Tile.java"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Component.java" tooltip="Client/src/net/ulixava/adventurecraft/Component.java">
+<persistable path="/Client/src/net/ulixava/adventurecraft/Component.java"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Inventory.java" tooltip="Client/src/net/ulixava/adventurecraft/Inventory.java">
 <persistable path="/Client/src/net/ulixava/adventurecraft/Inventory.java"/>

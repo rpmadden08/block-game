@@ -39,6 +39,8 @@ public class Character extends DoubleRectangle {
 	public int animation = 0;  
 	public int animationFrame = 0, animationTime = 5;
 	
+	
+	
 	public Character(int width, int height) {
 		setBounds((Component.pixel.width / 2) - (width / 2), (Component.pixel.height / 2) - (height / 2), width, height);
 	}
