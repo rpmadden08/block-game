@@ -6,7 +6,7 @@ import javax.swing.*;
 import com.companyname.blockgame.GameStates.MainState;
 
 import java.awt.*;
-//import java.awt.event.*;
+import java.awt.event.*;
 import java.util.*;
 
 public class Component extends Applet implements Runnable {
@@ -72,31 +72,32 @@ public class Component extends Applet implements Runnable {
 		
 		//mob.add(new Chicken(50,10,Tile.tileSize,Tile.tileSize * 2, Tile.mobChicken));
 		
-		/*
+		
 		// screen resize stuff...
 		//needs to account for applets and sX/sY changing both through movement and screen resize...
-		initialFrameWidth = frame.getWidth();
-		initialFrameHeight = frame.getHeight();
-		
-        frame.getRootPane().addComponentListener(new ComponentAdapter() {
-            public void componentResized(ComponentEvent e) {
-            	int diffWidth = frame.getWidth() - initialFrameWidth;
-            	int diffHeight = frame.getHeight() - initialFrameHeight;
-            	
-            	size = new Dimension(initialGameWidth + diffWidth, initialGameHeight + diffHeight);
-            	pixel = new Dimension(size.width / pixelSize, size.height / pixelSize);
-            	
-            	//sX = -(diffWidth / 3);
-            	//sY = -(diffHeight / 3);
-          
-                //System.out.println("gameSize: " + size.width + ", " + size.height);
-                //System.out.println("frameSize: " + frame.getWidth() + ", " + frame.getHeight());
-            	
-            	//size = new Dimension(700, 560); //700, 560
-            	//pixel = new Dimension(size.width / pixelSize, size.height / pixelSize);
-            }
-        });
-        */
+		if (frame != null) {
+			initialFrameWidth = frame.getWidth();
+			initialFrameHeight = frame.getHeight();
+			
+	        frame.getRootPane().addComponentListener(new ComponentAdapter() {
+	            public void componentResized(ComponentEvent e) {
+	            	int diffWidth = frame.getWidth() - initialFrameWidth;
+	            	int diffHeight = frame.getHeight() - initialFrameHeight;
+	            	
+	            	size = new Dimension(initialGameWidth + diffWidth, initialGameHeight + diffHeight);
+	            	pixel = new Dimension(size.width / pixelSize, size.height / pixelSize);
+	            	
+	            	//sX = -(diffWidth / 3);
+	            	//sY = -(diffHeight / 3);
+	          
+	                //System.out.println("gameSize: " + size.width + ", " + size.height);
+	                //System.out.println("frameSize: " + frame.getWidth() + ", " + frame.getHeight());
+	            	
+	            	//size = new Dimension(700, 560); //700, 560
+	            	//pixel = new Dimension(size.width / pixelSize, size.height / pixelSize);
+	            }
+	        });
+		}
         
 		isRunning = true;
 		animator = new Thread(this);
