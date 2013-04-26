@@ -7,8 +7,7 @@ public class Mob extends DoubleRectangle {
 	public int[] id;
 	
 	public double maxSpeed = .5;
-	public double speed = maxSpeed;
-	public double knockBackSpeed = 5;
+	public double knockBackSpeed = 2;
 	public boolean isJumping = false;
 	public boolean isMoving = false;
 	public boolean isFalling = false;
@@ -141,39 +140,23 @@ public class Mob extends DoubleRectangle {
 			if (rectangle1.intersects(rectangle2)) {
 				//System.out.println("Collission Detected");
 				isKnockingBack = true;
-				//knockBack();
+				knockBack();
 			}
 		}
 		
 		if(isKnockingBack == true) {
-//			x = x+(vX*knockBackSpeed);
-//			y = y+(vY*knockBackSpeed);
-			//getKnockBackDir
-			float angle = (float) Math.atan2(((y+24- (int) Component.sY) - (Component.character.y+20-(int) Component.sY)), 
-					((x+8 -(int) Component.sX) - (Component.character.x+8 - (int) Component.sX)));
-			//Convert the Radian to degrees
-			angle = angle * 180 / (int) Math.PI;
-			if(angle < 0){
-		        angle += 360;
-		    } 
-			dir = (int) angle;
-			speed = knockBackSpeed;
-			stepsToTake = 5;
-			isKnockingBack = false;
+			x = x+(vX*knockBackSpeed);
+			y = y+(vY*knockBackSpeed);
 			
-		} else {
-			
-		
+		}
 
-			if(stepsToTake == 0) {
-				speed = maxSpeed;
-				//Calculate a random number of steps
-				stepsToTake = rand.nextInt(50) + 20;
-				//Calculate a random direction
-				dir = rand2.nextInt(360) + 1;
-				System.out.println(dir);
-				
-			}
+		if(stepsToTake == 0) {
+			//Calculate a random number of steps
+			stepsToTake = rand.nextInt(50) + 20;
+			//Calculate a random direction
+			dir = rand2.nextInt(360) + 1;
+			System.out.println(dir);
+			
 		}
 		stepsToTake = stepsToTake - 1;
 		//stepsToTake = 1;
@@ -227,8 +210,8 @@ public class Mob extends DoubleRectangle {
 				vX = vX/length;
 				vY = vY/length;
 				
-				moveX = (vX*speed);
-				moveY = (vY*speed);
+				moveX = (vX*maxSpeed);
+				moveY = (vY*maxSpeed);
 	
 				
 //				if(isMovingRight) {

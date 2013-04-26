@@ -8,7 +8,7 @@ public class Mob extends DoubleRectangle {
 	
 	public double maxSpeed = .5;
 	public double speed = maxSpeed;
-	public double knockBackSpeed = 5;
+	public double knockBackSpeed = 2;
 	public boolean isJumping = false;
 	public boolean isMoving = false;
 	public boolean isFalling = false;
@@ -158,8 +158,7 @@ public class Mob extends DoubleRectangle {
 		    } 
 			dir = (int) angle;
 			speed = knockBackSpeed;
-			stepsToTake = 5;
-			isKnockingBack = false;
+			stepsToTake = 10;
 			
 		} else {
 			
@@ -227,8 +226,8 @@ public class Mob extends DoubleRectangle {
 				vX = vX/length;
 				vY = vY/length;
 				
-				moveX = (vX*speed);
-				moveY = (vY*speed);
+				moveX = (vX*maxSpeed);
+				moveY = (vY*maxSpeed);
 	
 				
 //				if(isMovingRight) {

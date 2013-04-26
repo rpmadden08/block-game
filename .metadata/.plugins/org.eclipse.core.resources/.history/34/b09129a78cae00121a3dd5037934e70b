@@ -158,7 +158,7 @@ public class Mob extends DoubleRectangle {
 		    } 
 			dir = (int) angle;
 			speed = knockBackSpeed;
-			stepsToTake = 5;
+			stepsToTake = 20;
 			isKnockingBack = false;
 			
 		} else {
