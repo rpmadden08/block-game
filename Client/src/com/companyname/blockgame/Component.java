@@ -44,6 +44,7 @@ public class Component extends Applet implements Runnable {
 	public static Level level;
 	public static Character character;
 	public static Inventory inventory;
+	public static Weapon weapon;
 	public static Day day;
 	public static ArrayList<Mob> mob = new ArrayList<Mob>();
 	public static ArrayList<Collectible> collectible = new ArrayList<Collectible>();
@@ -66,11 +67,11 @@ public class Component extends Applet implements Runnable {
 		new Tile();
 		level = new Level();
 		character = new Character(Tile.tileSize, Tile.tileSize*2);
-		
+		weapon = new Weapon(Tile.tileSize, Tile.tileSize, Tile.sword);
 		inventory = new Inventory();
 		day = new Day();
 		
-		//mob.add(new Chicken(50,10,Tile.tileSize,Tile.tileSize * 2, Tile.mobChicken));
+		mob.add(new Chicken(190,130,Tile.tileSize,Tile.tileSize * 2, Tile.mobChicken));
 		
 		/*
 		// screen resize stuff...

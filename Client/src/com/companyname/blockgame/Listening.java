@@ -8,12 +8,14 @@ public class Listening implements KeyListener, MouseListener, MouseMotionListene
 		int key = e.getKeyCode();
 		
 		switch(key) {
+		
 		case KeyEvent.VK_W:
-			Character.isMovingUp = true;
-			Character.isFacingUp = true;
-			Character.isFacingDown = false;
-			Character.isFacingLeft = false;
-			Character.isFacingRight = false;
+				Character.isMovingUp = true;
+				Character.isFacingUp = true;
+				Character.isFacingDown = false;
+				Character.isFacingLeft = false;
+				Character.isFacingRight = false;
+				
 			break;
 			
 		case KeyEvent.VK_D:

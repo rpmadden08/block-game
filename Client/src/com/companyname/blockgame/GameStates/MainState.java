@@ -13,6 +13,7 @@ public class MainState extends GameState{
 		Component.character.tick();
 		Component.level.tick((int) Component.sX, (int) Component.sY, (Component.pixel.width /Tile.tileSize) + 2,
 				   			 (Component.pixel.height / Tile.tileSize) + 2);
+		Component.weapon.tick();
 		Component.day.tick();
 
 		for(int i = 0; i < Component.mob.toArray().length; i ++) {
@@ -29,6 +30,7 @@ public class MainState extends GameState{
 							  (Component.pixel.height / Tile.tileSize) + 2);
 		
 		Component.character.render(dbg);
+		Component.weapon.render(dbg);
 		
 		Component.level.render2(dbg,(int) Component.sX, (int) Component.sY, 
 							   (Component.pixel.width /Tile.tileSize) + 2, 

@@ -41,6 +41,7 @@ public class Level {
 				}
 			}
 		}
+
 		for(int y=0; y<block.length;y++) {
 			for(int x=0; x<block[0].length;x++) {
 				Random rand = new Random();
@@ -82,6 +83,16 @@ public class Level {
 							block[x][y].isDigAnimationVisible = true;
 							int sid[] = Inventory.invBar[Inventory.selected].id;
 							if(Component.isMouseLeft) {
+								if(Inventory.invBar[Inventory.selected].id == Tile.sword) {
+									if(Component.weapon.isInUse == false) {
+										Component.weapon.isInUse = true;
+										Component.weapon.animationFrame = 0;
+										Component.weapon.getAnimationAngle();
+									}
+									
+									
+									
+								}else
 								if(block[x][y].id != Tile.bedrock && block[x][y].id != Tile.hole) {
 									block[x][y].hitPoints --;
 									if(block[x][y].hitPoints < 1) {

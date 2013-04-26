@@ -32,6 +32,7 @@ public class Character extends DoubleRectangle {
 	public double moveX = 0;
 	public double moveY = 0;
 	
+	//1,14,31,16
 	public static double frameOffsetLeft = 1;
 	public static double frameOffsetRight = 14;
 	public static double frameOffsetBottom = 31;
@@ -55,31 +56,39 @@ public class Character extends DoubleRectangle {
 			
 			if(isMovingRight) {
 				moveX += maxSpeed;
-				Character.isFacingUp = false;
-				Character.isFacingDown = false;
-				Character.isFacingLeft = false;
-				Character.isFacingRight = true;
+				if(Component.weapon.isInUse == false) {
+					Character.isFacingUp = false;
+					Character.isFacingDown = false;
+					Character.isFacingLeft = false;
+					Character.isFacingRight = true;
+				}
 			}
 			if(isMovingLeft) {
 				moveX += -maxSpeed;
-				Character.isFacingUp = false;
-				Character.isFacingDown = false;
-				Character.isFacingLeft = true;
-				Character.isFacingRight = false;
+				if(Component.weapon.isInUse == false) {
+					Character.isFacingUp = false;
+					Character.isFacingDown = false;
+					Character.isFacingLeft = true;
+					Character.isFacingRight = false;
+				}
 			}
 			if(isMovingDown) {
 				moveY += maxSpeed;
-				Character.isFacingUp = false;
-				Character.isFacingDown = true;
-				Character.isFacingLeft = false;
-				Character.isFacingRight = false;
+				if(Component.weapon.isInUse == false) {
+					Character.isFacingUp = false;
+					Character.isFacingDown = true;
+					Character.isFacingLeft = false;
+					Character.isFacingRight = false;
+				}
 			}
 			if(isMovingUp) {
 				moveY += -maxSpeed;
-				Character.isFacingUp = true;
-				Character.isFacingDown = false;
-				Character.isFacingLeft = false;
-				Character.isFacingRight = false;
+				if(Component.weapon.isInUse == false) {
+					Character.isFacingUp = true;
+					Character.isFacingDown = false;
+					Character.isFacingLeft = false;
+					Character.isFacingRight = false;
+				}
 			}
 			moveX = getCollisionX();
 			moveY = getCollisionY();
@@ -87,6 +96,7 @@ public class Character extends DoubleRectangle {
 
 			
 			if(!canMove) {
+				
 				x += moveX;
 				y += moveY;
 				Component.sX += moveX;
