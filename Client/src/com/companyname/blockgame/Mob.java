@@ -5,6 +5,7 @@ import java.util.*;
 
 public class Mob extends DoubleRectangle {
 	public int[] id;
+	public int arrayId = 0;
 	
 	public double maxSpeed = .5;
 	public double speed = maxSpeed;
@@ -12,6 +13,10 @@ public class Mob extends DoubleRectangle {
 	public boolean isJumping = false;
 	public boolean isMoving = false;
 	public boolean isFalling = false;
+
+	public int maxHP = 10;
+	public int HP = maxHP;
+	
 	
 	
 	public double movementSpeed = 0.4;
@@ -25,8 +30,8 @@ public class Mob extends DoubleRectangle {
 	public int[] stepArr = {0,1,0,2};
 	public int stepsToTake = 0;
 	public int dir;
-	public Random rand = new Random(1);
-	public Random rand2 = new Random(2);
+	public Random rand = new Random();
+	public Random rand2 = new Random();
 	
 	public boolean isKnockingBack = false;
 	
@@ -52,9 +57,10 @@ public class Mob extends DoubleRectangle {
 	public static boolean isFacingLeft = false;
 	
 	
-	public Mob(int x, int y, int width, int height, int[] id) {
+	public Mob(int x, int y, int width, int height, int[] id, int idOfArray) {
 		setBounds(x,y,width,height);
 		this.id = id;
+		arrayId = idOfArray;
 	}
 	
 	public Rectangle bounds() {
@@ -106,7 +112,22 @@ public class Mob extends DoubleRectangle {
 		return moveY;	
 	}
 	
+	public void checkDeath() {
+		if(HP <= 0) {
+			for(int i = 0; i < Component.mob.toArray().length; i ++) {
+				if(Component.mob.get(i).arrayId == arrayId) {
+					//Inventory.addToInventory(id, 1);
+					Component.mob.remove(i);
+					System.out.println("DEATH FOR MOB" + i);
+				}
+			}
+			
+		}
+	}
 	public void knockBack() {
+//		x = x+(vX*knockBackSpeed);
+//		y = y+(vY*knockBackSpeed);
+		//getKnockBackDir
 		float angle = (float) Math.atan2(((y+24- (int) Component.sY) - (Component.character.y+20-(int) Component.sY)), 
 				((x+8 -(int) Component.sX) - (Component.character.x+8 - (int) Component.sX)));
 		//Convert the Radian to degrees
@@ -114,67 +135,56 @@ public class Mob extends DoubleRectangle {
 		if(angle < 0){
 	        angle += 360;
 	    } 
-		
-		
-		
-		double newX = ((int) x) + 100 * Math.cos(Math.toRadians(angle));
-		double newY = ((int) y) + 100 * Math.sin(Math.toRadians(angle));
-		
-		vX = newX - x;
-		vY = newY - y;
-		
-		double length = Math.sqrt((vX*vX)+(vY*vY));
-		
-		vX = vX/length;
-		vY = vY/length;
-		
-		
-		
+		dir = (int) angle;
+		speed = knockBackSpeed;
+		stepsToTake = 5;
 		//isKnockingBack = false;
 	}
 	
 	public void tick() {
+		//Collision with main character
+		if(Component.character.isKnockingBack == false) {
+			Rectangle rectangle3 = Component.character.bounds();
+			Rectangle rectangle4 = bounds();
+			if (rectangle3.intersects(rectangle4)) {
+				Component.character.HP = Component.character.HP - 1;
+				Component.character.isKnockingBack = true;
+				System.out.println(Component.character.HP);
+				Component.character.knockBack((int)x,(int)y);
+			}
+			
+		}
 		//Collision with main characters weapon.  
-		if(Component.weapon.isInUse == true && Component.weapon.isPositionedCorrectly == true) {
+		if(Component.weapon.isInUse == true && Component.weapon.isPositionedCorrectly == true && isKnockingBack == false) {
 			Rectangle rectangle1 = Component.weapon.collisionArea;
 			Rectangle rectangle2 = bounds();
 			if (rectangle1.intersects(rectangle2)) {
 				//System.out.println("Collission Detected");
+				
+				HP = HP -10;
+				System.out.println(HP);
+				
+				checkDeath();
 				isKnockingBack = true;
-				//knockBack();
+				knockBack();
 			}
 		}
-		
-		if(isKnockingBack == true) {
-//			x = x+(vX*knockBackSpeed);
-//			y = y+(vY*knockBackSpeed);
-			//getKnockBackDir
-			float angle = (float) Math.atan2(((y+24- (int) Component.sY) - (Component.character.y+20-(int) Component.sY)), 
-					((x+8 -(int) Component.sX) - (Component.character.x+8 - (int) Component.sX)));
-			//Convert the Radian to degrees
-			angle = angle * 180 / (int) Math.PI;
-			if(angle < 0){
-		        angle += 360;
-		    } 
-			dir = (int) angle;
-			speed = knockBackSpeed;
-			stepsToTake = 5;
-			isKnockingBack = false;
-			
-		} else {
 			
 		
 
 			if(stepsToTake == 0) {
+				if(isKnockingBack == true) {
+					isKnockingBack = false;
+				}
 				speed = maxSpeed;
 				//Calculate a random number of steps
 				stepsToTake = rand.nextInt(50) + 20;
 				//Calculate a random direction
 				dir = rand2.nextInt(360) + 1;
-				System.out.println(dir);
+				
 				
 			}
-		}
+		
 		stepsToTake = stepsToTake - 1;
 		//stepsToTake = 1;
 		
@@ -184,7 +194,6 @@ public class Mob extends DoubleRectangle {
 		
 		
 		
-		if(isKnockingBack == false) {
 			if(dir > 180 && dir < 360) {
 				Mob.isMovingUp = true;
 				Mob.isMovingDown = false;
@@ -231,50 +240,14 @@ public class Mob extends DoubleRectangle {
 				moveY = (vY*speed);
 	
 				
-//				if(isMovingRight) {
-//					moveX += maxSpeed;
-//					if(Component.weapon.isInUse == false) {
-//						Mob.isFacingUp = false;
-//						Mob.isFacingDown = false;
-//						Mob.isFacingLeft = false;
-//						Mob.isFacingRight = true;
-//					}
-//				}
-//				if(isMovingLeft) {
-//					moveX += -maxSpeed;
-//					if(Component.weapon.isInUse == false) {
-//						Mob.isFacingUp = false;
-//						Mob.isFacingDown = false;
-//						Mob.isFacingLeft = true;
-//						Mob.isFacingRight = false;
-//					}
-//				}
-//				if(isMovingDown) {
-//					moveY += maxSpeed;
-//					if(Component.weapon.isInUse == false) {
-//						Mob.isFacingUp = false;
-//						Mob.isFacingDown = true;
-//						Mob.isFacingLeft = false;
-//						Mob.isFacingRight = false;
-//					}
-//				}
-//				if(isMovingUp) {
-//					moveY += -maxSpeed;
-//					if(Component.weapon.isInUse == false) {
-//						Mob.isFacingUp = true;
-//						Mob.isFacingDown = false;
-//						Mob.isFacingLeft = false;
-//						Mob.isFacingRight = false;
-//					}
-//				}
+
 				moveX = getCollisionX();
 				moveY = getCollisionY();
 				
 	
 				
 				if(!canMove) {
-					System.out.println(moveX);
-					System.out.println(moveY);
+					
 					x += moveX;
 					y += moveY;
 					
@@ -298,7 +271,7 @@ public class Mob extends DoubleRectangle {
 				animation = 0;
 			}
 			
-		}
+		
 	}
 	
 	public boolean isCollidingWithBlock(Point pt1, Point pt2) {
@@ -319,6 +292,7 @@ public class Mob extends DoubleRectangle {
 	}
 	
 	public void render(Graphics g) {
+        
 			g.drawImage(Tile.tileset_terrain,
 					(int) x - (int) Component.sX,
 					(int) y - (int) Component.sY,
@@ -334,7 +308,6 @@ public class Mob extends DoubleRectangle {
 //					(int)y+13- (int)Component.sY + (int)frameOffsetTop,
 //					(int) width+ (int)frameOffsetRight,
 //					(int)height-13+ (int)frameOffsetBottom);
-			
 //			g.setColor(new Color(0,255,0, 255));
 //			g.drawRect (
 //					(int) x + (int)frameOffsetLeft,
@@ -342,9 +315,7 @@ public class Mob extends DoubleRectangle {
 //					(int) width,
 //					(int) height);
 			
-			g.setColor(new Color(0,0,0, 255));
-			g.drawLine((int)x+8 -(int) Component.sX, (int)y+24- (int) Component.sY, (int) Component.character.x+8 -(int) Component.sX, (int) Component.character.y+20- (int) Component.sY);
-
+//			
 		
 	}
 }

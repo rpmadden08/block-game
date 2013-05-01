@@ -220,3 +220,59 @@ org.eclipse.core.internal.resources.ResourceException: Problems encountered whil
 
 !ENTRY org.eclipse.ui 4 4 2013-04-26 11:20:05.795
 !MESSAGE Invalid preference page path: Cache
+!SESSION 2013-04-30 07:49:18.753 -----------------------------------------------
+eclipse.buildId=M20080221-1800
+java.version=1.6.0_45
+java.vendor=Apple Inc.
+BootLoader constants: OS=macosx, ARCH=x86, WS=carbon, NL=en_US
+Framework arguments:  -keyring /Users/chrismadden/.eclipse_keyring -showlocation
+Command-line arguments:  -os macosx -ws carbon -arch x86 -keyring /Users/chrismadden/.eclipse_keyring -consoleLog -showlocation
+
+!ENTRY org.eclipse.core.net 1 0 2013-04-30 07:49:23.760
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences
+
+!ENTRY org.eclipse.core.jobs 4 2 2013-05-01 08:50:03.724
+!MESSAGE An internal error occurred during: "Launching Component (2)".
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.debug.internal.core.LaunchConfiguration.getLaunchManager(LaunchConfiguration.java:415)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.getInfo(LaunchConfiguration.java:394)
+	at org.eclipse.debug.internal.core.LaunchConfigurationWorkingCopy.copyFrom(LaunchConfigurationWorkingCopy.java:445)
+	at org.eclipse.debug.internal.core.LaunchConfigurationWorkingCopy.<init>(LaunchConfigurationWorkingCopy.java:144)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.copy(LaunchConfiguration.java:223)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$7.run(DebugUIPlugin.java:1072)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+
+!ENTRY org.eclipse.core.jobs 4 2 2013-05-01 08:50:03.725
+!MESSAGE An internal error occurred during: "Launching Component (2)".
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.debug.internal.core.LaunchConfiguration.getLaunchManager(LaunchConfiguration.java:415)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.getInfo(LaunchConfiguration.java:394)
+	at org.eclipse.debug.internal.core.LaunchConfigurationWorkingCopy.copyFrom(LaunchConfigurationWorkingCopy.java:445)
+	at org.eclipse.debug.internal.core.LaunchConfigurationWorkingCopy.<init>(LaunchConfigurationWorkingCopy.java:144)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.copy(LaunchConfiguration.java:223)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$7.run(DebugUIPlugin.java:1072)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+
+!ENTRY org.eclipse.core.jobs 4 2 2013-05-01 08:50:03.726
+!MESSAGE An internal error occurred during: "Launching Component (2)".
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.debug.internal.core.LaunchConfiguration.getLaunchManager(LaunchConfiguration.java:415)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.getInfo(LaunchConfiguration.java:394)
+	at org.eclipse.debug.internal.core.LaunchConfigurationWorkingCopy.copyFrom(LaunchConfigurationWorkingCopy.java:445)
+	at org.eclipse.debug.internal.core.LaunchConfigurationWorkingCopy.<init>(LaunchConfigurationWorkingCopy.java:144)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.copy(LaunchConfiguration.java:223)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$7.run(DebugUIPlugin.java:1072)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+!SESSION 2013-05-01 08:50:20.271 -----------------------------------------------
+eclipse.buildId=M20080221-1800
+java.version=1.6.0_45
+java.vendor=Apple Inc.
+BootLoader constants: OS=macosx, ARCH=x86, WS=carbon, NL=en_US
+Framework arguments:  -keyring /Users/chrismadden/.eclipse_keyring -showlocation
+Command-line arguments:  -os macosx -ws carbon -arch x86 -keyring /Users/chrismadden/.eclipse_keyring -consoleLog -showlocation
+
+!ENTRY org.eclipse.core.net 1 0 2013-05-01 08:50:23.649
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences

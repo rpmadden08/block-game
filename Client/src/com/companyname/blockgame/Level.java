@@ -11,6 +11,8 @@ import com.companyname.blockgame.BlockTypes.*;
 public class Level {
 	public int worldW = 50, worldH = 50;
 	public Block[][] block = new Block [worldW][worldH];
+	public Random rand = new Random();
+	public Random rand2 = new Random();
 	
 	public Level() {
 //		for(int x=0; x<block.length;x++) {
@@ -136,9 +138,19 @@ public class Level {
 			building(camX, camY, renW, renH);
 		}
 		
+		int mobSpawn = rand.nextInt(30) + 1;
+		
+		if(mobSpawn == 1) {
+//		    int mobLocationX = rand.nextInt(worldW-2)+1;
+//		    int mobLocationY = rand.nextInt(worldH-2)+1;
+//			int mobID2 = Component.mob.size();
+//			Component.mob.add(new Chicken(mobLocationX * Tile.tileSize,mobLocationY * Tile.tileSize,Tile.tileSize,Tile.tileSize * 2, Tile.mobChicken, Component.mobID));
+//			Component.mobID = mobID2+1;
+		}
 	}
 	
 	public void render(Graphics g, int camX, int camY, int renW, int renH) {
+		
 		for(int x=(camX /Tile.tileSize); x<(camX / Tile.tileSize) + renW;x++) {
 			for(int y=(camY / Tile.tileSize); y<(camY / Tile.tileSize) + renH;y++) {
 				if(x >= 0 && y >= 0 && x < worldW && y < worldH) {
@@ -153,6 +165,9 @@ public class Level {
 				}
 			}
 		}
+		//Character Health Bar
+		g.setColor(new Color(255,0,0, 255));
+		g.fillRect(18, 18,Component.character.HP,8); 
 	}
 	//For overhead graphics...
 	public void render2(Graphics g, int camX, int camY, int renW, int renH) {

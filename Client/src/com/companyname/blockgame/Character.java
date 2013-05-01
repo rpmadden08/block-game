@@ -1,12 +1,19 @@
 package com.companyname.blockgame;
 
 import java.awt.*;
+import java.util.Random;
 
 public class Character extends DoubleRectangle {
 	public double fallingSpeed = 1;
 	public double movementSpeed = 1;
 	public double maxSpeed = 1;
+	public double speed = maxSpeed;
+	public double knockBackSpeed = 3;
 	public double jumpingSpeed = 8;
+	public int maxHP = 20;
+	public int HP = maxHP;
+	public int Attack = 5;
+	public Rectangle collisionArea = bounds();
 	
 	public static boolean isMovingUp = false;
 	public static boolean isMovingDown = false;
@@ -19,6 +26,14 @@ public class Character extends DoubleRectangle {
 	public static boolean isFacingLeft = false;
 	
 	public static boolean isRunning = false;
+	
+	public boolean isKnockingBack = false;
+	public int stepsToTake = 0;
+	public int dir;
+	public Random rand = new Random();
+	public Random rand2 = new Random();
+	public double vX;
+	public double vY;
 	
 	public int xVelocity = 0;
 	public int yVelocity = 0;
@@ -46,78 +61,196 @@ public class Character extends DoubleRectangle {
 		setBounds((Component.pixel.width / 2) - (width / 2), (Component.pixel.height / 2) - (height / 2), width, height);
 	}
 	
+	public void knockBack(int mobX, int mobY) {
+//		x = x+(vX*knockBackSpeed);
+//		y = y+(vY*knockBackSpeed);
+		//getKnockBackDir
+//		float angle = (float) Math.atan2(((y+24- (int) Component.sY) - (Component.character.y+20-(int) Component.sY)), 
+//				((x+8 -(int) Component.sX) - (Component.character.x+8 - (int) Component.sX)));
+		float angle = (float) Math.atan2(((y+20-(int) Component.sY)-(mobY+24- (int) Component.sY)), 
+				((x+8 - (int) Component.sX)-(mobX+8 -(int) Component.sX)));
+		//Convert the Radian to degrees
+		angle = angle * 180 / (int) Math.PI;
+		if(angle < 0){
+	        angle += 360;
+	    } 
+		dir = (int) angle;
+		speed = knockBackSpeed;
+		stepsToTake = 10;
+		
+	}
+	
 	public void tick() {
-
-		if(isMovingLeft || isMovingRight || isMovingUp || isMovingDown && !Inventory.isOpen) {
-			boolean canMove = false;
-			moveX = 0;
-			moveY = 0;
-
-			
-			if(isMovingRight) {
-				moveX += maxSpeed;
-				if(Component.weapon.isInUse == false) {
-					Character.isFacingUp = false;
-					Character.isFacingDown = false;
-					Character.isFacingLeft = false;
-					Character.isFacingRight = true;
+		if(isKnockingBack == true) {
+			if(stepsToTake == 0) {
+				if(isKnockingBack == true) {
+					isKnockingBack = false;
 				}
-			}
-			if(isMovingLeft) {
-				moveX += -maxSpeed;
-				if(Component.weapon.isInUse == false) {
-					Character.isFacingUp = false;
-					Character.isFacingDown = false;
-					Character.isFacingLeft = true;
-					Character.isFacingRight = false;
-				}
-			}
-			if(isMovingDown) {
-				moveY += maxSpeed;
-				if(Component.weapon.isInUse == false) {
-					Character.isFacingUp = false;
-					Character.isFacingDown = true;
-					Character.isFacingLeft = false;
-					Character.isFacingRight = false;
-				}
-			}
-			if(isMovingUp) {
-				moveY += -maxSpeed;
-				if(Component.weapon.isInUse == false) {
-					Character.isFacingUp = true;
-					Character.isFacingDown = false;
-					Character.isFacingLeft = false;
-					Character.isFacingRight = false;
-				}
-			}
-			moveX = getCollisionX();
-			moveY = getCollisionY();
-			
-
-			
-			if(!canMove) {
+				speed = maxSpeed;
+				//Calculate a random number of steps
+				stepsToTake = rand.nextInt(50) + 20;
+				//Calculate a random direction
+				dir = rand2.nextInt(360) + 1;
 				
-				x += moveX;
-				y += moveY;
-				Component.sX += moveX;
-				Component.sY += moveY;
 				
-				if(animationFrame >= animationTime) {
+			}
+		
+		stepsToTake = stepsToTake - 1;
+		//stepsToTake = 1;
+		
+		
+		
+		//dir = 270;
+		
+		
+		
+			if(dir > 180 && dir < 360) {
+				Mob.isMovingUp = true;
+				Mob.isMovingDown = false;
+				Mob.isFacingUp = true;
+				Mob.isFacingDown = false;
+			}
+			if(dir > 0 && dir < 180) {
+				Mob.isMovingUp = false;
+				Mob.isMovingDown = true;
+				Mob.isFacingUp = false;
+				Mob.isFacingDown = true;
+			}
+			if(dir > 90 && dir < 270) {
+				Mob.isMovingLeft = true;
+				Mob.isMovingRight = false;
+				Mob.isFacingLeft = true;
+				Mob.isFacingRight = false;
+			}
+			if(dir > 270 || dir < 90) {
+				Mob.isMovingLeft = false;
+				Mob.isMovingRight = true;
+				Mob.isFacingLeft = false;
+				Mob.isFacingRight = true;
+			}
+			
+			if(Inventory.isOpen == false) {
+				boolean canMove = false;
+				moveX = 0;
+				moveY = 0;
+				
+				
+				double newX = ((int) x) + 100 * Math.cos(Math.toRadians(dir));
+				double newY = ((int) y) + 100 * Math.sin(Math.toRadians(dir));
+				
+				vX = newX - x;
+				vY = newY - y;
+				
+				double length = Math.sqrt((vX*vX)+(vY*vY));
+				
+				vX = vX/length;
+				vY = vY/length;
+				
+				moveX = (vX*speed);
+				moveY = (vY*speed);
+	
+				
+
+				moveX = getCollisionX();
+				moveY = getCollisionY();
+				
+	
+				
+				if(!canMove) {
 					
+					x += moveX;
+					y += moveY;
+					Component.sX += moveX;
+					Component.sY += moveY;
 					
-					if(step > 2) {
-						step = 0;
-					} else {
-						step += 1;
+					if(animationFrame >= animationTime) {
 						
+						
+						if(step > 2) {
+							step = 0;
+						} else {
+							step += 1;
+							
+						}
+						animation = stepArr[step];
+						animationFrame = 0;
+					} else {
+						animationFrame += 1;
 					}
-					animation = stepArr[step];
-					animationFrame = 0;
-				} else {
-					animationFrame += 1;
 				}
+				
+			} else {
+				animation = 0;
 			}
-			
+		} else if(isMovingLeft || isMovingRight || isMovingUp || isMovingDown && Inventory.isOpen == false) {
+				boolean canMove = false;
+				moveX = 0;
+				moveY = 0;
+	
+				
+				if(isMovingRight) {
+					moveX += maxSpeed;
+					if(Component.weapon.isInUse == false) {
+						Character.isFacingUp = false;
+						Character.isFacingDown = false;
+						Character.isFacingLeft = false;
+						Character.isFacingRight = true;
+					}
+				}
+				if(isMovingLeft) {
+					moveX += -maxSpeed;
+					if(Component.weapon.isInUse == false) {
+						Character.isFacingUp = false;
+						Character.isFacingDown = false;
+						Character.isFacingLeft = true;
+						Character.isFacingRight = false;
+					}
+				}
+				if(isMovingDown) {
+					moveY += maxSpeed;
+					if(Component.weapon.isInUse == false) {
+						Character.isFacingUp = false;
+						Character.isFacingDown = true;
+						Character.isFacingLeft = false;
+						Character.isFacingRight = false;
+					}
+				}
+				if(isMovingUp) {
+					moveY += -maxSpeed;
+					if(Component.weapon.isInUse == false) {
+						Character.isFacingUp = true;
+						Character.isFacingDown = false;
+						Character.isFacingLeft = false;
+						Character.isFacingRight = false;
+					}
+				}
+				moveX = getCollisionX();
+				moveY = getCollisionY();
+				
+	
+				
+				if(!canMove) {
+					
+					x += moveX;
+					y += moveY;
+					Component.sX += moveX;
+					Component.sY += moveY;
+					
+					if(animationFrame >= animationTime) {
+						
+						
+						if(step > 2) {
+							step = 0;
+						} else {
+							step += 1;
+							
+						}
+						animation = stepArr[step];
+						animationFrame = 0;
+					} else {
+						animationFrame += 1;
+					}
+				}
 		} else {
 			animation = 0;
 		}
@@ -168,7 +301,8 @@ public class Character extends DoubleRectangle {
 	}
 	
 	public Rectangle bounds() {
-		return (new Rectangle((int) x + (int) frameOffsetLeft,(int) y + 9,(int) frameOffsetRight,(int)frameOffsetBottom - 8));
+		return (new Rectangle((int) x + (int) frameOffsetLeft -(int)Component.sX,(int) y + 9- (int)Component.sY,(int) frameOffsetRight,(int)frameOffsetBottom - 8));
+	  //return (new Rectangle(x + frameOffsetLeft,y + frameOffsetTop,frameWidth,frameHeight));
 	}
 	
 	public void render(Graphics g) {

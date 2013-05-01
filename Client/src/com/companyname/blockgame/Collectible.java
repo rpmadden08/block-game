@@ -23,7 +23,7 @@ public class Collectible extends Rectangle{
 	}
 	
 	public Rectangle bounds() {
-		return (new Rectangle(x + frameOffsetLeft,y + frameOffsetTop,frameWidth,frameHeight));
+		return (new Rectangle(x + frameOffsetLeft- (int)Component.sX,y + frameOffsetTop-(int)Component.sY,frameWidth,frameHeight));
 	}
 	
 	public void tick() {
@@ -41,8 +41,7 @@ public class Collectible extends Rectangle{
 	}
 	
 	public void render(Graphics g) {
-		
-		g.drawImage(Tile.tileset_terrain,
+				g.drawImage(Tile.tileset_terrain,
 				x - (int) Component.sX,
 				y - (int) Component.sY,
 				x + Tile.tileSize - (int) Component.sX,
