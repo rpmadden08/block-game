@@ -7,72 +7,79 @@ public class Listening implements KeyListener, MouseListener, MouseMotionListene
 	public void keyPressed(KeyEvent e) {
 		int key = e.getKeyCode();
 		
-		switch(key) {
-		case KeyEvent.VK_W:
-			Character.isMovingUp = true;
-			Character.isFacingUp = true;
-			Character.isFacingDown = false;
-			Character.isFacingLeft = false;
-			Character.isFacingRight = false;
-			break;
+		if(Component.currentState.type == Component.MAIN_STATE) {
+			switch(key) {
+			case KeyEvent.VK_W:
+				Character.isMovingUp = true;
+				break;
+				
+			case KeyEvent.VK_D:
+				Character.isMovingRight = true;
+				break;
+				
+			case KeyEvent.VK_S:
+				Character.isMovingDown = true;
+				break;
 			
-		case KeyEvent.VK_D:
-			Character.isMovingRight = true;
-			Character.isFacingUp = false;
-			Character.isFacingDown = false;
-			Character.isFacingLeft = false;
-			Character.isFacingRight = true;
-			break;
+			case KeyEvent.VK_A:
+				Character.isMovingLeft = true;
+				break;
+			case KeyEvent.VK_M:
+				Debugger.toggle();
+				break;
+			}
+		} else if(Component.currentState.type == Component.INVENTORY_STATE) {
+			switch(key) {
+
+			}
+		} else if(Component.currentState.type == Component.CHARACTER_SELECT_STATE) {
+			switch(key) {
 			
-		case KeyEvent.VK_S:
-			Character.isMovingDown = true;
-			Character.isFacingUp = false;
-			Character.isFacingDown = true;
-			Character.isFacingLeft = false;
-			Character.isFacingRight = false;
-			break;
-		
-		case KeyEvent.VK_A:
-			Character.isMovingLeft = true;
-			Character.isFacingUp = false;
-			Character.isFacingDown = false;
-			Character.isFacingLeft = true;
-			Character.isFacingRight = false;
-			break;
-		case KeyEvent.VK_M:
-			Debugger.toggle();
-			break;
-		/*
-		case KeyEvent.VK_Y:
-			Component.pixelSize = 4;
-			Component.pixel = new Dimension(Component.size.width / Component.pixelSize, Component.size.height / Component.pixelSize);
-			break; */
+			}
 		}
 	}
+	/*
+	case KeyEvent.VK_Y:
+		Component.pixelSize = 4;
+		Component.pixel = new Dimension(Component.size.width / Component.pixelSize, Component.size.height / Component.pixelSize);
+		break; */
 	
 	public void keyReleased(KeyEvent e) {
 		int key = e.getKeyCode();
-		
-		switch(key) {
-		case KeyEvent.VK_W:
-			Character.isMovingUp = false;
-			break;
+		if(Component.currentState.type == Component.MAIN_STATE) {
+			switch(key) {
+			case KeyEvent.VK_W:
+				Character.isMovingUp = false;
+				break;
+				
+			case KeyEvent.VK_D:
+				Character.isMovingRight = false;
+				break;
+				
+			case KeyEvent.VK_S:
+				Character.isMovingDown = false;
+				break;
 			
-		case KeyEvent.VK_D:
-			Character.isMovingRight = false;
-			break;
-			
-		case KeyEvent.VK_S:
-			Character.isMovingDown = false;
-			break;
-		
-		case KeyEvent.VK_A:
-			Character.isMovingLeft = false;
-			break;
-			
-		case KeyEvent.VK_E:
-			Inventory.toggleInventoryState();
-			break;
+			case KeyEvent.VK_A:
+				Character.isMovingLeft = false;
+				break;
+				
+			case KeyEvent.VK_E:
+				Inventory.toggleInventoryState();
+				Character.isMovingUp = false;
+				Character.isMovingRight = false;
+				Character.isMovingDown = false;
+				Character.isMovingLeft = false;
+				break;
+			}
+		} else if(Component.currentState.type == Component.INVENTORY_STATE) {
+			switch(key) {
+			case KeyEvent.VK_E:
+				Inventory.toggleInventoryState();
+				break;
+			}
+		} else if(Component.currentState.type == Component.CHARACTER_SELECT_STATE) {
+
 		}
 	}
 	
@@ -123,6 +130,9 @@ public class Listening implements KeyListener, MouseListener, MouseMotionListene
 			Component.isMouseRight = true;
 		}
 		Inventory.click(e);
+		if(Component.currentState.type == Component.CHARACTER_SELECT_STATE) {
+			
+		}
 	}	
 	
 	public void mouseReleased(MouseEvent e) {

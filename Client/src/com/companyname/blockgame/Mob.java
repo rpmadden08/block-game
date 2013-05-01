@@ -3,8 +3,9 @@ package com.companyname.blockgame;
 import java.awt.*;
 import java.util.*;
 
-public class Mob extends DoubleRectangle {
+public class Mob {
 	public int[] id;
+	private int x, y, width, height;
 	
 	public boolean isJumping = false;
 	public boolean isMoving = false;
@@ -21,7 +22,7 @@ public class Mob extends DoubleRectangle {
 	
 	
 	public Mob(int x, int y, int width, int height, int[] id) {
-		setBounds(x,y,width,height);
+		//setBounds(x,y,width,height);
 		this.id = id;
 	}
 	

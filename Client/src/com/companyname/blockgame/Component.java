@@ -4,22 +4,25 @@ import java.applet.*;
 import javax.swing.*;
 
 import com.companyname.blockgame.GameStates.MainState;
+import com.companyname.blockgame.GameStates.CharacterSelectState;
 
 import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
 
+@SuppressWarnings("unused")
 public class Component extends Applet implements Runnable {
 	private static final long serialVersionUID = 1L;
 	
 	public static final int MAIN_STATE = 0;
 	public static final int INVENTORY_STATE = 1;
+	public static final int CHARACTER_SELECT_STATE = 2;
 
 	private Thread animator;
 
 	public static int maxPixelSize = 4;
 	public static int minPixelSize = 1;
-	public static int pixelSize = 2;
+	public static int pixelSize = 1;
 	public static int initialFrameWidth;
 	public static int initialFrameHeight;
 	public static int initialGameWidth = 700;
@@ -27,7 +30,7 @@ public class Component extends Applet implements Runnable {
 	
 	public static double sX = 0, sY = 0;
 
-	public static Dimension size = new Dimension(initialGameWidth, initialGameHeight); //700, 560
+	public static Dimension size = new Dimension(initialGameWidth, initialGameHeight);
 	public static Dimension pixel = new Dimension(size.width / pixelSize, size.height / pixelSize);
 
 	public static Point mse = new Point(0, 0);
@@ -62,10 +65,13 @@ public class Component extends Applet implements Runnable {
 	}
 
 	public void start() {
-		currentState = new MainState();
+		currentState = new CharacterSelectState();
+		//currentState = new MainState();
 		new Tile();
+		new ImageAssets();
+		
 		level = new Level();
-		character = new Character(Tile.tileSize, Tile.tileSize*2);
+		character = new Character();
 		
 		inventory = new Inventory();
 		day = new Day();
