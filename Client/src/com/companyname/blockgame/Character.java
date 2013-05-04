@@ -6,7 +6,7 @@ import java.util.Random;
 public class Character extends DoubleRectangle {
 	public double fallingSpeed = 1;
 	public double movementSpeed = 1;
-	public double maxSpeed = 1;
+	public double maxSpeed = 5;
 	public double speed = maxSpeed;
 	public double knockBackSpeed = 3;
 	public double jumpingSpeed = 8;
@@ -59,6 +59,12 @@ public class Character extends DoubleRectangle {
 	
 	public Character(int width, int height) {
 		setBounds((Component.pixel.width / 2) - (width / 2), (Component.pixel.height / 2) - (height / 2), width, height);
+		//This random location dropper won't work until the sX and sY algorithms are figured out.  
+		//x=rand.nextInt(Component.level.worldW*Tile.tileSize) + 1;
+		//y=rand.nextInt(Component.level.worldH*Tile.tileSize) + 1;
+		x = 5* Tile.tileSize;
+		y = 5* Tile.tileSize;
+
 	}
 	
 	public void knockBack(int mobX, int mobY) {
@@ -160,8 +166,20 @@ public class Character extends DoubleRectangle {
 					
 					x += moveX;
 					y += moveY;
-					Component.sX += moveX;
-					Component.sY += moveY;
+					if(x > Component.initialGameWidth /2 /Component.pixelSize && x < Component.level.worldW * Tile.tileSize - (Component.initialGameWidth /2/Component.pixelSize)) {
+						Component.sX += moveX;
+					} else if(Component.sX < 16){
+						Component.sX = 0;
+					} else if(Component.sX > Component.level.worldW * Tile.tileSize - (Component.initialGameWidth /2/Component.pixelSize)-(Component.initialGameWidth/4)-16) {
+						Component.sX = Component.level.worldW * Tile.tileSize - (Component.initialGameWidth /2/Component.pixelSize)-(Component.initialGameWidth/4);
+					}
+					if(y > Component.initialGameHeight /2 /Component.pixelSize && y < Component.level.worldH * Tile.tileSize - (Component.initialGameHeight /2/Component.pixelSize)) {
+						Component.sY += moveY;
+					} else if(Component.sY < 16){
+						Component.sY = 0;
+					} else if(Component.sY > Component.level.worldH * Tile.tileSize - (Component.initialGameHeight/2/Component.pixelSize)-(Component.initialGameHeight/4)-16) {
+						Component.sY = Component.level.worldH * Tile.tileSize - (Component.initialGameHeight /2/Component.pixelSize)-(Component.initialGameHeight/4);
+					}
 					
 					if(animationFrame >= animationTime) {
 						
@@ -233,8 +251,21 @@ public class Character extends DoubleRectangle {
 					
 					x += moveX;
 					y += moveY;
-					Component.sX += moveX;
-					Component.sY += moveY;
+					
+					if(x > Component.initialGameWidth /2 /Component.pixelSize && x < Component.level.worldW * Tile.tileSize - (Component.initialGameWidth /2/Component.pixelSize)) {
+						Component.sX += moveX;
+					} else if(Component.sX < 16){
+						Component.sX = 0;
+					} else if(Component.sX > Component.level.worldW * Tile.tileSize - (Component.initialGameWidth /2/Component.pixelSize)-(Component.initialGameWidth/4)-16) {
+						Component.sX = Component.level.worldW * Tile.tileSize - (Component.initialGameWidth /2/Component.pixelSize)-(Component.initialGameWidth/4);
+					}
+					if(y > Component.initialGameHeight /2 /Component.pixelSize && y < Component.level.worldH * Tile.tileSize - (Component.initialGameHeight /2/Component.pixelSize)) {
+						Component.sY += moveY;
+					} else if(Component.sY < 16){
+						Component.sY = 0;
+					} else if(Component.sY > Component.level.worldH * Tile.tileSize - (Component.initialGameHeight/2/Component.pixelSize)-(Component.initialGameHeight/4)-16) {
+						Component.sY = Component.level.worldH * Tile.tileSize - (Component.initialGameHeight /2/Component.pixelSize)-(Component.initialGameHeight/4);
+					}
 					
 					if(animationFrame >= animationTime) {
 						
@@ -263,13 +294,15 @@ public class Character extends DoubleRectangle {
 		double y2 = Math.floor((y+frameOffsetBottom) /Tile.tileSize);
 		
 		if(isMovingLeft) {
-			if(Component.level.block[(int)x1][(int)y1].isPassable == false || Component.level.block[(int)x1][(int)y2].isPassable == false) {
+			if(Component.level.block[(int)x1][(int)y1].isPassable == false || Component.level.block[(int)x1][(int)y2].isPassable == false
+					||Component.level.block2[(int)x1][(int)y1].isPassable == false || Component.level.block2[(int)x1][(int)y2].isPassable == false) {
 				horizontalExtra = (x + frameOffsetLeft) - x1 * Tile.tileSize - Tile.tileSize;
 				return Math.min(0, -(horizontalExtra));
 			}
 		}
 		if(isMovingRight) {
-			if(Component.level.block[(int)x2][(int)y1].isPassable == false || Component.level.block[(int)x2][(int)y2].isPassable == false) {
+			if(Component.level.block[(int)x2][(int)y1].isPassable == false || Component.level.block[(int)x2][(int)y2].isPassable == false
+					|| Component.level.block2[(int)x2][(int)y1].isPassable == false || Component.level.block2[(int)x2][(int)y2].isPassable == false) {
 				horizontalExtra = x2 * Tile.tileSize - (x + frameOffsetRight) - 1;
 				return Math.max(0, horizontalExtra);
 			}
@@ -285,14 +318,16 @@ public class Character extends DoubleRectangle {
 		double y2 = Math.floor((y+frameOffsetBottom + moveY) /Tile.tileSize);
 		
 		if(isMovingDown) {
-			if(Component.level.block[(int)x2][(int)y2].isPassable == false || Component.level.block[(int)x1][(int)y2].isPassable == false) {
+			if(Component.level.block[(int)x2][(int)y2].isPassable == false || Component.level.block[(int)x1][(int)y2].isPassable == false
+					|| Component.level.block2[(int)x2][(int)y2].isPassable == false || Component.level.block2[(int)x1][(int)y2].isPassable == false) {
 				verticalExtra = y2 * Tile.tileSize - (y + frameOffsetBottom) - 1;
 				return Math.max(0, verticalExtra);
 				
 			}
 		}
 		if(isMovingUp) {
-			if(Component.level.block[(int)x1][(int)y1].isPassable == false || Component.level.block[(int)x2][(int)y1].isPassable == false) {
+			if(Component.level.block[(int)x1][(int)y1].isPassable == false || Component.level.block[(int)x2][(int)y1].isPassable == false
+					|| Component.level.block2[(int)x1][(int)y1].isPassable == false || Component.level.block2[(int)x2][(int)y1].isPassable == false) {
 				verticalExtra = (y + frameOffsetTop) - y1 * Tile.tileSize - Tile.tileSize;
 				return Math.min(0, -(verticalExtra));
 			}

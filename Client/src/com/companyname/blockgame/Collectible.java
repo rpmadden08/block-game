@@ -14,6 +14,7 @@ public class Collectible extends Rectangle{
 	public int frameHeight = 8;
 	
 	
+	
 	public Collectible(int xPosition, int yPosition, int idOfArray, int[] idOfCollectible) {
 		id = idOfCollectible;
 		arrayId = idOfArray;

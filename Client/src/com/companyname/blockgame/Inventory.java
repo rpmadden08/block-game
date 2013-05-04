@@ -59,12 +59,14 @@ public class Inventory {
 		
 		
 		
-		invBar[0].id = Tile.sword;
-		invBar[0].stack = +1;
+		invBar[3].id = Tile.sword;
+		invBar[3].stack = +1;
 		invBar[1].id = Tile.log;
 		invBar[1].stack = +3;
 		invBar[2].id = Tile.log;
 		invBar[2].stack = +98;
+		invBar[0].id = Tile.shovel;
+		invBar[0].stack = +1;
 		
 	}
 	

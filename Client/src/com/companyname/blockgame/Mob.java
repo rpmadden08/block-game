@@ -75,13 +75,15 @@ public class Mob extends DoubleRectangle {
 		double y2 = Math.floor((y+frameOffsetBottom) /Tile.tileSize);
 		
 		if(isMovingLeft) {
-			if(Component.level.block[(int)x1][(int)y1].isPassable == false || Component.level.block[(int)x1][(int)y2].isPassable == false) {
+			if(Component.level.block[(int)x1][(int)y1].isPassable == false || Component.level.block[(int)x1][(int)y2].isPassable == false
+					||Component.level.block2[(int)x1][(int)y1].isPassable == false || Component.level.block2[(int)x1][(int)y2].isPassable == false) {
 				horizontalExtra = (x + frameOffsetLeft) - x1 * Tile.tileSize - Tile.tileSize;
 				return Math.min(0, -(horizontalExtra));
 			}
 		}
 		if(isMovingRight) {
-			if(Component.level.block[(int)x2][(int)y1].isPassable == false || Component.level.block[(int)x2][(int)y2].isPassable == false) {
+			if(Component.level.block[(int)x2][(int)y1].isPassable == false || Component.level.block[(int)x2][(int)y2].isPassable == false
+					|| Component.level.block2[(int)x2][(int)y1].isPassable == false || Component.level.block2[(int)x2][(int)y2].isPassable == false) {
 				horizontalExtra = x2 * Tile.tileSize - (x + frameOffsetRight) - 1;
 				return Math.max(0, horizontalExtra);
 			}
@@ -97,14 +99,16 @@ public class Mob extends DoubleRectangle {
 		double y2 = Math.floor((y+frameOffsetBottom + moveY) /Tile.tileSize);
 		
 		if(isMovingDown) {
-			if(Component.level.block[(int)x2][(int)y2].isPassable == false || Component.level.block[(int)x1][(int)y2].isPassable == false) {
+			if(Component.level.block[(int)x2][(int)y2].isPassable == false || Component.level.block[(int)x1][(int)y2].isPassable == false
+					|| Component.level.block2[(int)x2][(int)y2].isPassable == false || Component.level.block2[(int)x1][(int)y2].isPassable == false) {
 				verticalExtra = y2 * Tile.tileSize - (y + frameOffsetBottom) - 1;
 				return Math.max(0, verticalExtra);
 				
 			}
 		}
 		if(isMovingUp) {
-			if(Component.level.block[(int)x1][(int)y1].isPassable == false || Component.level.block[(int)x2][(int)y1].isPassable == false) {
+			if(Component.level.block[(int)x1][(int)y1].isPassable == false || Component.level.block[(int)x2][(int)y1].isPassable == false
+					||Component.level.block2[(int)x1][(int)y1].isPassable == false || Component.level.block2[(int)x2][(int)y1].isPassable == false) {
 				verticalExtra = (y + frameOffsetTop) - y1 * Tile.tileSize - Tile.tileSize;
 				return Math.min(0, -(verticalExtra));
 			}
@@ -161,7 +165,7 @@ public class Mob extends DoubleRectangle {
 			if (rectangle1.intersects(rectangle2)) {
 				//System.out.println("Collission Detected");
 				
-				HP = HP -10;
+				HP = HP -1;
 				System.out.println(HP);
 				
 				checkDeath();

@@ -236,35 +236,24 @@ public class Weapon extends Rectangle {
 		//This is lines drawn for testing purposes
 
 		
-		int testLineAngle = 45;
-		for(int x=0; x<4;x++) {
-			int x1 = (int) Component.character.x - (int) Component.sX +8;
-			int y1 = (int) Component.character.y - (int) Component.sY + 20;
-			double angle = Math.toRadians(testLineAngle);
-			
-			double x2 = x1 - 500 * Math.cos(angle);
-			double y2 = y1 - 500 * Math.sin(angle);
-			g.setColor(new Color(0,0,0, 255));
-			g.drawLine((int)x1, (int)y1, (int) x2, (int) y2);
-			testLineAngle += 90;
-		}
-//		int x1 = (int) Component.character.x - (int) Component.sX -8;
-//		int y1 = (int) Component.character.y - (int) Component.sY - 20;
-//		int x11 = (int) Component.character.x - (int) Component.sX +8;
-//		int y11 = (int) Component.character.y - (int) Component.sY + 20;
-//		double angle = Math.toRadians(testLineAngle2 + 180);
-//		
-//		double x2 = x1 - 500 * Math.cos(angle);
-//		double y2 = y1 - 500 * Math.sin(angle);
-//		g.setColor(new Color(0,0,0, 255));
-//		g.drawLine((int)x11, (int)y11, (int) x2, (int) y2);
+//		int testLineAngle = 45;
+//		for(int x=0; x<4;x++) {
+//			int x1 = (int) Component.character.x - (int) Component.sX +8;
+//			int y1 = (int) Component.character.y - (int) Component.sY + 20;
+//			double angle = Math.toRadians(testLineAngle);
+//			
+//			double x2 = x1 - 500 * Math.cos(angle);
+//			double y2 = y1 - 500 * Math.sin(angle);
+//			g.setColor(new Color(0,0,0, 255));
+//			g.drawLine((int)x1, (int)y1, (int) x2, (int) y2);
+//			testLineAngle += 90;
+//		}
 			
 
 				
 		if(Inventory.invBar[Inventory.selected].id == Tile.sword && isInUse == true){ 
-			g.setColor(new Color(0,0,0, 255));
-			g.drawRect(collisionArea.x, collisionArea.y,collisionArea.width,collisionArea.height);      
-			//((int) Component.character.x + animation0x + frameOffsetLeft,(int) Component.character.y + animation0y + frameOffsetTop,frameWidth,frameHeight);
+//			g.setColor(new Color(0,0,0, 255));
+//			g.drawRect(collisionArea.x, collisionArea.y,collisionArea.width,collisionArea.height);      
 			if(animation == 0) {
 				double rotationRequired2 = Math.toRadians(animationAngle0);
 				double locationX2 = 32;

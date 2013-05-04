@@ -77,7 +77,7 @@ public class Component extends Applet implements Runnable {
 //		Component.collectibleID = collectibleID+1;
 		//This helps me find the location for the mob ID
 		int mobID2 = mob.size();
-		mob.add(new Chicken(190,130,Tile.tileSize,Tile.tileSize * 2, Tile.mobChicken, mobID));
+		mob.add(new Chicken(45,130,Tile.tileSize,Tile.tileSize * 2, Tile.mobChicken, mobID));
 		mobID = mobID2+1;
 		
 		/*
