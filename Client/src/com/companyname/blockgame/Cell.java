@@ -27,7 +27,7 @@ public class Cell extends Rectangle{
 		}
 		
 		if(isSelected && !Inventory.isOpen) {
-			g.drawImage(Tile.tile_select, x-1, y-1, width +3, height +3, null);
+			g.drawImage(Tile.tile_select, x-1, y-1, width +2, height +2, null);
 		}
 		if(stack > 1) {
 			Font font = new Font("Helvetica", Font.PLAIN, 12);

@@ -41,10 +41,10 @@ public class Mob extends DoubleRectangle {
 	public double vX;
 	public double vY;
 	
-	public static double frameOffsetLeft = 4;
-	public static double frameOffsetRight = 11;
+	public static double frameOffsetLeft = 6;
+	public static double frameOffsetRight = 17;
 	public static double frameOffsetBottom = 31;
-	public static double frameOffsetTop = 23;
+	public static double frameOffsetTop = 20;
 	
 	public static boolean isMovingUp = false;
 	public static boolean isMovingDown = false;
@@ -64,7 +64,7 @@ public class Mob extends DoubleRectangle {
 	}
 	
 	public Rectangle bounds() {
-		return (new Rectangle((int)x - (int) Component.sX,(int)y+13- (int)Component.sY,(int) width,(int)height-13));
+		return (new Rectangle((int)x - (int) Component.sX+ (int) frameOffsetLeft,(int)y+(int)frameOffsetTop- (int)Component.sY,(int)frameOffsetRight- (int) frameOffsetLeft,(int)frameOffsetBottom-(int)frameOffsetTop));
 	}
 	
 	public double getCollisionX() {
@@ -108,7 +108,7 @@ public class Mob extends DoubleRectangle {
 		}
 		if(isMovingUp) {
 			if(Component.level.block[(int)x1][(int)y1].isPassable == false || Component.level.block[(int)x2][(int)y1].isPassable == false
-					||Component.level.block2[(int)x1][(int)y1].isPassable == false || Component.level.block2[(int)x2][(int)y1].isPassable == false) {
+					|| Component.level.block2[(int)x1][(int)y1].isPassable == false || Component.level.block2[(int)x2][(int)y1].isPassable == false) {
 				verticalExtra = (y + frameOffsetTop) - y1 * Tile.tileSize - Tile.tileSize;
 				return Math.min(0, -(verticalExtra));
 			}
@@ -152,9 +152,10 @@ public class Mob extends DoubleRectangle {
 			Rectangle rectangle4 = bounds();
 			if (rectangle3.intersects(rectangle4)) {
 				Component.character.HP = Component.character.HP - 1;
+				
 				Component.character.isKnockingBack = true;
-				System.out.println(Component.character.HP);
 				Component.character.knockBack((int)x,(int)y);
+				
 			}
 			
 		}
@@ -201,26 +202,49 @@ public class Mob extends DoubleRectangle {
 			if(dir > 180 && dir < 360) {
 				Mob.isMovingUp = true;
 				Mob.isMovingDown = false;
-				Mob.isFacingUp = true;
-				Mob.isFacingDown = false;
 			}
 			if(dir > 0 && dir < 180) {
 				Mob.isMovingUp = false;
 				Mob.isMovingDown = true;
-				Mob.isFacingUp = false;
-				Mob.isFacingDown = true;
 			}
 			if(dir > 90 && dir < 270) {
 				Mob.isMovingLeft = true;
 				Mob.isMovingRight = false;
-				Mob.isFacingLeft = true;
-				Mob.isFacingRight = false;
 			}
 			if(dir > 270 || dir < 90) {
 				Mob.isMovingLeft = false;
 				Mob.isMovingRight = true;
+			}
+			
+			
+			
+			
+			if(dir > 225 && dir < 315) {
+				Mob.isFacingUp = true;
+				Mob.isFacingDown = false;
 				Mob.isFacingLeft = false;
+				Mob.isFacingRight = false;
+				
+			}
+			if(dir > 45 && dir < 135) {
+			
+				Mob.isFacingDown = true;
+				Mob.isFacingLeft = false;
+				Mob.isFacingRight = false;
+				Mob.isFacingUp = false;
+			}
+			if(dir > 135 && dir < 225) {
+				Mob.isFacingLeft = true;
+				Mob.isFacingDown = false;
+				Mob.isFacingRight = false;
+				Mob.isFacingUp = false;
+				
+			}
+			if(dir > 315 || dir < 45) {
 				Mob.isFacingRight = true;
+				Mob.isFacingDown = false;
+				Mob.isFacingLeft = false;
+				Mob.isFacingUp = false;
 			}
 			
 			if(Inventory.isOpen == false) {
@@ -296,30 +320,87 @@ public class Mob extends DoubleRectangle {
 	}
 	
 	public void render(Graphics g) {
-        
+//		Rectangle rectangle1 = Component.weapon.collisionArea;
+//		Rectangle rectangle2 = bounds();
+		
+//		g.drawImage(Tile.tileset_terrain, 
+//				(int) x - (int) Component.sX, 
+//				(int) y - (int) Component.sY, 
+//				(int) (x + width) - (int) Component.sX, 
+//				(int) (y + height) - (int) Component.sY, 
+//				/*Where it's cut out*/
+//				(Tile.character[0] * 24) + (24 * Component.weapon.animation) +288, 
+//				Tile.character[1] * Tile.tileSize, 
+//				Tile.character[0] * 24 +(24 * Component.weapon.animation) + (int) width +288, 
+//				Tile.character[1] * Tile.tileSize +(int) height, 
+//				null);
+		if(isFacingDown) {
 			g.drawImage(Tile.tileset_terrain,
 					(int) x - (int) Component.sX,
 					(int) y - (int) Component.sY,
 					(int) (x + width) - (int) Component.sX,
 					(int) (y + height) - (int) Component.sY,
-					(id[0] * Tile.tileSize) + (Tile.tileSize*animation),
+					(id[0] * 24) + (24*animation),
 					id[1] * Tile.tileSize,
-					id[0] * Tile.tileSize +(Tile.tileSize * animation) + (int) width,
+					id[0] * 24 +(24 * animation) + (int) width,
 					id[1] * Tile.tileSize +(int) height,
 					null);
-//			g.setColor(new Color(255,0,0, 255));
-//			g.drawRect ((int)x - (int) Component.sX +(int)frameOffsetLeft,
-//					(int)y+13- (int)Component.sY + (int)frameOffsetTop,
-//					(int) width+ (int)frameOffsetRight,
-//					(int)height-13+ (int)frameOffsetBottom);
-//			g.setColor(new Color(0,255,0, 255));
-//			g.drawRect (
-//					(int) x + (int)frameOffsetLeft,
-//					(int) y + (int)frameOffsetTop,
-//					(int) width,
-//					(int) height);
+		} else if(isFacingRight) {
+			int a = animation + 3;
+			g.drawImage(Tile.tileset_terrain,
+					(int) x - (int) Component.sX,
+					(int) y - (int) Component.sY,
+					(int) (x + width) - (int) Component.sX,
+					(int) (y + height) - (int) Component.sY,
+					(id[0] * 24) + (24*a),
+					id[1] * Tile.tileSize,
+					id[0] * 24 +(24 * a) + (int) width,
+					id[1] * Tile.tileSize +(int) height,
+					null);
+		} else if(isFacingUp) {
+			int a = animation + 6;
+			g.drawImage(Tile.tileset_terrain,
+					(int) x - (int) Component.sX,
+					(int) y - (int) Component.sY,
+					(int) (x + width) - (int) Component.sX,
+					(int) (y + height) - (int) Component.sY,
+					(id[0] * 24) + (24*a),
+					id[1] * Tile.tileSize,
+					id[0] * 24 +(24 * a) + (int) width,
+					id[1] * Tile.tileSize +(int) height,
+					null);
+		} else if(isFacingLeft) {
+			int a = animation + 9;
+			g.drawImage(Tile.tileset_terrain,
+					(int) x - (int) Component.sX,
+					(int) y - (int) Component.sY,
+					(int) (x + width) - (int) Component.sX,
+					(int) (y + height) - (int) Component.sY,
+					(id[0] * 24) + (24*a),
+					id[1] * Tile.tileSize,
+					id[0] * 24 +(24 * a) + (int) width,
+					id[1] * Tile.tileSize +(int) height,
+					null);
+		}
 			
+//			g.setColor(new Color(255,0,0, 255));
+//			g.drawRect (bounds().x, bounds().y, bounds().width,bounds().height);
 //			
-		
+//			//Weapon Collision detection
+//			g.setColor(new Color(0,255,0, 255));
+//			g.drawRect (Component.weapon.collisionArea.x,Component.weapon.collisionArea.y,Component.weapon.collisionArea.width,Component.weapon.collisionArea.height);
+//			
+//			//Bounding Box for wall collision
+//			g.setColor(new Color(0,0,255, 255));
+//			g.drawRect (
+//					(int)x+(int)frameOffsetLeft,
+//					(int)y+ (int)frameOffsetTop,
+//					(int)frameOffsetRight-(int)frameOffsetLeft,
+//					(int)frameOffsetBottom-(int)frameOffsetTop);
+//			//Main Character hit collision detection
+//			g.setColor(new Color(255,0,0, 255));
+//			g.drawRect (Component.character.bounds().x,Component.character.bounds().y,Component.character.bounds().width,Component.character.bounds().height);
+//		
+//		
 	}
 }

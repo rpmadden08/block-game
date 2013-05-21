@@ -16,13 +16,13 @@ public class Tile {
 	
 	//Blocks
 	public static final int[] air = {-1, -1};
-	public static final int[] earth = {0, 0};	
-	public static final int[] grass = {5, 1};
+	public static final int[] grass = {1, 0};	
+	public static final int[] earth = {0, 7};
 	public static final int[] sand = {2, 0};
 	public static final int[] bedrock = {3, 0};
-	public static final int[] water = {5, 2};
+	public static final int[] water = {3, 7};
 	public static final int[] tree = {0, 4};
-	public static final int[] hole = {4, 0};
+	public static final int[] hole = {6, 7};
 	
 	
 	//Tile Breaking Animations

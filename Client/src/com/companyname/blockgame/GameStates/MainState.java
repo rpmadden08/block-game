@@ -4,33 +4,40 @@ import com.companyname.blockgame.Component;
 import com.companyname.blockgame.GameState;
 import com.companyname.blockgame.Tile;
 
+
 public class MainState extends GameState{
+	public static int tester = 0;
 	public MainState() {
 		type = Component.MAIN_STATE;
 	}
 	
 	public void tick() {
-		Component.character.tick();
-		Component.level.tick((int) Component.sX, (int) Component.sY, (Component.pixel.width /Tile.tileSize) + 2,
-				   			 (Component.pixel.height / Tile.tileSize) + 2);
-		Component.weapon.tick();
-		Component.day.tick();
-
-		for(int i = 0; i < Component.mob.toArray().length; i ++) {
-			Component.mob.get(i).tick();
+		
+			
+			Component.character.tick();
+			Component.level.tick((int) Component.sX, (int) Component.sY, (Component.pixel.width /Tile.tileSize) + 2,
+					   			 (Component.pixel.height / Tile.tileSize) + 2);
+			Component.weapon.tick();
+			Component.day.tick();
+	
+			for(int i = 0; i < Component.mob.toArray().length; i ++) {
+				Component.mob.get(i).tick();
+			}
+			for(int i = 0; i < Component.collectible.size(); i ++) {
+				Component.collectible.get(i).tick();
+			}
+			tester = 0;
 		}
-		for(int i = 0; i < Component.collectible.size(); i ++) {
-			Component.collectible.get(i).tick();
-		}
-	}
+		
+	
 
 	public void renderToBuffer() { 
 		Component.level.render(dbg, (int) Component.sX, (int) Component.sY, 
 							  (Component.pixel.width /Tile.tileSize) + 2, 
 							  (Component.pixel.height / Tile.tileSize) + 2);
-		
-		Component.character.render(dbg);
 		Component.weapon.render(dbg);
+		Component.character.render(dbg);
+		
 		
 		Component.level.render2(dbg,(int) Component.sX, (int) Component.sY, 
 							   (Component.pixel.width /Tile.tileSize) + 2, 

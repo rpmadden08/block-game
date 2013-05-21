@@ -2,6 +2,7 @@ package com.companyname.blockgame;
 
 import java.awt.*;
 import java.util.*;
+import java.io.*;
 
 //import net.ulixava.adventurecraft.BlockTypes.Grass;
 //import net.ulixava.adventurecraft.BlockTypes.Bedrock;
@@ -9,71 +10,62 @@ import java.util.*;
 import com.companyname.blockgame.BlockTypes.*;
 
 public class Level {
-	public int worldW = 50, worldH = 50;
+	public static int chunkSize = 10;
+	public static int worldW =10, worldH = 10;
+	//public static Chunk[][] chunk = new Chunk [3][3];
 	public Block[][] block = new Block [worldW][worldH];
 	public Block[][] block2 = new Block [worldW][worldH];
-	public float[][] mapHeight = new float[worldW][worldH]; 
+	public Block[][] block3 = new Block [worldW][worldH];
+	public static float[][] mapHeight = new float[worldW][worldH]; //To get elevations through perlin noise
+	public int chunkOffsetX = 0;
+	public int chunkOffsetY = 0;
 	public Random rand = new Random();
 	public Random rand2 = new Random();
 	public Random seed = new Random();
 	public int Size = worldW;
-	private PerlinGenerator Perlin;
+	public PerlinGenerator perlin;
+	public BlockType test2 = new BlockType();
+	public Font font = new Font("Arial", Font.PLAIN, 23);
 	
 	public Level() {
-//		for(int x=0; x<block.length;x++) {
-//			for(int y=0; y<block[0].length;y++) {
-//				block[x][y] = new Block(new Rectangle(x * Tile.tileSize + (int) Component.sX, y * Tile.tileSize + (int) Component.sY, Tile.tileSize, Tile.tileSize), Tile.air);
-//			}
-//		}
-//		generateLevel();
-		
-		
-		
-		
-		
+//		SaveGame test = new SaveGame();
+//		test.loadSave();
+
 		long rgenseed = System.currentTimeMillis();
 		Random rgen = new Random();
 		rgen.setSeed(rgenseed);
 		//System.out.println("Random number generator seed is " + rgenseed);
 		
-		Perlin = new PerlinGenerator((int) rgenseed);
+		perlin = new PerlinGenerator((int) rgenseed);
 		//Perlin = new PerlinGenerator(0);
-		
-		for(int y=0; y<block.length;y++) {
-			for(int x=0; x<block[0].length;x++) {
-				block2[x][y] = new Block(new Rectangle(x * Tile.tileSize + (int) Component.sX, y * Tile.tileSize + (int) Component.sY, Tile.tileSize, Tile.tileSize), Tile.air);				
-			}
-		}
-		
-		for(int y=0; y<block.length;y++) {
-			for(int x=0; x<block[0].length;x++) {
-				if(x == 0 || y == 0 || x == block.length-1 || y == block.length -1) {
-					block2[x][y] = new Bedrock(new Rectangle(x * Tile.tileSize + (int) Component.sX, y * Tile.tileSize + (int) Component.sY, Tile.tileSize, Tile.tileSize), Tile.bedrock);
-				}
-			}
-		}
+
 		
 		for(int y=0; y<block.length;y++) {
 			for(int x=0; x<block[0].length;x++) {
 				//block[x][y].id = Tile.earth;
 				
-				block[x][y] = new Dirt(new Rectangle(x * Tile.tileSize + (int) Component.sX, y * Tile.tileSize + (int) Component.sY, Tile.tileSize, Tile.tileSize), Tile.earth);
-				//block[x][y].heightMap = Perlin.Noise(2 * y / (float)Size, 2 * x / (float)Size, 0);
-				mapHeight[x][y] = Perlin.Noise(4 * y / (float)Size, 4 * x / (float)Size, 0);
+				block2[x][y] = new Block(new Rectangle(x * Tile.tileSize + (int) Component.sX, y * Tile.tileSize + (int) Component.sY, Tile.tileSize, Tile.tileSize), Tile.air);
 			}
 		}
-		
 		
 		for(int y=0; y<block.length;y++) {
 			for(int x=0; x<block[0].length;x++) {
-				if(mapHeight[x][y] > -0.15) {
-					block[x][y] = new Grass(new Rectangle(x * Tile.tileSize + (int) Component.sX, y * Tile.tileSize + (int) Component.sY, Tile.tileSize, Tile.tileSize), Tile.grass);
-					
-				//System.out.println(block[x][y].heightMap);
-				}
-				//System.out.println(block[x][y].heightMap);
+				block[x][y] = new Grass(new Rectangle(x * Tile.tileSize + (int) Component.sX, y * Tile.tileSize + (int) Component.sY, Tile.tileSize, Tile.tileSize), Tile.grass);
+				mapHeight[x][y] = perlin.Noise(4 * y / (float)Size, 4 * x / (float)Size, 0);
 			}
 		}
+		for(int y=0; y<block.length;y++) {
+			for(int x=0; x<block[0].length;x++) {
+				if(y == 0 || x == 0 || y == block.length-1 || x == block[0].length-1) {
+					block2[x][y] = new Bedrock(new Rectangle(x * Tile.tileSize + (int) Component.sX, y * Tile.tileSize + (int) Component.sY, Tile.tileSize, Tile.tileSize), Tile.bedrock);	
+				}
+			}
+		}
+		
+		
+		
+
+//		
 		for(int y=0; y<block.length;y++) {
 			for(int x=0; x<block[0].length;x++) {
 				if(mapHeight[x][y] < -0.2) {
@@ -83,47 +75,65 @@ public class Level {
 				}
 			}
 		}
-		
-		
+//TREES
+//		for(int y=0; y<block2.length;y++) {
+//			for(int x=0; x<block2[0].length;x++) {
+//				Random rand = new Random();
+//				int  n = rand.nextInt(10) + 1;
+//				if(n == 1 && block[x][y].id == Tile.grass && block2[x][y].id != Tile.bedrock) {
+//					block2[x][y] = new Tree(new Rectangle(x * Tile.tileSize + (int) Component.sX, y * Tile.tileSize + (int) Component.sY, Tile.tileSize, Tile.tileSize), Tile.tree);
+//				}
+//			}
+//		}
 
-
-		
-
-		for(int y=0; y<block2.length;y++) {
-			for(int x=0; x<block2[0].length;x++) {
-				Random rand = new Random();
-				int  n = rand.nextInt(10) + 1;
-				if(n == 1 && block[x][y].id == Tile.grass && block2[x][y].id != Tile.bedrock) {
-					block2[x][y] = new Tree(new Rectangle(x * Tile.tileSize + (int) Component.sX, y * Tile.tileSize + (int) Component.sY, Tile.tileSize, Tile.tileSize), Tile.tree);
-				}
-			}
-		}
-		
 		for(int y=1; y<block.length-1;y++) {
 			for(int x=1; x<block[0].length-1;x++) {
-				
-				//if(block[x][y].heightMap > -5) {
 					checkAutoTile(x, y);
-				//}
 			}
 		}
+		
+		//TESTING FOR SAVE FILE STUFF...
 		//block[14][20].id = Tile.air;
 		//checkAutoTile(6, 2);
-		System.out.println(block[6][2].id[0]+","+block[6][2].id[1]);
+		//System.out.println(block[6][2].id[0]+","+block[6][2].id[1]);
 
-		
+		//block[5][5] = new Block(new Rectangle(5 * Tile.tileSize + (int) Component.sX, 5 * Tile.tileSize + (int) Component.sY, Tile.tileSize, Tile.tileSize), Tile.bedrock);
+
 		//System.out.println(block[6][2].id[1]);
+		//BlockType test2 = new BlockType();
+//		System.out.println(test2.example.get("Wayne"));
+//		String test15 = "Wayne";
+//		test2.x1 = 5;
+//		test2.y1 = 5;
+//		test2.newBlock();
+//		block[5][5] = test2.example.get(test15);
+//		test2.x1 = 5;
+//		test2.y1 = 7;
+//		test2.newBlock();
+//		block[5][7] = test2.example.get(test15);
 	}
 	
 	
 	
 	public void checkAutoTile(int x1, int y1) {
-		if(block[x1][y1].baseId != Tile.earth) {
+		if(block[x1][y1].baseId != Tile.grass && x1 !=0 && x1 < worldW-1 && y1 != 0 && y1 < worldH-1) {
 			boolean top = false;
 			boolean left = false;
 			boolean right = false;
 			boolean bottom = false;
-		
+			boolean topLeft = false;
+			boolean topRight = false;
+			boolean bottomLeft = false;
+			boolean bottomRight = false;
+			block[x1][y1].autoTile1[0] = 0;
+			block[x1][y1].autoTile1[1] = 0;
+			block[x1][y1].autoTile2[0] = 0;
+			block[x1][y1].autoTile2[1] = 0;
+			block[x1][y1].autoTile3[0] = 0;
+			block[x1][y1].autoTile3[1] = 0;
+			block[x1][y1].autoTile4[0] = 0;
+			block[x1][y1].autoTile4[1] = 0;
+			
 			if(block[x1][y1].baseId == block[x1][y1-1].baseId) {
 				top = true;
 			}
@@ -136,54 +146,311 @@ public class Level {
 			if(block[x1][y1].baseId == block[x1][y1+1].baseId) {
 				bottom = true;
 			}
+			if(block[x1][y1].baseId == block[x1-1][y1-1].baseId) {
+				topLeft = true;
+			}
+			if(block[x1][y1].baseId == block[x1+1][y1-1].baseId) {
+				topRight = true;
+			}
+			if(block[x1][y1].baseId == block[x1-1][y1+1].baseId) {
+				bottomLeft = true;
+			}
+			if(block[x1][y1].baseId == block[x1+1][y1+1].baseId) {
+				bottomRight = true;
+			}
+			
 			
 			if(top == false && left == false && right == false && bottom == false) {
-				block[x1][y1].autoTile = 1;
+			//I don't think I need to do anything because this is the base tile.  
 			}
+			
 			if(top == false && left == false && right == true && bottom == false) {
-				block[x1][y1].autoTile = 2;
+				block[x1][y1].autoTile1[1] = 1;
+				block[x1][y1].autoTile2[1] = 1;
+				block[x1][y1].autoTile3[1] = 3;
+				block[x1][y1].autoTile4[1] = 3;
 			}
 			if(top == true && left == false && right == false && bottom == false) {
-				block[x1][y1].autoTile = 3;
+				block[x1][y1].autoTile1[1] = 3;
+				block[x1][y1].autoTile2[0] = 2;
+				block[x1][y1].autoTile2[1] = 3;
+				block[x1][y1].autoTile3[1] = 3;
+				block[x1][y1].autoTile4[0] = 2;
+				block[x1][y1].autoTile4[1] = 3;
+				
 			}
 			if(top == true && left == false && right == true && bottom == false) {
-				block[x1][y1].autoTile = 4;
+				block[x1][y1].autoTile1[1] = 3;
+				block[x1][y1].autoTile3[1] = 3;
+				block[x1][y1].autoTile4[1] = 3;
+				if(topRight == false) {
+					block[x1][y1].autoTile2[0] = 2;
+					
+				} else {
+					block[x1][y1].autoTile2[1] = 3;
+					
+				}
 			}
 			if(top == false && left == true && right == false && bottom == false) {
-				block[x1][y1].autoTile = 5;
+				block[x1][y1].autoTile1[0] = 2;
+				block[x1][y1].autoTile2[0] = 2;
+				block[x1][y1].autoTile3[0] = 2;
+				block[x1][y1].autoTile4[0] = 2;
+				block[x1][y1].autoTile1[1] = 1;
+				block[x1][y1].autoTile2[1] = 1;
+				block[x1][y1].autoTile3[1] = 3;
+				block[x1][y1].autoTile4[1] = 3;
 			}
 			if(top == false && left == true && right == true && bottom == false) {
-				block[x1][y1].autoTile = 6;
+				block[x1][y1].autoTile1[0] = 1;
+				block[x1][y1].autoTile2[0] = 1;
+				block[x1][y1].autoTile3[0] = 1;
+				block[x1][y1].autoTile4[0] = 1;
+				block[x1][y1].autoTile1[1] = 1;
+				block[x1][y1].autoTile2[1] = 1;
+				block[x1][y1].autoTile3[1] = 3;
+				block[x1][y1].autoTile4[1] = 3;
 			}
 			if(top == true && left == true && right == false && bottom == false) {
-				block[x1][y1].autoTile = 7;
+				block[x1][y1].autoTile2[0] = 2;
+				block[x1][y1].autoTile3[0] = 2;
+				block[x1][y1].autoTile4[0] = 2;
+				block[x1][y1].autoTile2[1] = 3;
+				block[x1][y1].autoTile3[1] = 3;
+				block[x1][y1].autoTile4[1] = 3;
+				if(topLeft == false) {
+					block[x1][y1].autoTile1[0] = 2;
+					
+				} else {
+					block[x1][y1].autoTile1[0] = 2;
+					block[x1][y1].autoTile1[1] = 3;
+					
+				}
 			}
 			if(top == true && left == true && right == true && bottom == false) {
-				block[x1][y1].autoTile = 8;
+				block[x1][y1].autoTile1[0] = 1;
+				block[x1][y1].autoTile2[0] = 1;
+				block[x1][y1].autoTile3[0] = 1;
+				block[x1][y1].autoTile4[0] = 1;
+				block[x1][y1].autoTile1[1] = 3;
+				block[x1][y1].autoTile2[1] = 3;
+				block[x1][y1].autoTile3[1] = 3;
+				block[x1][y1].autoTile4[1] = 3;
+				if(topRight == false && topLeft == false) {
+					block[x1][y1].autoTile1[0] = 2;
+					block[x1][y1].autoTile2[0] = 2;
+					block[x1][y1].autoTile1[1] = 0;
+					block[x1][y1].autoTile2[1] = 0;
+				}else if (topRight == true && topLeft == false) {
+					block[x1][y1].autoTile1[1] = 0;
+					block[x1][y1].autoTile1[0] = 2;
+				}else if (topRight == false && topLeft == true) {
+					block[x1][y1].autoTile2[1] = 0;
+					block[x1][y1].autoTile2[0] = 2;
+					
+				}
+					
 			}
 			if(top == false && left == false && right == false && bottom == true) {
-				block[x1][y1].autoTile = 9;
+				block[x1][y1].autoTile1[1] = 1;
+				block[x1][y1].autoTile2[0] = 2;
+				block[x1][y1].autoTile2[1] = 1;
+				block[x1][y1].autoTile3[1] = 1;
+				block[x1][y1].autoTile4[0] = 2;
+				block[x1][y1].autoTile4[1] = 1;
 			}
+			
 			if(top == false && left == false && right == true && bottom == true) {
-				block[x1][y1].autoTile = 10;
+				block[x1][y1].autoTile1[1] = 1;
+				block[x1][y1].autoTile2[1] = 1;
+				block[x1][y1].autoTile3[1] = 1;
+				block[x1][y1].autoTile4[1] = 1;
+				
+				if(bottomRight == false) {
+					block[x1][y1].autoTile4[0] = 2;
+					block[x1][y1].autoTile4[1] = 0;
+				}
 			}
 			if(top == true && left == false && right == false && bottom == true) {
-				block[x1][y1].autoTile = 11;
+				block[x1][y1].autoTile1[1] = 2;
+				block[x1][y1].autoTile2[0] = 2;
+				block[x1][y1].autoTile2[1] = 2;
+				block[x1][y1].autoTile3[1] = 2;
+				block[x1][y1].autoTile4[0] = 2;
+				block[x1][y1].autoTile4[1] = 2;
 			}
 			if(top == true && left == false && right == true && bottom == true) {
-				block[x1][y1].autoTile= 12;
+				block[x1][y1].autoTile1[1] = 2;
+				block[x1][y1].autoTile2[1] = 2;
+				block[x1][y1].autoTile3[1] = 2;
+				block[x1][y1].autoTile4[1] = 2;
+				if(topRight == false && bottomRight == false) {
+					block[x1][y1].autoTile2[0] = 2;
+					block[x1][y1].autoTile2[1] = 0;
+					block[x1][y1].autoTile4[0] = 2;
+					block[x1][y1].autoTile4[1] = 0;
+				} else if (topRight == true && bottomRight == false) {
+					block[x1][y1].autoTile4[0] = 2;
+					block[x1][y1].autoTile4[1] = 0;
+					
+				} else if (topRight == false && bottomRight == true) {
+					block[x1][y1].autoTile2[0] = 2;
+					block[x1][y1].autoTile2[1] = 0;
+				}
 			}
 			if(top == false && left == true && right == false && bottom == true) {
-				block[x1][y1].autoTile = 13;
+				block[x1][y1].autoTile1[0] = 2;
+				block[x1][y1].autoTile1[1] = 1;
+				block[x1][y1].autoTile2[0] = 2;
+				block[x1][y1].autoTile2[1] = 1;
+				block[x1][y1].autoTile3[0] = 2;
+				block[x1][y1].autoTile3[1] = 1;
+				block[x1][y1].autoTile4[0] = 2;
+				block[x1][y1].autoTile4[1] = 1;
+				if(bottomLeft == false) {
+					block[x1][y1].autoTile3[0] = 2;
+					block[x1][y1].autoTile3[1] = 0;
+				}
 			}
 			if(top == false && left == true && right == true && bottom == true) {
-				block[x1][y1].autoTile = 14;
+				block[x1][y1].autoTile1[0] = 1;
+				block[x1][y1].autoTile1[1] = 1;
+				block[x1][y1].autoTile2[0] = 1;
+				block[x1][y1].autoTile2[1] = 1;
+				block[x1][y1].autoTile3[0] = 1;
+				block[x1][y1].autoTile3[1] = 1;
+				block[x1][y1].autoTile4[0] = 1;
+				block[x1][y1].autoTile4[1] = 1;
+				if(bottomRight == false && bottomLeft == false) {
+					block[x1][y1].autoTile3[0] = 2;
+					block[x1][y1].autoTile3[1] = 0;
+					block[x1][y1].autoTile4[0] = 2;
+					block[x1][y1].autoTile4[1] = 0;
+				} else if (bottomRight == true && bottomLeft == false) {
+					block[x1][y1].autoTile3[0] = 2;
+					block[x1][y1].autoTile3[1] = 0;
+					
+				} else if (bottomRight == false && bottomLeft == true) {
+					block[x1][y1].autoTile4[0] = 2;
+					block[x1][y1].autoTile4[1] = 0;
+				}
 			}
 			if(top == true && left == true && right == false && bottom == true) {
-				block[x1][y1].autoTile = 15;
+				block[x1][y1].autoTile1[0] = 2;
+				block[x1][y1].autoTile1[1] = 2;
+				block[x1][y1].autoTile2[0] = 2;
+				block[x1][y1].autoTile2[1] = 2;
+				block[x1][y1].autoTile3[0] = 2;
+				block[x1][y1].autoTile3[1] = 2;
+				block[x1][y1].autoTile4[0] = 2;
+				block[x1][y1].autoTile4[1] = 2;
+				if(topLeft == false && bottomLeft == false) {
+					block[x1][y1].autoTile3[0] = 2;
+					block[x1][y1].autoTile3[1] = 0;
+					block[x1][y1].autoTile1[0] = 2;
+					block[x1][y1].autoTile1[1] = 0;
+				} else if (topLeft == true && bottomLeft == false) {
+					block[x1][y1].autoTile3[0] = 2;
+					block[x1][y1].autoTile3[1] = 0;
+					
+				} else if (topLeft == false && bottomLeft == true) {
+					block[x1][y1].autoTile1[0] = 2;
+					block[x1][y1].autoTile1[1] = 0;
+				}
 			}
 			if(top == true && left == true && right == true && bottom == true) {
-				block[x1][y1].autoTile = 16;
+				block[x1][y1].autoTile1[0] = 1;
+				block[x1][y1].autoTile1[1] = 2;
+				block[x1][y1].autoTile2[0] = 1;
+				block[x1][y1].autoTile2[1] = 2;
+				block[x1][y1].autoTile3[0] = 1;
+				block[x1][y1].autoTile3[1] = 2;
+				block[x1][y1].autoTile4[0] = 1;
+				block[x1][y1].autoTile4[1] = 2;
+				if(topRight == false && topLeft == false && bottomRight == false && bottomLeft == false) {
+					block[x1][y1].autoTile1[0] = 2;
+					block[x1][y1].autoTile1[1] = 0;
+					block[x1][y1].autoTile2[0] = 2;
+					block[x1][y1].autoTile2[1] = 0;
+					block[x1][y1].autoTile3[0] = 2;
+					block[x1][y1].autoTile3[1] = 0;
+					block[x1][y1].autoTile4[0] = 2;
+					block[x1][y1].autoTile4[1] = 0;
+				} else if (topRight == true && topLeft == false && bottomRight == false && bottomLeft == false) {
+					block[x1][y1].autoTile1[0] = 2;
+					block[x1][y1].autoTile1[1] = 0;
+					block[x1][y1].autoTile3[0] = 2;
+					block[x1][y1].autoTile3[1] = 0;
+					block[x1][y1].autoTile4[0] = 2;
+					block[x1][y1].autoTile4[1] = 0;
+				} else if (topRight == false && topLeft == true && bottomRight == false && bottomLeft == false) {
+					block[x1][y1].autoTile2[0] = 2;
+					block[x1][y1].autoTile2[1] = 0;
+					block[x1][y1].autoTile3[0] = 2;
+					block[x1][y1].autoTile3[1] = 0;
+					block[x1][y1].autoTile4[0] = 2;
+					block[x1][y1].autoTile4[1] = 0;
+				} else if (topRight == false && topLeft == false && bottomRight == true && bottomLeft == false) {
+					block[x1][y1].autoTile1[0] = 2;
+					block[x1][y1].autoTile1[1] = 0;
+					block[x1][y1].autoTile2[0] = 2;
+					block[x1][y1].autoTile2[1] = 0;
+					block[x1][y1].autoTile3[0] = 2;
+					block[x1][y1].autoTile3[1] = 0;
+				} else if (topRight == false && topLeft == false && bottomRight == false && bottomLeft == true) {
+					block[x1][y1].autoTile1[0] = 2;
+					block[x1][y1].autoTile1[1] = 0;
+					block[x1][y1].autoTile2[0] = 2;
+					block[x1][y1].autoTile2[1] = 0;
+					block[x1][y1].autoTile4[0] = 2;
+					block[x1][y1].autoTile4[1] = 0;
+				} else if (topRight == true && topLeft == true && bottomRight == false && bottomLeft == false) {
+					block[x1][y1].autoTile3[0] = 2;
+					block[x1][y1].autoTile3[1] = 0;
+					block[x1][y1].autoTile4[0] = 2;
+					block[x1][y1].autoTile4[1] = 0;
+					
+				} else if (topRight == false && topLeft == true && bottomRight == true && bottomLeft == false) {
+					block[x1][y1].autoTile2[0] = 2;
+					block[x1][y1].autoTile2[1] = 0;
+					block[x1][y1].autoTile3[0] = 2;
+					block[x1][y1].autoTile3[1] = 0;
+				} else if (topRight == false && topLeft == false && bottomRight == true && bottomLeft == true) {
+					block[x1][y1].autoTile1[0] = 2;
+					block[x1][y1].autoTile1[1] = 0;
+					block[x1][y1].autoTile2[0] = 2;
+					block[x1][y1].autoTile2[1] = 0;
+				} else if (topRight == true && topLeft == false && bottomRight == false && bottomLeft == true) {
+					block[x1][y1].autoTile1[0] = 2;
+					block[x1][y1].autoTile1[1] = 0;
+					block[x1][y1].autoTile4[0] = 2;
+					block[x1][y1].autoTile4[1] = 0;
+				} else if (topRight == true && topLeft == false && bottomRight == true && bottomLeft == false) {
+					block[x1][y1].autoTile1[0] = 2;
+					block[x1][y1].autoTile1[1] = 0;
+					block[x1][y1].autoTile3[0] = 2;
+					block[x1][y1].autoTile3[1] = 0;
+				} else if (topRight == false && topLeft == true&& bottomRight == false && bottomLeft == true) {
+					block[x1][y1].autoTile2[0] = 2;
+					block[x1][y1].autoTile2[1] = 0;
+					block[x1][y1].autoTile4[0] = 2;
+					block[x1][y1].autoTile4[1] = 0;
+				} else if (topRight == true && topLeft == true && bottomRight == true && bottomLeft == false) {
+					block[x1][y1].autoTile3[0] = 2;
+					block[x1][y1].autoTile3[1] = 0;
+					
+				} else if (topRight == false && topLeft == true && bottomRight == true && bottomLeft == true) {
+					block[x1][y1].autoTile2[0] = 2;
+					block[x1][y1].autoTile2[1] = 0;
+					
+				} else if (topRight == true && topLeft == false && bottomRight == true && bottomLeft == true) {
+					
+					block[x1][y1].autoTile1[0] = 2;
+					block[x1][y1].autoTile1[1] = 0;
+				} else if (topRight == true && topLeft == true && bottomRight == false && bottomLeft == true) {
+					block[x1][y1].autoTile4[0] = 2;
+					block[x1][y1].autoTile4[1] = 0;
+				} 
 			}	
 		}
 	}
@@ -203,7 +470,7 @@ public class Level {
 										Component.weapon.animationFrame = 0;
 										Component.weapon.getAnimationAngle();
 									}
-								}else if(Inventory.invBar[Inventory.selected].id == Tile.shovel && block2[x][y].id == Tile.air && block[x][y].id != Tile.hole && block[x][y].id != Tile.water) {
+								}else if(Inventory.invBar[Inventory.selected].id == Tile.shovel && block2[x][y].id == Tile.air && block[x][y].id != Tile.earth && block[x][y].id != Tile.water) {
 										block[x][y].hitPoints --;
 										if(block[x][y].hitPoints < 1) {
 											block[x][y].destroy(x,y);
@@ -246,15 +513,15 @@ public class Level {
 	}
 	
 	public void autoTileCleanUp( int x1, int y1) {
-		checkAutoTile(x1, y1);
-		checkAutoTile(x1-1, y1-1);
-		checkAutoTile(x1, y1-1);
-		checkAutoTile(x1+1, y1-1);
-		checkAutoTile(x1-1, y1);
-		checkAutoTile(x1+1, y1);
-		checkAutoTile(x1-1, y1+1);
-		checkAutoTile(x1, y1+1);
-		checkAutoTile(x1+1, y1+1);
+		for(int y=1; y<block.length-1;y++) {
+			for(int x=1; x<block[0].length-1;x++) {
+				
+				//if(block[x][y].heightMap > -5) {
+					checkAutoTile(x, y);
+				//}
+			}
+		}
+		//System.out.println(block[2][2].autoTile1[0]+","+ block[2][2].autoTile1[1]);
 	}
 	
 	public void tick(int camX, int camY, int renW, int renH) {
@@ -280,6 +547,7 @@ public class Level {
 				if(x >= 0 && y >= 0 && x < worldW && y < worldH) {
 					block[x][y].render(g);
 					block2[x][y].render(g);
+					//block3[x][y].render(g);
 					if(block[x][y].id != Tile.air && block[x][y].id != Tile.bedrock && !Inventory.isOpen) {
 						if(block[x][y].contains(new Point((Component.mse.x / Component.pixelSize) + (int) Component.sX, (Component.mse.y / Component.pixelSize) + (int) Component.sY))) {
 							g.setColor(new Color(255,255,255, 40));
@@ -290,8 +558,108 @@ public class Level {
 			}
 		}
 		//Character Health Bar
-		g.setColor(new Color(255,0,0, 255));
-		g.fillRect(18, 18,Component.character.HP * Component.pixelSize,8); 
+//		g.setColor(new Color(255,0,0, 255));
+//		g.fillRect(18, 18,Component.character.HP * Component.pixelSize,8); 
+		//g.setFont();
+		
+		g.drawImage(Tile.tileset_terrain, 
+				//Where to place the character
+				(int) 16, 
+				(int) 16, 
+				(int) 19, 
+				(int) 26, 
+				/*Where it's cut out*/
+				0, 
+				11 * 16, 
+				3, 
+				11 * 16 + 10, 
+				null);
+		for(int y=0; y<Component.character.maxHP-2;y++) {
+			g.drawImage(Tile.tileset_terrain, 
+					//Where to place the character
+					(int) 19 + y, 
+					(int) 16, 
+					(int) 20 + y, 
+					(int) 26, 
+					/*Where it's cut out*/
+					3, 
+					11 * 16, 
+					4, 
+					11 * 16 + 10, 
+					null);
+		}
+		g.drawImage(Tile.tileset_terrain, 
+				//Where to place the character
+				(int) 19 + Component.character.maxHP-2, 
+				(int) 16, 
+				(int) 22 + Component.character.maxHP-2, 
+				(int) 26, 
+				/*Where it's cut out*/
+				4, 
+				11 * 16, 
+				7, 
+				11 * 16 + 10, 
+				null);
+		if(Component.character.HP > 0) {
+			g.drawImage(Tile.tileset_terrain, 
+					//Where to place the character
+					(int) 18, 
+					(int) 16, 
+					(int) 19, 
+					(int) 26, 
+					/*Where it's cut out*/
+					7, 
+					11 * 16, 
+					8, 
+					11 * 16 + 10, 
+					null);
+		}
+		for(int y=1; y<Component.character.HP-1d;y++) {
+			g.drawImage(Tile.tileset_terrain, 
+					//Where to place the character
+					(int) 18 + y, 
+					(int) 16, 
+					(int) 19 + y, 
+					(int) 26, 
+					/*Where it's cut out*/
+					8, 
+					11 * 16, 
+					9, 
+					11 * 16 + 10, 
+					null);
+		}
+		if(Component.character.HP == Component.character.maxHP) {
+			g.drawImage(Tile.tileset_terrain, 
+					//Where to place the character
+					(int) 19 + Component.character.maxHP-2, 
+					(int) 16, 
+					(int) 20 + Component.character.maxHP-2, 
+					(int) 26, 
+					/*Where it's cut out*/
+					9, 
+					11 * 16, 
+					10, 
+					11 * 16 + 10, 
+					null);
+		}
+		File test4 = new File("res/squaredance00.TTF");
+		try {
+			font = Font.createFont(Font.TRUETYPE_FONT, test4);
+		} catch(Exception e) {
+			System.out.println("Font did not load for some reason...");
+		}
+
+
+		//Font font = new Font(font, Font.PLAIN, 23);
+		Font derivedFont = font.deriveFont(Font.BOLD, 9f);
+		
+		Graphics2D g2 = (Graphics2D)g;
+		g2.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_OFF);
+		
+		g2.setFont(derivedFont);
+		g2.setColor(Color.WHITE);
+		g2.drawString("HP",3, 24);
+		
 	}
 	//For overhead graphics...
 	public void render2(Graphics g, int camX, int camY, int renW, int renH) {

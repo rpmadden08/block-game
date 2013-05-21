@@ -2,29 +2,36 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
 		<item value="255" key="DIALOG_WIDTH"/>
-		<item value="230" key="DIALOG_Y_ORIGIN"/>
+		<item value="155" key="DIALOG_Y_ORIGIN"/>
+		<item value="788" key="DIALOG_X_ORIGIN"/>
 		<item value="391" key="DIALOG_HEIGHT"/>
-		<item value="989" key="DIALOG_X_ORIGIN"/>
 		<item value="1|Lucida Grande|11.0|0|CARBON|1|Lucida Grande" key="DIALOG_FONT_NAME"/>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="wrap"/>
-		<item value="false" key="isRegEx"/>
 		<item value="false" key="casesensitive"/>
+		<item value="false" key="isRegEx"/>
 		<item value="false" key="incremental"/>
 		<item value="false" key="wholeword"/>
-		<item value="drawLine" key="selection"/>
+		<item value="isKnocking" key="selection"/>
 		<list key="findhistory">
-			<item value="drawLine"/>
-			<item value="graphics"/>
-			<item value="bounds"/>
-			<item value="maxSpeed"/>
-			<item value="isInuse"/>
-			<item value="tileset_terrain"/>
-			<item value="invBag"/>
-			<item value="invBar"/>
+			<item value="isMoving"/>
+			<item value="listening"/>
+			<item value="isMovingUp = false;"/>
+			<item value="Character.isMovingUp = false;"/>
+			<item value="knockingback"/>
+			<item value="knockback"/>
+			<item value="iscollidingwithblock"/>
+			<item value="animation"/>
 		</list>
 		<list key="replacehistory">
+			<item value="isKnocking"/>
+			<item value="wasMoving"/>
+			<item value="Component.weapon.animation"/>
+			<item value="y"/>
+			<item value="x"/>
+			<item value="id"/>
+			<item value="baseId"/>
 			<item value="invCrafting"/>
 		</list>
 	</section>

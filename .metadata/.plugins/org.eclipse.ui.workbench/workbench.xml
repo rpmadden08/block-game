@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <workbench progressCount="18" version="2.0">
 <workbenchAdvisor/>
-<window height="792" width="1313" x="5" y="22">
+<window height="808" width="1429" x="4" y="22">
 <fastViewData fastViewLocation="1024">
 <orientation position="512" view="org.eclipse.ui.views.ResourceNavigator"/>
 </fastViewData>
@@ -30,59 +30,49 @@
 <info part="DefaultEditorWorkbook">
 <folder appearance="1" expanded="2">
 <presentation id="org.eclipse.ui.internal.presentations.r33.WorkbenchPresentationFactory_33">
-<part id="1"/>
 <part id="0"/>
+<part id="1"/>
 <part id="2"/>
+<part id="5"/>
 <part id="3"/>
 <part id="4"/>
-<part id="5"/>
 <part id="6"/>
 <part id="7"/>
-<part id="8"/>
-<part id="9"/>
 </presentation>
 </folder>
 </info>
 </editorArea>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Mob.java" partName="Mob.java" path="/Users/chrismadden/Documents/java/github/block-game/Client/src/com/companyname/blockgame/Mob.java" title="Mob.java" tooltip="Client/src/com/companyname/blockgame/Mob.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Client/src/com/companyname/blockgame/Mob.java"/>
-<editorState selectionHPixel="0" selectionLength="0" selectionOffset="74"/>
-</editor>
 <editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Component.java" partName="Component.java" path="/Users/chrismadden/Documents/java/github/block-game/Client/src/com/companyname/blockgame/Component.java" title="Component.java" tooltip="Client/src/com/companyname/blockgame/Component.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Client/src/com/companyname/blockgame/Component.java"/>
-<editorState selectionHPixel="0" selectionLength="0" selectionOffset="537"/>
-</editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Weapon.java" partName="Weapon.java" path="/Users/chrismadden/Documents/java/github/block-game/Client/src/com/companyname/blockgame/Weapon.java" title="Weapon.java" tooltip="Client/src/com/companyname/blockgame/Weapon.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Client/src/com/companyname/blockgame/Weapon.java"/>
-<editorState selectionHPixel="0" selectionLength="128" selectionOffset="6717"/>
+<editorState selectionHPixel="0" selectionLength="0" selectionOffset="2577"/>
 </editor>
 <editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Tile.java" partName="Tile.java" path="/Users/chrismadden/Documents/java/github/block-game/Client/src/com/companyname/blockgame/Tile.java" title="Tile.java" tooltip="Client/src/com/companyname/blockgame/Tile.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Client/src/com/companyname/blockgame/Tile.java"/>
-<editorState selectionHPixel="0" selectionLength="0" selectionOffset="1178"/>
+<editorState selectionHPixel="0" selectionLength="0" selectionOffset="540"/>
 </editor>
 <editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Character.java" partName="Character.java" path="/Users/chrismadden/Documents/java/github/block-game/Client/src/com/companyname/blockgame/Character.java" title="Character.java" tooltip="Client/src/com/companyname/blockgame/Character.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Client/src/com/companyname/blockgame/Character.java"/>
-<editorState selectionHPixel="0" selectionLength="0" selectionOffset="8280"/>
-</editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Collectible.java" partName="Collectible.java" path="/Users/chrismadden/Documents/java/github/block-game/Client/src/com/companyname/blockgame/Collectible.java" title="Collectible.java" tooltip="Client/src/com/companyname/blockgame/Collectible.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Client/src/com/companyname/blockgame/Collectible.java"/>
-<editorState selectionHPixel="0" selectionLength="0" selectionOffset="1127"/>
-</editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Chicken.java" partName="Chicken.java" path="/Users/chrismadden/Documents/java/github/block-game/Client/src/com/companyname/blockgame/Chicken.java" title="Chicken.java" tooltip="Client/src/com/companyname/blockgame/Chicken.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Client/src/com/companyname/blockgame/Chicken.java"/>
-<editorState selectionHPixel="0" selectionLength="0" selectionOffset="209"/>
+<editorState selectionHPixel="0" selectionLength="0" selectionOffset="8741"/>
 </editor>
 <editor activePart="true" focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Level.java" partName="Level.java" path="/Users/chrismadden/Documents/java/github/block-game/Client/src/com/companyname/blockgame/Level.java" title="Level.java" tooltip="Client/src/com/companyname/blockgame/Level.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Client/src/com/companyname/blockgame/Level.java"/>
-<editorState selectionHPixel="0" selectionLength="1077" selectionOffset="4802"/>
+<editorState selectionHPixel="0" selectionLength="0" selectionOffset="385"/>
 </editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Block.java" partName="Block.java" path="/Users/chrismadden/Documents/java/github/block-game/Client/src/com/companyname/blockgame/Block.java" title="Block.java" tooltip="Client/src/com/companyname/blockgame/Block.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Client/src/com/companyname/blockgame/Block.java"/>
-<editorState selectionHPixel="0" selectionLength="0" selectionOffset="342"/>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="SaveGame.java" partName="SaveGame.java" path="/Users/chrismadden/Documents/java/github/block-game/Client/src/com/companyname/blockgame/SaveGame.java" title="SaveGame.java" tooltip="Client/src/com/companyname/blockgame/SaveGame.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Client/src/com/companyname/blockgame/SaveGame.java"/>
+<editorState selectionHPixel="0" selectionLength="0" selectionOffset="81"/>
 </editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="PerlinGenerator.java" partName="PerlinGenerator.java" path="/Users/chrismadden/Documents/java/github/block-game/Client/src/com/companyname/blockgame/PerlinGenerator.java" title="PerlinGenerator.java" tooltip="Client/src/com/companyname/blockgame/PerlinGenerator.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Client/src/com/companyname/blockgame/PerlinGenerator.java"/>
-<editorState selectionHPixel="0" selectionLength="0" selectionOffset="58"/>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Mob.java" partName="Mob.java" path="/Users/chrismadden/Documents/java/github/block-game/Client/src/com/companyname/blockgame/Mob.java" title="Mob.java" tooltip="Client/src/com/companyname/blockgame/Mob.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Client/src/com/companyname/blockgame/Mob.java"/>
+<editorState selectionHPixel="0" selectionLength="0" selectionOffset="6204"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="MainState.java" partName="MainState.java" path="/Users/chrismadden/Documents/java/github/block-game/Client/src/com/companyname/blockgame/GameStates/MainState.java" title="MainState.java" tooltip="Client/src/com/companyname/blockgame/GameStates/MainState.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Client/src/com/companyname/blockgame/GameStates/MainState.java"/>
+<editorState selectionHPixel="0" selectionLength="0" selectionOffset="818"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Listening.java" partName="Listening.java" path="/Users/chrismadden/Documents/java/github/block-game/Client/src/com/companyname/blockgame/Listening.java" title="Listening.java" tooltip="Client/src/com/companyname/blockgame/Listening.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Client/src/com/companyname/blockgame/Listening.java"/>
+<editorState selectionHPixel="0" selectionLength="7" selectionOffset="211"/>
 </editor>
 </editors>
 <views>
@@ -90,7 +80,7 @@
 <viewState hidefields="false" hidelocaltypes="false" hidenonpublic="false" hidestatic="false" input="=Client/src&lt;com.companyname.blockgame{Mob.java[Mob" isWindowWorkingSet="false" link_editors="0" mv_vertical_scroll="505" orientation="3" qualified_names="0" ratio="350" selection="=Client/src&lt;com.companyname.blockgame{Mob.java[Mob" showinherited="false" sortbydefiningtype="false" vertical_scroll="0" view="2" workingSetName=""/>
 </view>
 <view id="org.eclipse.ui.views.ProblemView" partName="Problems">
-<viewState columnWidth0="274" columnWidth1="99" columnWidth2="174" columnWidth3="84" columnWidth4="0" horizontalPosition="0" verticalPosition="18">
+<viewState columnWidth0="274" columnWidth1="99" columnWidth2="174" columnWidth3="84" columnWidth4="0" horizontalPosition="0" verticalPosition="0">
 <columnOrder columnOrderIndex="0"/>
 <columnOrder columnOrderIndex="1"/>
 <columnOrder columnOrderIndex="2"/>
@@ -137,8 +127,12 @@
 <view id="org.eclipse.ui.views.ContentOutline" partName="Outline">
 <viewState/>
 </view>
-<view id="org.eclipse.jdt.ui.SourceView" partName="Declaration"/>
-<view id="org.eclipse.jdt.ui.JavadocView" partName="Javadoc"/>
+<view id="org.eclipse.jdt.ui.SourceView" partName="Declaration">
+<viewState/>
+</view>
+<view id="org.eclipse.jdt.ui.JavadocView" partName="Javadoc">
+<viewState/>
+</view>
 </views>
 <perspectives activePart="org.eclipse.jdt.ui.CompilationUnitEditor" activePerspective="org.eclipse.jdt.ui.JavaPerspective">
 <perspective editorAreaTrimState="2" editorAreaVisible="1" fixed="0" version="0.016">
@@ -208,7 +202,7 @@
 </fastViewBar>
 <fastViewBar fastViewLocation="131072" id="org.eclipse.ui.internal.ViewStack@6af18d" orientation="512" selectedTabId="org.eclipse.ui.views.ContentOutline" style="0">
 <fastViews>
-<view id="org.eclipse.ui.views.ContentOutline" ratio="0.3"/>
+<view id="org.eclipse.ui.views.ContentOutline" ratio="0.12473118"/>
 </fastViews>
 </fastViewBar>
 </fastViewBars>
@@ -272,162 +266,165 @@
 <workingSets/>
 <navigationHistory>
 <editors>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Client/src/com/companyname/blockgame/Block.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Client/src/com/companyname/blockgame/Character.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Client/src/com/companyname/blockgame/Mob.java"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Client/src/com/companyname/blockgame/Level.java"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Client/src/com/companyname/blockgame/Component.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Client/src/com/companyname/blockgame/Mob.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Client/src/com/companyname/blockgame/GameStates/MainState.java"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Client/src/com/companyname/blockgame/Tile.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Client/src/com/companyname/blockgame/BlockTypes/Hole.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Client/src/com/companyname/blockgame/Listening.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Client/src/com/companyname/blockgame/SaveGame.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Client/src/com/companyname/blockgame/Component.java"/>
 </editors>
-<item historyLabel="Level.java" index="1">
-<position info="not_deleted" x="12356" y="0"/>
+<item historyLabel="Tile.java" index="5">
+<position info="not_deleted" x="540" y="0"/>
 </item>
-<item historyLabel="Level.java" index="1">
-<position info="not_deleted" x="2658" y="0"/>
+<item historyLabel="Character.java" index="0">
+<position info="not_deleted" x="13089" y="0"/>
 </item>
-<item historyLabel="Level.java" index="1">
-<position info="not_deleted" x="2661" y="0"/>
+<item historyLabel="Mob.java" index="1">
+<position info="not_deleted" x="5421" y="0"/>
 </item>
-<item historyLabel="Level.java" index="1">
-<position info="not_deleted" x="885" y="0"/>
+<item historyLabel="Listening.java" index="6">
+<position info="not_deleted" x="1614" y="29"/>
 </item>
-<item historyLabel="Block.java" index="0">
-<position info="not_deleted" x="555" y="0"/>
+<item historyLabel="Tile.java" index="5">
+<position info="not_deleted" x="540" y="0"/>
 </item>
-<item historyLabel="Component.java" index="2">
-<position info="not_deleted" x="537" y="0"/>
+<item historyLabel="Character.java" index="0">
+<position info="not_deleted" x="7637" y="0"/>
 </item>
-<item historyLabel="Level.java" index="1">
-<position info="not_deleted" x="885" y="0"/>
+<item historyLabel="Component.java" index="3">
+<position info="not_deleted" x="2577" y="0"/>
 </item>
-<item historyLabel="Component.java" index="2">
-<position info="not_deleted" x="537" y="0"/>
+<item historyLabel="Character.java" index="0">
+<position info="not_deleted" x="3098" y="0"/>
 </item>
-<item historyLabel="Level.java" index="1">
-<position info="not_deleted" x="885" y="0"/>
+<item historyLabel="Listening.java" index="6">
+<position info="not_deleted" x="1614" y="29"/>
 </item>
-<item historyLabel="Tile.java" index="4">
-<position info="not_deleted" x="2236" y="0"/>
+<item historyLabel="MainState.java" index="4">
+<position info="not_deleted" x="818" y="0"/>
 </item>
-<item historyLabel="Component.java" index="2">
-<position info="not_deleted" x="537" y="0"/>
+<item historyLabel="Character.java" index="0">
+<position info="not_deleted" x="3098" y="0"/>
 </item>
-<item historyLabel="Level.java" index="1">
-<position info="not_deleted" x="1388" y="0"/>
+<item historyLabel="Tile.java" index="5">
+<position info="not_deleted" x="540" y="0"/>
 </item>
-<item historyLabel="Block.java" index="0">
-<position info="not_deleted" x="555" y="0"/>
+<item historyLabel="Character.java" index="0">
+<position info="not_deleted" x="7805" y="393"/>
 </item>
-<item historyLabel="Hole.java" index="5">
+<item historyLabel="Level.java" index="2">
+<position info="not_deleted" x="2581" y="429"/>
+</item>
+<item historyLabel="Character.java" index="0">
+<position info="not_deleted" x="7805" y="393"/>
+</item>
+<item historyLabel="Mob.java" index="1">
+<position info="not_deleted" x="6204" y="0"/>
+</item>
+<item historyLabel="Character.java" index="0">
+<position info="not_deleted" x="7805" y="393"/>
+</item>
+<item historyLabel="Character.java" index="0">
+<position info="not_deleted" x="10351" y="0"/>
+</item>
+<item historyLabel="Listening.java" index="6">
+<position info="not_deleted" x="1614" y="29"/>
+</item>
+<item historyLabel="Tile.java" index="5">
+<position info="not_deleted" x="540" y="0"/>
+</item>
+<item historyLabel="Character.java" index="0">
+<position info="not_deleted" x="7805" y="393"/>
+</item>
+<item historyLabel="Mob.java" index="1">
+<position info="not_deleted" x="6204" y="0"/>
+</item>
+<item historyLabel="Character.java" index="0">
+<position info="not_deleted" x="7805" y="393"/>
+</item>
+<item historyLabel="Mob.java" index="1">
+<position info="not_deleted" x="6204" y="0"/>
+</item>
+<item historyLabel="Character.java" index="0">
+<position info="not_deleted" x="10351" y="0"/>
+</item>
+<item historyLabel="Listening.java" index="6">
+<position info="not_deleted" x="1614" y="29"/>
+</item>
+<item historyLabel="Character.java" index="0">
+<position info="not_deleted" x="10351" y="0"/>
+</item>
+<item historyLabel="Character.java" index="0">
+<position info="not_deleted" x="7790" y="0"/>
+</item>
+<item historyLabel="Listening.java" index="6">
+<position info="not_deleted" x="211" y="7"/>
+</item>
+<item historyLabel="Character.java" index="0">
+<position info="not_deleted" x="8192" y="0"/>
+</item>
+<item historyLabel="Listening.java" index="6">
+<position info="not_deleted" x="211" y="7"/>
+</item>
+<item historyLabel="Character.java" index="0">
+<position info="not_deleted" x="8192" y="0"/>
+</item>
+<item historyLabel="Listening.java" index="6">
+<position info="not_deleted" x="211" y="7"/>
+</item>
+<item historyLabel="Mob.java" index="1">
+<position info="not_deleted" x="6204" y="0"/>
+</item>
+<item historyLabel="Character.java" index="0">
 <position/>
 </item>
-<item historyLabel="Block.java" index="0">
-<position info="not_deleted" x="555" y="0"/>
+<item historyLabel="MainState.java" index="4">
+<position info="not_deleted" x="818" y="0"/>
 </item>
-<item historyLabel="Block.java" index="0">
-<position info="not_deleted" x="974" y="0"/>
+<item historyLabel="Component.java" index="3">
+<position info="not_deleted" x="2577" y="0"/>
 </item>
-<item historyLabel="Level.java" index="1">
-<position info="not_deleted" x="1388" y="0"/>
+<item historyLabel="SaveGame.java" index="7">
+<position info="not_deleted" x="81" y="0"/>
 </item>
-<item historyLabel="Level.java" index="1">
-<position info="not_deleted" x="3274" y="0"/>
+<item historyLabel="Level.java" index="2">
+<position info="not_deleted" x="2581" y="429"/>
 </item>
-<item historyLabel="Level.java" index="1">
-<position info="not_deleted" x="3274" y="0"/>
+<item historyLabel="Mob.java" index="1">
+<position info="not_deleted" x="6204" y="0"/>
 </item>
-<item historyLabel="Level.java" index="1">
-<position info="not_deleted" x="3274" y="0"/>
-</item>
-<item historyLabel="Level.java" index="1">
-<position info="not_deleted" x="3274" y="0"/>
-</item>
-<item historyLabel="Level.java" index="1">
+<item historyLabel="Character.java" index="0">
 <position/>
 </item>
-<item historyLabel="Level.java" index="1">
-<position/>
+<item historyLabel="Listening.java" index="6">
+<position info="not_deleted" x="211" y="7"/>
 </item>
-<item historyLabel="Level.java" index="1">
-<position info="not_deleted" x="3552" y="0"/>
+<item historyLabel="Character.java" index="0">
+<position info="not_deleted" x="8165" y="10"/>
 </item>
-<item historyLabel="Level.java" index="1">
-<position info="not_deleted" x="3552" y="0"/>
+<item historyLabel="Tile.java" index="5">
+<position info="not_deleted" x="540" y="0"/>
 </item>
-<item historyLabel="Level.java" index="1">
-<position info="not_deleted" x="3551" y="0"/>
+<item historyLabel="Character.java" index="0">
+<position info="not_deleted" x="8741" y="0"/>
 </item>
-<item historyLabel="Level.java" index="1">
-<position info="not_deleted" x="3579" y="0"/>
+<item historyLabel="Tile.java" index="5">
+<position info="not_deleted" x="540" y="0"/>
 </item>
-<item historyLabel="Level.java" index="1">
-<position info="not_deleted" x="3534" y="48"/>
+<item historyLabel="Mob.java" index="1">
+<position info="not_deleted" x="6204" y="0"/>
 </item>
-<item historyLabel="Level.java" index="1">
-<position/>
+<item historyLabel="Level.java" index="2">
+<position info="not_deleted" x="2581" y="429"/>
 </item>
-<item historyLabel="Block.java" index="0">
-<position info="not_deleted" x="1002" y="0"/>
+<item historyLabel="Component.java" index="8">
+<position info="not_deleted" x="2577" y="0"/>
 </item>
-<item historyLabel="Level.java" index="1">
-<position/>
-</item>
-<item historyLabel="Block.java" index="0">
-<position info="not_deleted" x="1002" y="0"/>
-</item>
-<item historyLabel="Level.java" index="1">
-<position info="not_deleted" x="992" y="0"/>
-</item>
-<item historyLabel="Mob.java" index="3">
-<position info="not_deleted" x="74" y="0"/>
-</item>
-<item historyLabel="Level.java" index="1">
-<position info="not_deleted" x="992" y="0"/>
-</item>
-<item historyLabel="Block.java" index="0">
-<position info="not_deleted" x="1002" y="0"/>
-</item>
-<item historyLabel="Mob.java" index="3">
-<position info="not_deleted" x="74" y="0"/>
-</item>
-<item historyLabel="Level.java" index="1">
-<position info="not_deleted" x="992" y="0"/>
-</item>
-<item historyLabel="Level.java" index="1">
-<position info="not_deleted" x="8799" y="0"/>
-</item>
-<item historyLabel="Block.java" index="0">
-<position info="not_deleted" x="342" y="0"/>
-</item>
-<item historyLabel="Level.java" index="1">
-<position info="not_deleted" x="8799" y="0"/>
-</item>
-<item historyLabel="Block.java" index="0">
-<position info="not_deleted" x="342" y="0"/>
-</item>
-<item historyLabel="Level.java" index="1">
-<position info="not_deleted" x="8799" y="0"/>
-</item>
-<item historyLabel="Level.java" index="1">
-<position/>
-</item>
-<item historyLabel="Level.java" index="1">
-<position/>
-</item>
-<item historyLabel="Tile.java" index="4">
-<position info="not_deleted" x="1132" y="0"/>
-</item>
-<item historyLabel="Level.java" index="1">
-<position info="not_deleted" x="2948" y="0"/>
-</item>
-<item historyLabel="Level.java" index="1">
-<position info="not_deleted" x="8799" y="0"/>
-</item>
-<item historyLabel="Tile.java" index="4">
-<position info="not_deleted" x="1178" y="0"/>
-</item>
-<item active="true" historyLabel="Level.java" index="1">
-<position info="not_deleted" x="8799" y="0"/>
+<item active="true" historyLabel="Level.java" index="2">
+<position info="not_deleted" x="21780" y="0"/>
 </item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
@@ -435,9 +432,6 @@
 <workbenchWindowAdvisor/>
 <actionBarAdvisor/>
 <trimLayout>
-<trimArea IMemento.internal.id="16384">
-<trimItem IMemento.internal.id="left"/>
-</trimArea>
 <trimArea IMemento.internal.id="131072">
 <trimItem IMemento.internal.id="org.eclipse.ui.internal.ViewStack@40f3c1"/>
 <trimItem IMemento.internal.id="org.eclipse.ui.internal.ViewStack@6af18d"/>
@@ -453,50 +447,50 @@
 </trimLayout>
 </window>
 <mruList>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.systemExternalEditor" name="tileset_terrain.png" tooltip="Client/src/res/tileset_terrain.png">
-<persistable path="/Client/src/res/tileset_terrain.png"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Listening.java" tooltip="Client/src/com/companyname/blockgame/Listening.java">
+<persistable path="/Client/src/com/companyname/blockgame/Listening.java"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.systemExternalEditor" name="tileset_terrain.png" tooltip="Client/res/tileset_terrain.png">
-<persistable path="/Client/res/tileset_terrain.png"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="MainState.java" tooltip="Client/src/com/companyname/blockgame/GameStates/MainState.java">
+<persistable path="/Client/src/com/companyname/blockgame/GameStates/MainState.java"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Hole.java" tooltip="Client/src/com/companyname/blockgame/BlockTypes/Hole.java">
-<persistable path="/Client/src/com/companyname/blockgame/BlockTypes/Hole.java"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Mob.java" tooltip="Client/src/com/companyname/blockgame/Mob.java">
+<persistable path="/Client/src/com/companyname/blockgame/Mob.java"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="PerlinGenerator.java" tooltip="Client/src/com/companyname/blockgame/PerlinGenerator.java">
-<persistable path="/Client/src/com/companyname/blockgame/PerlinGenerator.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="PerlinGenerator.java" tooltip="Client/src/PerlinGenerator.java">
-<persistable path="/Client/src/PerlinGenerator.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="PerlinNoise.java" tooltip="Client/src/com/companyname/blockgame/PerlinNoise.java">
-<persistable path="/Client/src/com/companyname/blockgame/PerlinNoise.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Block.java" tooltip="Client/src/com/companyname/blockgame/Block.java">
-<persistable path="/Client/src/com/companyname/blockgame/Block.java"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Weapon.java" tooltip="Client/src/com/companyname/blockgame/Weapon.java">
+<persistable path="/Client/src/com/companyname/blockgame/Weapon.java"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Day.java" tooltip="Client/src/com/companyname/blockgame/Day.java">
 <persistable path="/Client/src/com/companyname/blockgame/Day.java"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Inventory.java" tooltip="Client/src/com/companyname/blockgame/Inventory.java">
-<persistable path="/Client/src/com/companyname/blockgame/Inventory.java"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Debugger.java" tooltip="Client/src/com/companyname/blockgame/Debugger.java">
+<persistable path="/Client/src/com/companyname/blockgame/Debugger.java"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Level.java" tooltip="Client/src/com/companyname/blockgame/Level.java">
-<persistable path="/Client/src/com/companyname/blockgame/Level.java"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Block.java" tooltip="Client/src/com/companyname/blockgame/Block.java">
+<persistable path="/Client/src/com/companyname/blockgame/Block.java"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Chicken.java" tooltip="Client/src/com/companyname/blockgame/Chicken.java">
-<persistable path="/Client/src/com/companyname/blockgame/Chicken.java"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Chunk.java" tooltip="Client/src/com/companyname/blockgame/Chunk.java">
+<persistable path="/Client/src/com/companyname/blockgame/Chunk.java"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Collectible.java" tooltip="Client/src/com/companyname/blockgame/Collectible.java">
-<persistable path="/Client/src/com/companyname/blockgame/Collectible.java"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="BlockType.java" tooltip="Client/src/com/companyname/blockgame/BlockType.java">
+<persistable path="/Client/src/com/companyname/blockgame/BlockType.java"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Character.java" tooltip="Client/src/com/companyname/blockgame/Character.java">
-<persistable path="/Client/src/com/companyname/blockgame/Character.java"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Dirt.java" tooltip="Client/src/com/companyname/blockgame/BlockTypes/Dirt.java">
+<persistable path="/Client/src/com/companyname/blockgame/BlockTypes/Dirt.java"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.systemExternalEditor" name="sword.png" tooltip="Client/src/res/sword.png">
-<persistable path="/Client/src/res/sword.png"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Bedrock.java" tooltip="Client/src/com/companyname/blockgame/BlockTypes/Bedrock.java">
+<persistable path="/Client/src/com/companyname/blockgame/BlockTypes/Bedrock.java"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Tile.java" tooltip="Client/src/com/companyname/blockgame/Tile.java">
-<persistable path="/Client/src/com/companyname/blockgame/Tile.java"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="SaveGame.java" tooltip="Client/src/com/companyname/blockgame/SaveGame.java">
+<persistable path="/Client/src/com/companyname/blockgame/SaveGame.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.systemExternalEditor" name="tileset_terrain.png" tooltip="Client/src/res/tileset_terrain.png">
+<persistable path="/Client/src/res/tileset_terrain.png"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Tree.java" tooltip="Client/src/com/companyname/blockgame/BlockTypes/Tree.java">
+<persistable path="/Client/src/com/companyname/blockgame/BlockTypes/Tree.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Water.java" tooltip="Client/src/com/companyname/blockgame/BlockTypes/Water.java">
+<persistable path="/Client/src/com/companyname/blockgame/BlockTypes/Water.java"/>
 </file>
 </mruList>
 </workbench>

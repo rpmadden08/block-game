@@ -14,6 +14,11 @@ public class Block extends Rectangle {
 	public int[] baseId = {-1, -1};
 	public int[] dropId = {-1, -1};
 	public int autoTile = 0;
+	public int[] autoTile1 = {0, 0};
+	public int[] autoTile2 = {0, 0};
+	public int[] autoTile3 = {0, 0};
+	public int[] autoTile4 = {0, 0};
+	
 	public boolean isPassable = true;
 	public int maxHitPoints = 25;
 	public int hitPoints = 25;
@@ -39,16 +44,56 @@ public class Block extends Rectangle {
 	
 	public void render(Graphics g) {
 		if (id != Tile.air) {
+			//Top Left
 			g.drawImage(Tile.tileset_terrain, 
 					x - (int) Component.sX, 
 					y - (int) Component.sY, 
-					x + width - (int) Component.sX, 
-					y + height - (int) Component.sY,
+					x + width/2 - (int) Component.sX, 
+					y + height/2 - (int) Component.sY,
 					
-					(id[0]+autoTile) * Tile.tileSize, 
-					id[1] * Tile.tileSize, 
-					(id[0]+autoTile) * Tile.tileSize + Tile.tileSize,
-					id[1] * Tile.tileSize + Tile.tileSize,
+					(id[0]+autoTile1[0]) * Tile.tileSize, 
+					(id[1]+autoTile1[1]) * Tile.tileSize, 
+					(id[0]+autoTile1[0]) * Tile.tileSize + Tile.tileSize/2,
+					(id[1]+autoTile1[1]) * Tile.tileSize + Tile.tileSize/2,
+					null);
+			
+			//Top Right
+			g.drawImage(Tile.tileset_terrain, 
+					x - (int) Component.sX +width/2, 
+					y - (int) Component.sY, 
+					x + width/2 - (int) Component.sX + width/2, 
+					y + height/2 - (int) Component.sY+ height/2 - height /2,
+					
+					(id[0]+autoTile2[0]) * Tile.tileSize+ Tile.tileSize/2, 
+					(id[1]+autoTile2[1]) * Tile.tileSize, 
+					(id[0]+autoTile2[0]) * Tile.tileSize +Tile.tileSize,
+					(id[1]+autoTile2[1]) * Tile.tileSize + Tile.tileSize/2,
+					null);
+			
+			//Bottom Left
+			g.drawImage(Tile.tileset_terrain, 
+					x - (int) Component.sX, 
+					y - (int) Component.sY + height/2, 
+					x + width/2 - (int) Component.sX, 
+					y + height/2 - (int) Component.sY +height/2,
+					
+					(id[0]+autoTile3[0]) * Tile.tileSize, 
+					(id[1]+autoTile3[1]) * Tile.tileSize+ Tile.tileSize/2, 
+					(id[0]+autoTile3[0]) * Tile.tileSize + Tile.tileSize/2,
+					(id[1]+autoTile3[1]) * Tile.tileSize+Tile.tileSize,
+					null);
+			
+			//Bottom Right
+			g.drawImage(Tile.tileset_terrain, 
+					x - (int) Component.sX + width/2, 
+					y - (int) Component.sY + height/2, 
+					x + width/2 - (int) Component.sX + height /2, 
+					y + height/2 - (int) Component.sY + height/2,
+					
+					(id[0]+autoTile4[0]) * Tile.tileSize+Tile.tileSize/2, 
+					(id[1]+autoTile4[1]) * Tile.tileSize + Tile.tileSize/2, 
+					(id[0]+autoTile4[0]) * Tile.tileSize +Tile.tileSize,
+					(id[1]+autoTile4[1]) * Tile.tileSize+Tile.tileSize,
 					null);
 		}
 		
