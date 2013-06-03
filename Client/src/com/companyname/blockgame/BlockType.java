@@ -4,8 +4,8 @@ import java.awt.*;
 import com.companyname.blockgame.BlockTypes.*;
 
 public class BlockType {
-	public int x1 = 5;
-	public int y1 = 5;
+	public int x1 = 0;
+	public int y1 = 0;
 	public static Map<String,Block> example = new HashMap<String,Block>();
 	//public static Map example = new HashMap();
 	
@@ -16,8 +16,13 @@ public class BlockType {
 
 	}
 	public void newBlock() {
-		System.out.println(x1);
-		example.put( "Wayne", 	new Bedrock(new Rectangle(x1 * Tile.tileSize + (int) Component.sX, y1 * Tile.tileSize + (int) Component.sY, Tile.tileSize, Tile.tileSize), Tile.bedrock));
+		
+		example.put( "30", 	new Bedrock(new Rectangle(x1 * Tile.tileSize, y1 * Tile.tileSize , Tile.tileSize, Tile.tileSize), Tile.bedrock));
+		example.put( "10", 	new Grass(new Rectangle(x1 * Tile.tileSize, y1 * Tile.tileSize, Tile.tileSize, Tile.tileSize), Tile.grass));
+		example.put( "37", 	new Water(new Rectangle(x1 * Tile.tileSize, y1 * Tile.tileSize, Tile.tileSize, Tile.tileSize), Tile.water));
+//		example.put( "30", 	new Bedrock(new Rectangle(x1 * Tile.tileSize + (int) Component.sX, y1 * Tile.tileSize + (int) Component.sY, Tile.tileSize, Tile.tileSize), Tile.bedrock));
+//		example.put( "10", 	new Grass(new Rectangle(x1 * Tile.tileSize + (int) Component.sX, y1 * Tile.tileSize + (int) Component.sY, Tile.tileSize, Tile.tileSize), Tile.grass));
+//		example.put( "37", 	new Water(new Rectangle(x1 * Tile.tileSize + (int) Component.sX, y1 * Tile.tileSize + (int) Component.sY, Tile.tileSize, Tile.tileSize), Tile.water));
 
 	}
 }

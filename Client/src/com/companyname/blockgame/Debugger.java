@@ -117,8 +117,6 @@ public class Debugger {
 			g.drawString("Time Spent In Game: " + timeSpentInGame + " secs", 20, 45);
 			g.drawString("x/y: " + Component.sX + " / " + Component.sY, 20, 55);
 			g.drawString("Character Tile x/y: " + Component.character.x / Tile.tileSize + "/" + Component.character.y/ Tile.tileSize, 20,65);
-			g.drawString(memory, 20, 75);
-			System.out.println((Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory()) / (1024* 1024));
 		}
 	}
 	

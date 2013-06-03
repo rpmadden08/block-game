@@ -19,6 +19,8 @@ public class Block extends Rectangle {
 	public int[] autoTile3 = {0, 0};
 	public int[] autoTile4 = {0, 0};
 	
+	public boolean hiLite = false;
+	
 	public boolean isPassable = true;
 	public int maxHitPoints = 25;
 	public int hitPoints = 25;
@@ -36,13 +38,15 @@ public class Block extends Rectangle {
 		
 	}
 	public void destroy(int x2,int y2) {
-		Component.level.block[x2][y2] = new Hole(new Rectangle(x2 * Tile.tileSize, y2 * Tile.tileSize,Tile.tileSize, Tile.tileSize),Tile.hole);
+		Component.level.block[x2][y2] = new Hole(new Rectangle(x2* Tile.tileSize, y2 * Tile.tileSize,Tile.tileSize, Tile.tileSize),Tile.hole);
+		
 		int collectibleID = Component.collectible.size();
 		Component.collectible.add(new Collectible(x,y, Component.collectibleID, dropId));
 		Component.collectibleID = collectibleID+1;
 	}
 	
 	public void render(Graphics g) {
+		
 		if (id != Tile.air) {
 			//Top Left
 			g.drawImage(Tile.tileset_terrain, 
@@ -98,6 +102,7 @@ public class Block extends Rectangle {
 		}
 		
 		if(Component.isMouseLeft == true && hitPoints != maxHitPoints && isDigAnimationVisible == true) {  //At some point I should change the second condition to add "&& Mouse is touching this block"
+			
 			double hitPointsPercentage = (double) hitPoints / (double)maxHitPoints* 100;
 			//System.out.println(hitPointsPercentage);
 			if(hitPointsPercentage < 20) {
@@ -168,6 +173,10 @@ public class Block extends Rectangle {
 			} 
 		} else {
 			hitPoints = maxHitPoints;
+		}
+		if(hiLite == true) {
+			g.setColor(new Color(0,0,0, 255));
+			g.drawRect ((int) x ,(int) y ,width-1,height-1);
 		}
 		
 	}

@@ -71,6 +71,7 @@ public class Listening implements KeyListener, MouseListener, MouseMotionListene
 			Component.test.saveSave();
 			break;
 		case KeyEvent.VK_O:
+			//Component.level.loadChunk();
 			Component.test.loadSave();
 			break;
 			

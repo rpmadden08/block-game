@@ -69,15 +69,16 @@ public class Mob extends DoubleRectangle {
 	
 	public double getCollisionX() {
 		double horizontalExtra = 0;
-		double x1 = Math.floor((x+frameOffsetLeft + moveX) /Tile.tileSize);
-		double x2 = Math.floor((x+frameOffsetRight + moveX) /Tile.tileSize);
-		double y1 = Math.floor((y+frameOffsetTop) /Tile.tileSize);
-		double y2 = Math.floor((y+frameOffsetBottom) /Tile.tileSize);
+		double x1 = Math.floor((x+frameOffsetLeft + moveX) /Tile.tileSize-(Component.level.chunkOffsetX * Level.chunkSize));
+		double x3 = Math.floor((x+frameOffsetLeft + moveX) /Tile.tileSize);
+		double x2 = Math.floor((x+frameOffsetRight + moveX) /Tile.tileSize-(Component.level.chunkOffsetX * Level.chunkSize));
+		double y1 = Math.floor((y+frameOffsetTop) /Tile.tileSize-(Component.level.chunkOffsetY * Level.chunkSize));
+		double y2 = Math.floor((y+frameOffsetBottom) /Tile.tileSize-(Component.level.chunkOffsetY * Level.chunkSize));
 		
 		if(isMovingLeft) {
 			if(Component.level.block[(int)x1][(int)y1].isPassable == false || Component.level.block[(int)x1][(int)y2].isPassable == false
 					||Component.level.block2[(int)x1][(int)y1].isPassable == false || Component.level.block2[(int)x1][(int)y2].isPassable == false) {
-				horizontalExtra = (x + frameOffsetLeft) - x1 * Tile.tileSize - Tile.tileSize;
+				horizontalExtra = (x + frameOffsetLeft) - x3 * Tile.tileSize - Tile.tileSize;
 				return Math.min(0, -(horizontalExtra));
 			}
 		}
@@ -93,10 +94,11 @@ public class Mob extends DoubleRectangle {
 	
 	public double getCollisionY() {
 		double verticalExtra = 0;
-		double x1 = Math.floor((x+frameOffsetLeft) /Tile.tileSize);
-		double x2 = Math.floor((x+frameOffsetRight) /Tile.tileSize);
-		double y1 = Math.floor((y+frameOffsetTop + moveY) /Tile.tileSize);
-		double y2 = Math.floor((y+frameOffsetBottom + moveY) /Tile.tileSize);
+		double x1 = Math.floor((x+frameOffsetLeft) /Tile.tileSize-(Component.level.chunkOffsetX * Level.chunkSize));
+		double x2 = Math.floor((x+frameOffsetRight) /Tile.tileSize-(Component.level.chunkOffsetX * Level.chunkSize));
+		double y1 = Math.floor((y+frameOffsetTop + moveY) /Tile.tileSize-(Component.level.chunkOffsetY * Level.chunkSize));
+		double y3 = Math.floor((y+frameOffsetTop + moveY) /Tile.tileSize);
+		double y2 = Math.floor((y+frameOffsetBottom + moveY) /Tile.tileSize-(Component.level.chunkOffsetY * Level.chunkSize));
 		
 		if(isMovingDown) {
 			if(Component.level.block[(int)x2][(int)y2].isPassable == false || Component.level.block[(int)x1][(int)y2].isPassable == false
@@ -109,7 +111,7 @@ public class Mob extends DoubleRectangle {
 		if(isMovingUp) {
 			if(Component.level.block[(int)x1][(int)y1].isPassable == false || Component.level.block[(int)x2][(int)y1].isPassable == false
 					|| Component.level.block2[(int)x1][(int)y1].isPassable == false || Component.level.block2[(int)x2][(int)y1].isPassable == false) {
-				verticalExtra = (y + frameOffsetTop) - y1 * Tile.tileSize - Tile.tileSize;
+				verticalExtra = (y + frameOffsetTop) - y3 * Tile.tileSize - Tile.tileSize;
 				return Math.min(0, -(verticalExtra));
 			}
 		}
