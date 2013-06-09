@@ -1,19 +1,19 @@
 package com.companyname.blockgame;
 
+
 import java.applet.*;
 import javax.swing.*;
-
-import com.companyname.blockgame.GameStates.MainState;
-
 import java.awt.*;
-//import java.awt.event.*;
+import java.awt.event.*;
 import java.util.*;
+
+import static com.companyname.blockgame.Constants.*;
+import com.companyname.blockgame.GameStates.*;
+
+
 
 public class Component extends Applet implements Runnable {
 	private static final long serialVersionUID = 1L;
-	
-	public static final int MAIN_STATE = 0;
-	public static final int INVENTORY_STATE = 1;
 
 	private Thread animator;
 
@@ -22,10 +22,12 @@ public class Component extends Applet implements Runnable {
 	public static int pixelSize = 2;
 	public static int initialFrameWidth;
 	public static int initialFrameHeight;
-	public static int initialGameWidth = 700;
-	public static int initialGameHeight = 560;
+	public static int initialGameWidth = 800;
+	public static int initialGameHeight = 600;
+	public static SaveGame test = new SaveGame();
 	
 	public static double sX = 0, sY = 0;
+	public static int cameraX= 0, cameraY = 0, cameraW = 300, cameraH = 200;
 
 	public static Dimension size = new Dimension(initialGameWidth, initialGameHeight); //700, 560
 	public static Dimension pixel = new Dimension(size.width / pixelSize, size.height / pixelSize);
@@ -44,10 +46,12 @@ public class Component extends Applet implements Runnable {
 	public static Level level;
 	public static Character character;
 	public static Inventory inventory;
+	public static Weapon weapon;
 	public static Day day;
 	public static ArrayList<Mob> mob = new ArrayList<Mob>();
-	public static ArrayList<Collectible> collectible = new ArrayList<Collectible>();
+	public static ArrayList<Collectible> collectibles = new ArrayList<Collectible>();
 	public static int collectibleID = 0;
+	public static int mobID = 0;
 
 	public Component() {
 		setPreferredSize(size);
@@ -63,21 +67,28 @@ public class Component extends Applet implements Runnable {
 
 	public void start() {
 		currentState = new MainState();
-		new Tile();
+		new ImageAssets();
 		level = new Level();
-		character = new Character(Tile.tileSize, Tile.tileSize*2);
-		
+		//level.saveChunk();
+		character = new Character(24, TILE_SIZE*2);
+		weapon = new Weapon(TILE_SIZE, TILE_SIZE, SWORD);
 		inventory = new Inventory();
 		day = new Day();
+		//This is how I dropped collectibles and how I will also do mobs.  
+//		int collectibleID = Component.collectible.size();
+//		Component.collectible.add(new Collectible(x,y, Component.collectibleID, dropId));
+//		Component.collectibleID = collectibleID+1;
+		//This helps me find the location for the mob ID
+//		int mobID2 = mob.size();
+//		mob.add(new Chicken(450,480,24,TILE_SIZE * 2, Tile.mobChicken, mobID));
+//		mobID = mobID2+1;
 		
-		//mob.add(new Chicken(50,10,Tile.tileSize,Tile.tileSize * 2, Tile.mobChicken));
 		
-		/*
-		// screen resize stuff...
-		//needs to account for applets and sX/sY changing both through movement and screen resize...
+//		// screen resize stuff...
+//		//needs to account for applets and sX/sY changing both through movement and screen resize...
 		initialFrameWidth = frame.getWidth();
 		initialFrameHeight = frame.getHeight();
-		
+//		
         frame.getRootPane().addComponentListener(new ComponentAdapter() {
             public void componentResized(ComponentEvent e) {
             	int diffWidth = frame.getWidth() - initialFrameWidth;
@@ -96,7 +107,7 @@ public class Component extends Applet implements Runnable {
             	//pixel = new Dimension(size.width / pixelSize, size.height / pixelSize);
             }
         });
-        */
+        
         
 		isRunning = true;
 		animator = new Thread(this);
@@ -111,7 +122,8 @@ public class Component extends Applet implements Runnable {
 
 	public static void main(String args[]) {
 		Component component = new Component();
-
+		//GraphicsEnvironment ge=GraphicsEnvironment.getLocalGraphicsEnvironment();
+		//GraphicsDevice vc=ge.getDefaultScreenDevice();
 		
 		frame = new JFrame();
 		frame.add(component);
@@ -119,10 +131,16 @@ public class Component extends Applet implements Runnable {
 		
 		frame.setMinimumSize(new Dimension(500, 560));
 		frame.setTitle(name);
+		frame.dispose();
+		//frame.setUndecorated(true);
 		frame.setResizable(true);
+		//vc.setFullScreenWindow(frame);
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
+		
+	
+
 
 
 		component.start();

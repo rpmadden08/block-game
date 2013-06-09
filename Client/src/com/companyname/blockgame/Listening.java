@@ -1,19 +1,46 @@
 package com.companyname.blockgame;
 
 //import java.awt.Dimension;
+import java.awt.Dimension;
 import java.awt.event.*;
+
+import static com.companyname.blockgame.Constants.*;
+
 
 public class Listening implements KeyListener, MouseListener, MouseMotionListener, MouseWheelListener{
 	public void keyPressed(KeyEvent e) {
 		int key = e.getKeyCode();
 		
 		switch(key) {
+		
+		case KeyEvent.VK_1:
+			Component.pixelSize = 1;
+			Component.pixel = new Dimension(Component.size.width / Component.pixelSize, Component.size.height / Component.pixelSize);
+			System.out.println("3");
+			break;
+		case KeyEvent.VK_2:
+			Component.pixelSize = 2;
+			Component.pixel = new Dimension(Component.size.width / Component.pixelSize, Component.size.height / Component.pixelSize);
+			System.out.println("3");
+			break;
+		case KeyEvent.VK_3:
+			Component.pixelSize = 3;
+			Component.pixel = new Dimension(Component.size.width / Component.pixelSize, Component.size.height / Component.pixelSize);
+			System.out.println("3");
+			break;
+		case KeyEvent.VK_4:
+			Component.pixelSize = 4;
+			Component.pixel = new Dimension(Component.size.width / Component.pixelSize, Component.size.height / Component.pixelSize);
+			System.out.println("3");
+			break;
+		
 		case KeyEvent.VK_W:
-			Character.isMovingUp = true;
-			Character.isFacingUp = true;
-			Character.isFacingDown = false;
-			Character.isFacingLeft = false;
-			Character.isFacingRight = false;
+				Character.isMovingUp = true;
+				Character.isFacingUp = true;
+				Character.isFacingDown = false;
+				Character.isFacingLeft = false;
+				Character.isFacingRight = false;
+				
 			break;
 			
 		case KeyEvent.VK_D:
@@ -42,6 +69,14 @@ public class Listening implements KeyListener, MouseListener, MouseMotionListene
 		case KeyEvent.VK_M:
 			Debugger.toggle();
 			break;
+		case KeyEvent.VK_I:
+			Component.test.saveSave();
+			break;
+		case KeyEvent.VK_O:
+			//Component.level.loadChunk();
+			Component.test.loadSave();
+			break;
+			
 		/*
 		case KeyEvent.VK_Y:
 			Component.pixelSize = 4;
@@ -82,7 +117,7 @@ public class Listening implements KeyListener, MouseListener, MouseMotionListene
 	
 	public void mouseWheelMoved(MouseWheelEvent e) {
 		if(e.getWheelRotation()> 0) { //Down
-			if(Inventory.selected < Tile.invLength-1) {
+			if(Inventory.selected < INVENTORY_LENGTH-1) {
 				Inventory.selected += 1;
 			} else {
 				Inventory.selected = 0;
@@ -91,7 +126,7 @@ public class Listening implements KeyListener, MouseListener, MouseMotionListene
 			if(Inventory.selected > 0) {
 				Inventory.selected -= 1;
 			} else {
-				Inventory.selected = Tile.invLength-1;
+				Inventory.selected = INVENTORY_LENGTH-1;
 			}
 		}
 	}
