@@ -3,18 +3,17 @@ package com.companyname.blockgame;
 
 import java.applet.*;
 import javax.swing.*;
-
-import com.companyname.blockgame.GameStates.MainState;
-
 import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
 
+import static com.companyname.blockgame.Constants.*;
+import com.companyname.blockgame.GameStates.*;
+
+
+
 public class Component extends Applet implements Runnable {
 	private static final long serialVersionUID = 1L;
-	
-	public static final int MAIN_STATE = 0;
-	public static final int INVENTORY_STATE = 1;
 
 	private Thread animator;
 
@@ -50,7 +49,7 @@ public class Component extends Applet implements Runnable {
 	public static Weapon weapon;
 	public static Day day;
 	public static ArrayList<Mob> mob = new ArrayList<Mob>();
-	public static ArrayList<Collectible> collectible = new ArrayList<Collectible>();
+	public static ArrayList<Collectible> collectibles = new ArrayList<Collectible>();
 	public static int collectibleID = 0;
 	public static int mobID = 0;
 
@@ -68,11 +67,12 @@ public class Component extends Applet implements Runnable {
 
 	public void start() {
 		currentState = new MainState();
-		new Tile();
+		new ImageAssets();
 		level = new Level();
+		level.createWorld();
 		//level.saveChunk();
-		character = new Character(24, Tile.tileSize*2);
-		weapon = new Weapon(Tile.tileSize, Tile.tileSize, Tile.sword);
+		character = new Character(24, TILE_SIZE*2);
+		weapon = new Weapon(TILE_SIZE, TILE_SIZE, SWORD);
 		inventory = new Inventory();
 		day = new Day();
 		//This is how I dropped collectibles and how I will also do mobs.  
@@ -81,7 +81,7 @@ public class Component extends Applet implements Runnable {
 //		Component.collectibleID = collectibleID+1;
 		//This helps me find the location for the mob ID
 //		int mobID2 = mob.size();
-//		mob.add(new Chicken(450,480,24,Tile.tileSize * 2, Tile.mobChicken, mobID));
+//		mob.add(new Chicken(450,480,24,TILE_SIZE * 2, Tile.mobChicken, mobID));
 //		mobID = mobID2+1;
 		
 		
@@ -123,8 +123,8 @@ public class Component extends Applet implements Runnable {
 
 	public static void main(String args[]) {
 		Component component = new Component();
-		GraphicsEnvironment ge=GraphicsEnvironment.getLocalGraphicsEnvironment();
-		GraphicsDevice vc=ge.getDefaultScreenDevice();
+		//GraphicsEnvironment ge=GraphicsEnvironment.getLocalGraphicsEnvironment();
+		//GraphicsDevice vc=ge.getDefaultScreenDevice();
 		
 		frame = new JFrame();
 		frame.add(component);

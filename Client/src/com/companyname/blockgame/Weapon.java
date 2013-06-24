@@ -3,6 +3,8 @@ package com.companyname.blockgame;
 //test stuff
 import java.awt.*;
 import java.awt.geom.*;
+
+import static com.companyname.blockgame.Constants.*;
 //import java.lang.Math.*;
 
 import java.awt.image.AffineTransformOp;
@@ -16,7 +18,7 @@ public class Weapon extends Rectangle {
 	public int frameOffsetTop = 3;
 	public int frameHeight = 42;
 	
-	public int[] id = {-1, -1};
+	public int id = AIR;
 	public boolean isInUse = false;
 	public boolean isPositionedCorrectly = false; //Is sword angle positioned correctly?
 	public int animation = 0;  
@@ -46,9 +48,9 @@ public class Weapon extends Rectangle {
 
 	
 	
-	public Weapon(int width, int height, int[] id) {
+	public Weapon(int width, int height, int id) {
 		setBounds((Component.pixel.width / 2) - (width / 2), (Component.pixel.height / 2) - (height / 2), width, height);
-		id = this.id;
+		this.id = id;
 	}
 	
 	public Rectangle bounds() {
@@ -195,19 +197,19 @@ public class Weapon extends Rectangle {
 			Character.isFacingRight = false;
 			animationAngle0 = 30;
 			animation0x = 10;
-			animation0y = 3;
+			animation0y = 6;
 			animationAngle1 = 270;
 			animation1x = -8;
 			animation1y = -5;
 			animationAngle2 = 315;
-			animation2x = 0;
-			animation2y = -10;
+			animation2x = 3;
+			animation2y = -4;
 			animationAngle3 = 0;
 			animation3x = 8;
 			animation3y = -5;
 			animationAngle4 = 240;
-			animation4x = -5;
-			animation4y = 3;
+			animation4x = -4;
+			animation4y = 7;
 			collisionArea = (new Rectangle ((int) Component.character.x - (int) Component.sX - 14,
 					(int) Component.character.y - (int) Component.sY - 12,
 					frameWidth +29,
@@ -267,7 +269,7 @@ public class Weapon extends Rectangle {
 			
 
 				
-		if(Inventory.invBar[Inventory.selected].id == Tile.sword && isInUse == true){ 
+		if(Inventory.invBar[Inventory.selected].item.id == SWORD && isInUse == true){ 
 //			g.setColor(new Color(0,0,0, 255));
 //			g.drawRect(collisionArea.x, collisionArea.y,collisionArea.width,collisionArea.height);    
 //			double rotationRequired3 = Math.toRadians(getAngle());
@@ -292,7 +294,7 @@ public class Weapon extends Rectangle {
 				double locationY2 = 32;
 				AffineTransform tx2 = AffineTransform.getRotateInstance(rotationRequired2, locationX2, locationY2);
 				AffineTransformOp op2 = new AffineTransformOp(tx2, AffineTransformOp.TYPE_BILINEAR);
-				g.drawImage(op2.filter(Tile.tile_sword, null),
+				g.drawImage(op2.filter(ImageAssets.SWORD_IMAGE, null),
 						(int) Component.character.x -24- (int) Component.sX + animation0x,
 						(int) Component.character.y -16 - (int) Component.sY + animation0y, 
 						(int) Component.character.x + 40 - (int) Component.sX + animation0x, 
@@ -328,7 +330,7 @@ public class Weapon extends Rectangle {
 				double locationY2 = 32;
 				AffineTransform tx2 = AffineTransform.getRotateInstance(rotationRequired2, locationX2, locationY2);
 				AffineTransformOp op2 = new AffineTransformOp(tx2, AffineTransformOp.TYPE_BILINEAR);
-				g.drawImage(op2.filter(Tile.tile_sword, null),
+				g.drawImage(op2.filter(ImageAssets.SWORD_IMAGE, null),
 						(int) Component.character.x -24- (int) Component.sX + animation2x,
 						(int) Component.character.y -16 - (int) Component.sY + animation2y, 
 						(int) Component.character.x + 40 - (int) Component.sX + animation2x, 
@@ -363,7 +365,7 @@ public class Weapon extends Rectangle {
 				double locationY2 = 32;
 				AffineTransform tx2 = AffineTransform.getRotateInstance(rotationRequired2, locationX2, locationY2);
 				AffineTransformOp op2 = new AffineTransformOp(tx2, AffineTransformOp.TYPE_BILINEAR);
-				g.drawImage(op2.filter(Tile.tile_sword, null),
+				g.drawImage(op2.filter(ImageAssets.SWORD_IMAGE, null),
 						(int) Component.character.x -24- (int) Component.sX + animation4x,
 						(int) Component.character.y -16 - (int) Component.sY + animation4y, 
 						(int) Component.character.x + 40 - (int) Component.sX+ animation4x, 

@@ -3,6 +3,8 @@ package com.companyname.blockgame;
 import java.awt.*;
 import java.util.*;
 
+import static com.companyname.blockgame.Constants.*;
+
 public class Mob extends DoubleRectangle {
 	public int[] id;
 	public int arrayId = 0;
@@ -69,23 +71,23 @@ public class Mob extends DoubleRectangle {
 	
 	public double getCollisionX() {
 		double horizontalExtra = 0;
-		double x1 = Math.floor((x+frameOffsetLeft + moveX) /Tile.tileSize-(Component.level.chunkOffsetX * Level.chunkSize));
-		double x3 = Math.floor((x+frameOffsetLeft + moveX) /Tile.tileSize);
-		double x2 = Math.floor((x+frameOffsetRight + moveX) /Tile.tileSize-(Component.level.chunkOffsetX * Level.chunkSize));
-		double y1 = Math.floor((y+frameOffsetTop) /Tile.tileSize-(Component.level.chunkOffsetY * Level.chunkSize));
-		double y2 = Math.floor((y+frameOffsetBottom) /Tile.tileSize-(Component.level.chunkOffsetY * Level.chunkSize));
+		double x1 = Math.floor((x+frameOffsetLeft + moveX) /TILE_SIZE-(Component.level.chunkOffsetX * CHUNK_SIZE));
+		double x3 = Math.floor((x+frameOffsetLeft + moveX) /TILE_SIZE);
+		double x2 = Math.floor((x+frameOffsetRight + moveX) /TILE_SIZE-(Component.level.chunkOffsetX * CHUNK_SIZE));
+		double y1 = Math.floor((y+frameOffsetTop) /TILE_SIZE-(Component.level.chunkOffsetY * CHUNK_SIZE));
+		double y2 = Math.floor((y+frameOffsetBottom) /TILE_SIZE-(Component.level.chunkOffsetY * CHUNK_SIZE));
 		
 		if(isMovingLeft) {
 			if(Component.level.block[(int)x1][(int)y1].isPassable == false || Component.level.block[(int)x1][(int)y2].isPassable == false
 					||Component.level.block2[(int)x1][(int)y1].isPassable == false || Component.level.block2[(int)x1][(int)y2].isPassable == false) {
-				horizontalExtra = (x + frameOffsetLeft) - x3 * Tile.tileSize - Tile.tileSize;
+				horizontalExtra = (x + frameOffsetLeft) - x3 * TILE_SIZE - TILE_SIZE;
 				return Math.min(0, -(horizontalExtra));
 			}
 		}
 		if(isMovingRight) {
 			if(Component.level.block[(int)x2][(int)y1].isPassable == false || Component.level.block[(int)x2][(int)y2].isPassable == false
 					|| Component.level.block2[(int)x2][(int)y1].isPassable == false || Component.level.block2[(int)x2][(int)y2].isPassable == false) {
-				horizontalExtra = x2 * Tile.tileSize - (x + frameOffsetRight) - 1;
+				horizontalExtra = x2 * TILE_SIZE - (x + frameOffsetRight) - 1;
 				return Math.max(0, horizontalExtra);
 			}
 		}
@@ -94,16 +96,16 @@ public class Mob extends DoubleRectangle {
 	
 	public double getCollisionY() {
 		double verticalExtra = 0;
-		double x1 = Math.floor((x+frameOffsetLeft) /Tile.tileSize-(Component.level.chunkOffsetX * Level.chunkSize));
-		double x2 = Math.floor((x+frameOffsetRight) /Tile.tileSize-(Component.level.chunkOffsetX * Level.chunkSize));
-		double y1 = Math.floor((y+frameOffsetTop + moveY) /Tile.tileSize-(Component.level.chunkOffsetY * Level.chunkSize));
-		double y3 = Math.floor((y+frameOffsetTop + moveY) /Tile.tileSize);
-		double y2 = Math.floor((y+frameOffsetBottom + moveY) /Tile.tileSize-(Component.level.chunkOffsetY * Level.chunkSize));
+		double x1 = Math.floor((x+frameOffsetLeft) /TILE_SIZE-(Component.level.chunkOffsetX * CHUNK_SIZE));
+		double x2 = Math.floor((x+frameOffsetRight) /TILE_SIZE-(Component.level.chunkOffsetX * CHUNK_SIZE));
+		double y1 = Math.floor((y+frameOffsetTop + moveY) /TILE_SIZE-(Component.level.chunkOffsetY * CHUNK_SIZE));
+		double y3 = Math.floor((y+frameOffsetTop + moveY) /TILE_SIZE);
+		double y2 = Math.floor((y+frameOffsetBottom + moveY) /TILE_SIZE-(Component.level.chunkOffsetY * CHUNK_SIZE));
 		
 		if(isMovingDown) {
 			if(Component.level.block[(int)x2][(int)y2].isPassable == false || Component.level.block[(int)x1][(int)y2].isPassable == false
 					|| Component.level.block2[(int)x2][(int)y2].isPassable == false || Component.level.block2[(int)x1][(int)y2].isPassable == false) {
-				verticalExtra = y2 * Tile.tileSize - (y + frameOffsetBottom) - 1;
+				verticalExtra = y2 * TILE_SIZE - (y + frameOffsetBottom) - 1;
 				return Math.max(0, verticalExtra);
 				
 			}
@@ -111,7 +113,7 @@ public class Mob extends DoubleRectangle {
 		if(isMovingUp) {
 			if(Component.level.block[(int)x1][(int)y1].isPassable == false || Component.level.block[(int)x2][(int)y1].isPassable == false
 					|| Component.level.block2[(int)x1][(int)y1].isPassable == false || Component.level.block2[(int)x2][(int)y1].isPassable == false) {
-				verticalExtra = (y + frameOffsetTop) - y3 * Tile.tileSize - Tile.tileSize;
+				verticalExtra = (y + frameOffsetTop) - y3 * TILE_SIZE - TILE_SIZE;
 				return Math.min(0, -(verticalExtra));
 			}
 		}
@@ -306,10 +308,10 @@ public class Mob extends DoubleRectangle {
 	
 	public boolean isCollidingWithBlock(Point pt1, Point pt2) {
 		
-		for(int x=(int) (this.x/Tile.tileSize);x<(int) (this.x/Tile.tileSize) +3;x++) {
-			for(int y=(int) (this.y/Tile.tileSize);y<(int) (this.y/Tile.tileSize) +3;y++) {
+		for(int x=(int) (this.x/TILE_SIZE);x<(int) (this.x/TILE_SIZE) +3;x++) {
+			for(int y=(int) (this.y/TILE_SIZE);y<(int) (this.y/TILE_SIZE) +3;y++) {
 				if(x >= 0 && y>= 0 && x < Component.level.block.length && y < Component.level.block[0].length) {
-					if(Component.level.block[x][y].id != Tile.air) {
+					if(Component.level.block[x][y].id != AIR) {
 						if(Component.level.block[x][y].contains(pt1) || Component.level.block[x][y].contains(pt2)) {
 							return true;
 							
@@ -325,63 +327,63 @@ public class Mob extends DoubleRectangle {
 //		Rectangle rectangle1 = Component.weapon.collisionArea;
 //		Rectangle rectangle2 = bounds();
 		
-//		g.drawImage(Tile.tileset_terrain, 
+//		g.drawImage(ImageAssets.TERRAIN_IMAGE, 
 //				(int) x - (int) Component.sX, 
 //				(int) y - (int) Component.sY, 
 //				(int) (x + width) - (int) Component.sX, 
 //				(int) (y + height) - (int) Component.sY, 
 //				/*Where it's cut out*/
 //				(Tile.character[0] * 24) + (24 * Component.weapon.animation) +288, 
-//				Tile.character[1] * Tile.tileSize, 
+//				Tile.character[1] * TILE_SIZE, 
 //				Tile.character[0] * 24 +(24 * Component.weapon.animation) + (int) width +288, 
-//				Tile.character[1] * Tile.tileSize +(int) height, 
+//				Tile.character[1] * TILE_SIZE +(int) height, 
 //				null);
 		if(isFacingDown) {
-			g.drawImage(Tile.tileset_terrain,
+			g.drawImage(ImageAssets.TERRAIN_IMAGE,
 					(int) x - (int) Component.sX,
 					(int) y - (int) Component.sY,
 					(int) (x + width) - (int) Component.sX,
 					(int) (y + height) - (int) Component.sY,
 					(id[0] * 24) + (24*animation),
-					id[1] * Tile.tileSize,
+					id[1] * TILE_SIZE,
 					id[0] * 24 +(24 * animation) + (int) width,
-					id[1] * Tile.tileSize +(int) height,
+					id[1] * TILE_SIZE +(int) height,
 					null);
 		} else if(isFacingRight) {
 			int a = animation + 3;
-			g.drawImage(Tile.tileset_terrain,
+			g.drawImage(ImageAssets.TERRAIN_IMAGE,
 					(int) x - (int) Component.sX,
 					(int) y - (int) Component.sY,
 					(int) (x + width) - (int) Component.sX,
 					(int) (y + height) - (int) Component.sY,
 					(id[0] * 24) + (24*a),
-					id[1] * Tile.tileSize,
+					id[1] * TILE_SIZE,
 					id[0] * 24 +(24 * a) + (int) width,
-					id[1] * Tile.tileSize +(int) height,
+					id[1] * TILE_SIZE +(int) height,
 					null);
 		} else if(isFacingUp) {
 			int a = animation + 6;
-			g.drawImage(Tile.tileset_terrain,
+			g.drawImage(ImageAssets.TERRAIN_IMAGE,
 					(int) x - (int) Component.sX,
 					(int) y - (int) Component.sY,
 					(int) (x + width) - (int) Component.sX,
 					(int) (y + height) - (int) Component.sY,
 					(id[0] * 24) + (24*a),
-					id[1] * Tile.tileSize,
+					id[1] * TILE_SIZE,
 					id[0] * 24 +(24 * a) + (int) width,
-					id[1] * Tile.tileSize +(int) height,
+					id[1] * TILE_SIZE +(int) height,
 					null);
 		} else if(isFacingLeft) {
 			int a = animation + 9;
-			g.drawImage(Tile.tileset_terrain,
+			g.drawImage(ImageAssets.TERRAIN_IMAGE,
 					(int) x - (int) Component.sX,
 					(int) y - (int) Component.sY,
 					(int) (x + width) - (int) Component.sX,
 					(int) (y + height) - (int) Component.sY,
 					(id[0] * 24) + (24*a),
-					id[1] * Tile.tileSize,
+					id[1] * TILE_SIZE,
 					id[0] * 24 +(24 * a) + (int) width,
-					id[1] * Tile.tileSize +(int) height,
+					id[1] * TILE_SIZE +(int) height,
 					null);
 		}
 			

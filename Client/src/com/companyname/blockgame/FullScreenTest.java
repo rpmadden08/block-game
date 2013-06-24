@@ -18,12 +18,14 @@ import javax.swing.KeyStroke;
 
 /** @see http://stackoverflow.com/questions/7456227 */
 public class FullScreenTest extends JPanel {
-
+	private static final long serialVersionUID = 1L;
+	
     private static final String EXIT = "Exit";
     private JFrame f = new JFrame("FullScreenTest");
     private Action exit = new AbstractAction(EXIT) {
+		private static final long serialVersionUID = 1L;
 
-            @Override
+			@Override
             public void actionPerformed(ActionEvent e) {
                 f.dispatchEvent(new WindowEvent(
                     f, WindowEvent.WINDOW_CLOSING));

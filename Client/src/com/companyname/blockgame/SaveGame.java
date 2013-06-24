@@ -1,9 +1,8 @@
 package com.companyname.blockgame;
 
-import java.awt.Rectangle;
 import java.io.*;
 
-import com.companyname.blockgame.BlockTypes.*;
+import static com.companyname.blockgame.Constants.*;
 
 
 
@@ -23,10 +22,10 @@ public class SaveGame{
 			ObjectOutputStream save = new ObjectOutputStream(saveFile);
 			//System.out.println(Component.level.chunk.length);
 			// Now we do the save.
-			for(int y2=0; y2<Level.chunkSize;y2++) {
-				for(int x2=0; x2<Level.chunkSize;x2++) {
+			for(int y2=0; y2<CHUNK_SIZE;y2++) {
+				for(int x2=0; x2<CHUNK_SIZE;x2++) {
 					save.writeObject(Component.level.chunk[saveX][saveY].cBlock[x2][y2].baseId);
-					
+					//System.out.println(Component.level.chunk[saveX][saveY].cBlock[x2][y2].baseId[1]);
 					save.writeObject(Component.level.chunk[saveX][saveY].cBlock[x2][y2].x);
 					save.writeObject(Component.level.chunk[saveX][saveY].cBlock[x2][y2].y);
 					
@@ -60,13 +59,13 @@ public class SaveGame{
 		Component.level.tempChunk = new Chunk(chunkX,chunkY);
 
 		
-		for(int y2=0; y2<Component.level.chunkSize;y2++) {
-			for(int x2=0; x2<Component.level.chunkSize;x2++) {
-				BlockType test2 = new BlockType();
-				int[] baseId = (int[]) save.readObject();
-				String test18 = Integer.toString(baseId[0])+Integer.toString(baseId[1]);
-				test2.x1 = (Integer) save.readObject()/Tile.tileSize;
-				test2.y1 = (Integer) save.readObject()/Tile.tileSize;
+		for(int y2=0; y2<CHUNK_SIZE;y2++) {
+			for(int x2=0; x2<CHUNK_SIZE;x2++) {
+				BlockTypess test2 = new BlockTypess();
+				int baseId = (Integer) save.readObject();
+				String test18 = Integer.toString(baseId);
+				test2.x1 = (Integer) save.readObject()/TILE_SIZE;
+				test2.y1 = (Integer) save.readObject()/TILE_SIZE;
 				test2.newBlock();
 				//System.out.println(test2.example.get(test18));
 				Component.level.tempChunk.cBlock[x2][y2] = test2.example.get(test18);
@@ -142,7 +141,7 @@ public class SaveGame{
 		
 		for(int y=0; y<Component.level.block.length;y++) {
 			for(int x=0; x<Component.level.block[0].length;x++) {
-				BlockType test2 = new BlockType();
+				BlockTypess test2 = new BlockTypess();
 				int[] baseId = (int[]) save.readObject();
 				String test18 = Integer.toString(baseId[0])+Integer.toString(baseId[1]);
 				test2.x1 = x;

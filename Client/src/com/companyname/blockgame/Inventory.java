@@ -4,12 +4,13 @@ import java.awt.*;
 import java.awt.event.*;
 import java.awt.FontMetrics;
 
-import com.companyname.blockgame.GameStates.InventoryState;
-import com.companyname.blockgame.GameStates.MainState;
+import static com.companyname.blockgame.Constants.*;
+import com.companyname.blockgame.GameStates.*;
+import com.companyname.blockgame.Items.*;
 
 public class Inventory {
-	public static Cell[] invBar= new Cell[Tile.invLength];
-	public static Cell[] invBag= new Cell[Tile.invLength * Tile.invHeight];
+	public static Cell[] invBar= new Cell[INVENTORY_LENGTH];
+	public static Cell[] invBag= new Cell[INVENTORY_LENGTH * INVENTORY_HEIGHT];
 	public static Cell[] invCrafting= new Cell[2 * 2];
 	public static Cell[] invCrafted = new Cell[1];
 	
@@ -17,32 +18,31 @@ public class Inventory {
 	public static boolean isHolding = false;
 	
 	public static int selected = 0;
-	public static int[] holdingID = Tile.air;
+	public static Item holdingItem = new NoItem();
 	public static int holdingStack = 0;
 	
 	public Inventory() {
 		for(int i=0;i < invBar.length;i++) {
-			invBar[i] = new Cell(new Rectangle((Component.pixel.width /2) -((Tile.invLength * (Tile.invCellSize + Tile.invCellSpace))/2) + (i *(Tile.invCellSize + Tile.invCellSpace)),
-					Component.pixel.height - (Tile.invCellSize +Tile.invBorderSpace),Tile.invCellSize, Tile.invCellSize ), Tile.air);
+			invBar[i] = new Cell(new Rectangle((Component.pixel.width /2) -((INVENTORY_LENGTH * (INVENTORY_CELL_SIZE + INVENTORY_CELL_SPACE))/2) + (i *(INVENTORY_CELL_SIZE + INVENTORY_CELL_SPACE)),
+					Component.pixel.height - (INVENTORY_CELL_SIZE +INVENTORY_BORDER_SPACE),INVENTORY_CELL_SIZE, INVENTORY_CELL_SIZE ));
 		}
 		int x= 0, y = 0;
 		for(int i = 0; i<invBag.length; i++) {
-			invBag[i] = new Cell(new Rectangle((Component.pixel.width /2) -((Tile.invLength * (Tile.invCellSize + Tile.invCellSpace))/2) + (x *(Tile.invCellSize + Tile.invCellSpace)),
-					Component.pixel.height - (Tile.invCellSize +Tile.invBorderSpace) - (Tile.invHeight * (Tile.invCellSize + Tile.invCellSpace)) + (y * (Tile.invCellSize+ Tile.invCellSpace)),Tile.invCellSize, Tile.invCellSize ), Tile.air);
+			invBag[i] = new Cell(new Rectangle((Component.pixel.width /2) -((INVENTORY_LENGTH * (INVENTORY_CELL_SIZE + INVENTORY_CELL_SPACE))/2) + (x *(INVENTORY_CELL_SIZE + INVENTORY_CELL_SPACE)),
+					Component.pixel.height - (INVENTORY_CELL_SIZE +INVENTORY_BORDER_SPACE) - (INVENTORY_HEIGHT * (INVENTORY_CELL_SIZE + INVENTORY_CELL_SPACE)) + (y * (INVENTORY_CELL_SIZE+ INVENTORY_CELL_SPACE)),INVENTORY_CELL_SIZE, INVENTORY_CELL_SIZE ));
 			
 			x++;
-			if(x == Tile.invLength) {
+			if(x == INVENTORY_LENGTH) {
 				x = 0;
 				y++;
 			}
 		}
 		//Crafting
 		for(int i = 0; i<invCrafting.length; i++) {
-		invCrafting[i] = new Cell(new Rectangle((Component.pixel.width /2) -((Tile.invLength * (Tile.invCellSize + Tile.invCellSpace))/2) + (x *(Tile.invCellSize + Tile.invCellSpace)),
-					Component.pixel.height - (Tile.invCellSize +Tile.invBorderSpace) - (10* (Tile.invCellSize + Tile.invCellSpace)) + (y * (Tile.invCellSize+ Tile.invCellSpace)),
-					Tile.invCellSize, 
-					Tile.invCellSize ), 
-					Tile.air);
+		invCrafting[i] = new Cell(new Rectangle((Component.pixel.width /2) -((INVENTORY_LENGTH * (INVENTORY_CELL_SIZE + INVENTORY_CELL_SPACE))/2) + (x *(INVENTORY_CELL_SIZE + INVENTORY_CELL_SPACE)),
+					Component.pixel.height - (INVENTORY_CELL_SIZE +INVENTORY_BORDER_SPACE) - (10* (INVENTORY_CELL_SIZE + INVENTORY_CELL_SPACE)) + (y * (INVENTORY_CELL_SIZE+ INVENTORY_CELL_SPACE)),
+					INVENTORY_CELL_SIZE, 
+					INVENTORY_CELL_SIZE ));
 		
 			x++;
 			if(x == 2) {
@@ -51,28 +51,26 @@ public class Inventory {
 			}
 		}
 		
-		invCrafted[0] = new Cell(new Rectangle((Component.pixel.width /2) -((4 * (Tile.invCellSize + Tile.invCellSpace))/2) + (x *(Tile.invCellSize + Tile.invCellSpace)),
-				Component.pixel.height - (Tile.invCellSize +Tile.invBorderSpace) - (11* (Tile.invCellSize + Tile.invCellSpace)) + (y * (Tile.invCellSize+ Tile.invCellSpace)),
-				Tile.invCellSize, 
-				Tile.invCellSize ), 
-				Tile.air);
+		invCrafted[0] = new Cell(new Rectangle((Component.pixel.width /2) -((4 * (INVENTORY_CELL_SIZE + INVENTORY_CELL_SPACE))/2) + (x *(INVENTORY_CELL_SIZE + INVENTORY_CELL_SPACE)),
+				Component.pixel.height - (INVENTORY_CELL_SIZE +INVENTORY_BORDER_SPACE) - (11* (INVENTORY_CELL_SIZE + INVENTORY_CELL_SPACE)) + (y * (INVENTORY_CELL_SIZE+ INVENTORY_CELL_SPACE)),
+				INVENTORY_CELL_SIZE, 
+				INVENTORY_CELL_SIZE ));
 		
 		
-		
-		invBar[3].id = Tile.sword;
+		invBar[3].item = new Sword();
 		invBar[3].stack = +1;
-		invBar[1].id = Tile.log;
+		invBar[1].item = new Log();
 		invBar[1].stack = +3;
-		invBar[2].id = Tile.log;
+		invBar[2].item = new Log();
 		invBar[2].stack = +98;
-		invBar[0].id = Tile.shovel;
+		invBar[0].item = new Shovel();
 		invBar[0].stack = +1;
 		
 	}
 	
-	public static void addToInventory(int[] itemType, int amount) {
+	public static void addToInventory(int itemId, int amount) {
 		for(int i = 0; i <invBar.length; i++) {
-			if(invBar[i].id == itemType) {
+			if(invBar[i].item.id == itemId) {
 				if(invBar[i].stack < 99) {
 					//Need to account for "amount" being more than one and going over 100...
 					invBar[i].stack += amount;
@@ -81,14 +79,14 @@ public class Inventory {
 			}
 		}
 		for(int i = 0; i <invBar.length; i++) {
-			if(invBar[i].id == Tile.air) {
-				invBar[i].id = itemType;
+			if(invBar[i].item.id == EMPTY) {
+				invBar[i].item = getItemFromItemId(itemId);
 				invBar[i].stack += amount;
 				return;
 			}
 		}
 		for(int i = 0; i <invBag.length; i++) {
-			if(invBag[i].id == itemType) {
+			if(invBag[i].item.id == itemId) {
 				if(invBag[i].stack < 99) {
 					//Need to account for "amount" being more than one and going over 100...
 					invBag[i].stack += amount;
@@ -97,17 +95,17 @@ public class Inventory {
 			}
 		}
 		for(int i = 0; i <invBag.length; i++) {
-			if(invBag[i].id == Tile.air) {
-				invBag[i].id = itemType;
+			if(invBag[i].item.id == EMPTY) {
+				invBag[i].item = getItemFromItemId(itemId);
 				invBag[i].stack += amount;
 				return;
 			}
 		}
 	}
 	
-	public static void removeFromInventory(int[] itemType, int amount) {
+	public static void removeFromInventory(int itemType, int amount) {
 		for(int i = 0; i <invBar.length; i++) {
-			if(invBar[i]== invBar[selected]) {
+			if(invBar[i] == invBar[selected]) {
 				if(invBar[i].stack > 1) {
 					//Need to account for "amount" being more than one and possibly going negative
 					invBar[i].stack -= amount;
@@ -115,14 +113,14 @@ public class Inventory {
 				}
 				if(invBar[i].stack == 1) {
 					invBar[i].stack -= amount;
-					invBar[i].id = Tile.air;
+					invBar[i].item = new NoItem();
 					return;
 				}
 				
 			}
 		}
 //		for(int i = 0; i <invBar.length; i++) {
-//			if(invBar[i].id == Tile.air) {
+//			if(invBar[i].id == EMPTY) {
 //				invBar[i].id = itemType;
 //				invBar[i].stack -= amount;
 //				return;
@@ -133,20 +131,20 @@ public class Inventory {
 	//Crafting recipes
 	public static void crafting() {
 		//Planks
-		if(invCrafting[0].id == Tile.log && invCrafting[1].id == Tile.air && invCrafting[2].id == Tile.air && invCrafting[3].id == Tile.air) {
-			invCrafted[0].id = Tile.plank;
+		if(invCrafting[0].item.id == LOG && invCrafting[1].item.id == EMPTY && invCrafting[2].item.id == EMPTY && invCrafting[3].item.id == EMPTY) {
+			invCrafted[0].item = new Plank();
 			invCrafted[0].stack = +4;
-		} else if(invCrafting[0].id == Tile.air && invCrafting[1].id == Tile.log && invCrafting[2].id == Tile.air && invCrafting[3].id == Tile.air) {
-			invCrafted[0].id = Tile.plank;
+		} else if(invCrafting[0].item.id == EMPTY && invCrafting[1].item.id == LOG && invCrafting[2].item.id == EMPTY && invCrafting[3].item.id == EMPTY) {
+			invCrafted[0].item = new Plank();
 			invCrafted[0].stack = +4;
-		} else if(invCrafting[0].id == Tile.air && invCrafting[1].id == Tile.air && invCrafting[2].id == Tile.log && invCrafting[3].id == Tile.air) {
-			invCrafted[0].id = Tile.plank;
+		} else if(invCrafting[0].item.id == EMPTY && invCrafting[1].item.id == EMPTY && invCrafting[2].item.id == LOG && invCrafting[3].item.id == EMPTY) {
+			invCrafted[0].item = new Plank();
 			invCrafted[0].stack = +4;
-		} else if(invCrafting[0].id == Tile.air && invCrafting[1].id == Tile.air && invCrafting[2].id == Tile.air && invCrafting[3].id == Tile.log) {
-			invCrafted[0].id = Tile.plank;
+		} else if(invCrafting[0].item.id == EMPTY && invCrafting[1].item.id == EMPTY && invCrafting[2].item.id == EMPTY && invCrafting[3].item.id == LOG) {
+			invCrafted[0].item = new Plank();
 			invCrafted[0].stack = +4;
 		} else {
-			invCrafted[0].id = Tile.air;
+			invCrafted[0].item = new NoItem();
 			invCrafted[0].stack = 0;
 		}
 	}
@@ -158,7 +156,7 @@ public class Inventory {
 			}
 			if(invCrafting[i].stack == 1) {
 				invCrafting[i].stack -= 1;
-				invCrafting[i].id = Tile.air;
+				invCrafting[i].item = new NoItem();
 				return;
 			}
 		}
@@ -168,45 +166,45 @@ public class Inventory {
 		if(e.getButton() == 3) { //  Right Click
 			for(int i = 0; i <invBar.length; i++) {
 				if(invBar[i].contains(new Point(Component.mse.x / Component.pixelSize,Component.mse.y / Component.pixelSize))) {
-					if(invBar[i].id != Tile.air && !isHolding) {
+					if(invBar[i].item.id != EMPTY && !isHolding) {
 						if(invBar[i].stack > 1) {
 							int con = invBar[i].stack / 2;
 							int con2 = invBar[i].stack - con;
-							holdingID = invBar[i].id;
+							holdingItem = invBar[i].item;
 							holdingStack = con2;
 							invBar[i].stack = con;
 							isHolding = true;
 						} else {
-							holdingID = invBar[i].id;
+							holdingItem = invBar[i].item;
 							holdingStack = invBar[i].stack;
-							invBar[i].id = Tile.air;
+							invBar[i].item = new NoItem();
 							invBar[i].stack = 0;
 							isHolding = true;
 						}
-					} else if(isHolding && invBar[i].id == Tile.air) {
+					} else if(isHolding && invBar[i].item.id == EMPTY) {
 						if(holdingStack > 1) {
-							invBar[i].id = holdingID;
+							invBar[i].item = holdingItem;
 							invBar[i].stack += 1;
 							holdingStack -= 1;
 						} else {
-							invBar[i].id = holdingID;
+							invBar[i].item = holdingItem;
 							invBar[i].stack = holdingStack;
 							isHolding = false;
 						}
-					} else if(isHolding && invBar[i].id != Tile.air) {
-						if(invBar[i].id == holdingID) {
+					} else if(isHolding && invBar[i].item.id != EMPTY) {
+						if(invBar[i].item.id == holdingItem.id) {
 							if(invBar[i].stack > 98) {
 							} else {
 								invBar[i].stack += 1;
 								holdingStack -= 1;
 							}
 						} else {
-							int[] con = invBar[i].id;
+							Item con = invBar[i].item;
 							int con2 = invBar[i].stack;
 							
-							invBar[i].id = holdingID;
+							invBar[i].item = holdingItem;
 							invBar[i].stack = holdingStack;
-							holdingID = con;
+							holdingItem = con;
 							holdingStack = con2;
 						}
 					}
@@ -216,46 +214,46 @@ public class Inventory {
 			//For the inventory when the inventory is open
 			for(int i = 0; i <invBag.length; i++) {
 				if(invBag[i].contains(new Point(Component.mse.x / Component.pixelSize,Component.mse.y / Component.pixelSize))) {
-					if(invBag[i].id != Tile.air && !isHolding) {
+					if(invBag[i].item.id != EMPTY && !isHolding) {
 						if(invBag[i].stack > 1) {
 							int con = invBag[i].stack / 2;
 							int con2 = invBag[i].stack - con;
-							holdingID = invBag[i].id;
+							holdingItem = invBag[i].item;
 							holdingStack = con2;
 							invBag[i].stack = con;
 							isHolding = true;
 						} else {
-							holdingID = invBag[i].id;
+							holdingItem = invBag[i].item;
 							holdingStack = invBag[i].stack;
-							invBag[i].id = Tile.air;
+							invBag[i].item = new NoItem();
 							invBag[i].stack = 0;
 							
 							isHolding = true;
 						}
-					} else if(isHolding && invBag[i].id == Tile.air) {
+					} else if(isHolding && invBag[i].item.id == EMPTY) {
 						if(holdingStack > 1) {
-							invBag[i].id = holdingID;
+							invBag[i].item = holdingItem;
 							invBag[i].stack += 1;
 							holdingStack -= 1;
 						} else {
-							invBag[i].id = holdingID;
+							invBag[i].item = holdingItem;
 							invBag[i].stack = holdingStack;
 							isHolding = false;
 						}
-					} else if(isHolding && invBag[i].id != Tile.air) {
-						if(invBag[i].id == holdingID) {
+					} else if(isHolding && invBag[i].item.id != EMPTY) {
+						if(invBag[i].item.id == holdingItem.id) {
 							if(invBag[i].stack > 98) {
 							} else {
 								invBag[i].stack += 1;
 								holdingStack -= 1;
 							}
 						} else {
-							int[] con = invBag[i].id;
+							Item con = invBag[i].item;
 							int con2 = invBag[i].stack;
 							
-							invBag[i].id = holdingID;
+							invBag[i].item = holdingItem;
 							invBag[i].stack = holdingStack;
-							holdingID = con;
+							holdingItem = con;
 							holdingStack = con2;
 						}
 					}
@@ -264,69 +262,69 @@ public class Inventory {
 			//For crafting area
 			for(int i = 0; i <invCrafting.length; i++) {
 				if(invCrafting[i].contains(new Point(Component.mse.x / Component.pixelSize,Component.mse.y / Component.pixelSize))) {
-					if(invCrafting[i].id != Tile.air && !isHolding) {
+					if(invCrafting[i].item.id != EMPTY && !isHolding) {
 						if(invCrafting[i].stack > 1) {
 							int con = invCrafting[i].stack / 2;
 							int con2 = invCrafting[i].stack - con;
-							holdingID = invCrafting[i].id;
+							holdingItem = invCrafting[i].item;
 							holdingStack = con2;
 							invCrafting[i].stack = con;
 							isHolding = true;
 						} else {
-							holdingID = invCrafting[i].id;
+							holdingItem = invCrafting[i].item;
 							holdingStack = invCrafting[i].stack;
-							invCrafting[i].id = Tile.air;
+							invCrafting[i].item = new NoItem();
 							invCrafting[i].stack = 0;
 							
 							isHolding = true;
 						}
-					} else if(isHolding && invCrafting[i].id == Tile.air) {
+					} else if(isHolding && invCrafting[i].item.id == EMPTY) {
 						if(holdingStack > 1) {
-							invCrafting[i].id = holdingID;
+							invCrafting[i].item = holdingItem;
 							invCrafting[i].stack += 1;
 							holdingStack -= 1;
 						} else {
-							invCrafting[i].id = holdingID;
+							invCrafting[i].item = holdingItem;
 							invCrafting[i].stack = holdingStack;
 							isHolding = false;
 						}
-					} else if(isHolding && invCrafting[i].id != Tile.air) {
-						if(invCrafting[i].id == holdingID) {
+					} else if(isHolding && invCrafting[i].item.id != EMPTY) {
+						if(invCrafting[i].item.id == holdingItem.id) {
 							if(invCrafting[i].stack > 98) {
 							} else {
 								invCrafting[i].stack += 1;
 								holdingStack -= 1;
 							}
 						} else {
-						int[] con = invCrafting[i].id;
-						int con2 = invCrafting[i].stack;
-						
-						invCrafting[i].id = holdingID;
-						invCrafting[i].stack = holdingStack;
-						holdingID = con;
-						holdingStack = con2;
+							Item con = invCrafting[i].item;
+							int con2 = invCrafting[i].stack;
+							
+							invCrafting[i].item = holdingItem;
+							invCrafting[i].stack = holdingStack;
+							holdingItem = con;
+							holdingStack = con2;
 						}
 					}
 				}
 			}
 			if(invCrafted[0].contains(new Point(Component.mse.x / Component.pixelSize,Component.mse.y / Component.pixelSize))) {
 				//If the box is holding something and you are not...
-				if(invCrafted[0].id != Tile.air && !isHolding) {
-					holdingID = invCrafted[0].id;
+				if(invCrafted[0].item.id != EMPTY && !isHolding) {
+					holdingItem = invCrafted[0].item;
 					holdingStack = invCrafted[0].stack;
 					craftedItemPickedUp();
-					invCrafted[0].id = Tile.air;
+					invCrafted[0].item = new NoItem();
 					invCrafted[0].stack = 0;
 					
 					isHolding = true;
 				//If the box is empty and you are holding something
 				} 
-				if(invCrafted[0].id != Tile.air && isHolding) {
-					if(invCrafted[0].id == holdingID) {
+				if(invCrafted[0].item.id != EMPTY && isHolding) {
+					if(invCrafted[0].item.id == holdingItem.id) {
 						if(invCrafted[0].stack + holdingStack < 100) {
 							holdingStack += invCrafted[0].stack;
 							craftedItemPickedUp();
-							invCrafted[0].id = Tile.air;
+							invCrafted[0].item = new NoItem();
 							invCrafted[0].stack = 0;
 						}
 					}
@@ -334,23 +332,23 @@ public class Inventory {
 			}
 		}
 		if(e.getButton() == 1) {  //left click
-			if(Component.currentState.type == Component.INVENTORY_STATE){
+			if(Component.currentState.type == INVENTORY_STATE){
 				//For the bottom bar
 				for(int i = 0; i <invBar.length; i++) {
 					if(invBar[i].contains(new Point(Component.mse.x / Component.pixelSize,Component.mse.y / Component.pixelSize))) {
-						if(invBar[i].id != Tile.air && !isHolding) {
-							holdingID = invBar[i].id;
+						if(invBar[i].item.id != EMPTY && !isHolding) {
+							holdingItem = invBar[i].item;
 							holdingStack = invBar[i].stack;
-							invBar[i].id = Tile.air;
+							invBar[i].item = new NoItem();
 							invBar[i].stack = 0;
 							
 							isHolding = true;
-						} else if(isHolding && invBar[i].id == Tile.air) {
-							invBar[i].id = holdingID;
+						} else if(isHolding && invBar[i].item.id == EMPTY) {
+							invBar[i].item = holdingItem;
 							invBar[i].stack = holdingStack;
 							isHolding = false;
-						} else if(isHolding && invBar[i].id != Tile.air) {
-							if(invBar[i].id == holdingID) {
+						} else if(isHolding && invBar[i].item.id != EMPTY) {
+							if(invBar[i].item.id == holdingItem.id) {
 								if(invBar[i].stack + holdingStack > 99) {
 									int placeCount = (invBar[i].stack + holdingStack) - 99;
 									invBar[i].stack = 99;
@@ -360,12 +358,12 @@ public class Inventory {
 									isHolding = false;
 								}
 							} else {
-								int[] con = invBar[i].id;
+								Item con = invBar[i].item;
 								int con2 = invBar[i].stack;
 								
-								invBar[i].id = holdingID;
+								invBar[i].item = holdingItem;
 								invBar[i].stack = holdingStack;
-								holdingID = con;
+								holdingItem = con;
 								holdingStack = con2;
 							}
 						}
@@ -377,19 +375,19 @@ public class Inventory {
 				//For the inventory when the inventory is open
 				for(int i = 0; i <invBag.length; i++) {
 					if(invBag[i].contains(new Point(Component.mse.x / Component.pixelSize,Component.mse.y / Component.pixelSize))) {
-						if(invBag[i].id != Tile.air && !isHolding) {
-							holdingID = invBag[i].id;
+						if(invBag[i].item.id != EMPTY && !isHolding) {
+							holdingItem = invBag[i].item;
 							holdingStack = invBag[i].stack;
-							invBag[i].id = Tile.air;
+							invBag[i].item = new NoItem();
 							invBag[i].stack = 0;
 							
 							isHolding = true;
-						} else if(isHolding && invBag[i].id == Tile.air) {
-							invBag[i].id = holdingID;
+						} else if(isHolding && invBag[i].item.id == EMPTY) {
+							invBag[i].item = holdingItem;
 							invBag[i].stack = holdingStack;
 							isHolding = false;
-						} else if(isHolding && invBag[i].id != Tile.air) {
-							if(invBag[i].id == holdingID) {
+						} else if(isHolding && invBag[i].item.id != EMPTY) {
+							if(invBag[i].item.id == holdingItem.id) {
 								if(invBag[i].stack + holdingStack > 99) {
 									int placeCount = (invBag[i].stack + holdingStack) - 99;
 									invBag[i].stack = 99;
@@ -399,12 +397,12 @@ public class Inventory {
 									isHolding = false;
 								}
 							} else {
-								int[] con = invBag[i].id;
+								Item con = invBag[i].item;
 								int con2 = invBag[i].stack;
 								
-								invBag[i].id = holdingID;
+								invBag[i].item = holdingItem;
 								invBag[i].stack = holdingStack;
-								holdingID = con;
+								holdingItem = con;
 								holdingStack = con2;
 							}
 						}
@@ -413,19 +411,19 @@ public class Inventory {
 				//For crafting area
 				for(int i = 0; i <invCrafting.length; i++) {
 					if(invCrafting[i].contains(new Point(Component.mse.x / Component.pixelSize,Component.mse.y / Component.pixelSize))) {
-						if(invCrafting[i].id != Tile.air && !isHolding) {
-							holdingID = invCrafting[i].id;
+						if(invCrafting[i].item.id != EMPTY && !isHolding) {
+							holdingItem = invCrafting[i].item;
 							holdingStack = invCrafting[i].stack;
-							invCrafting[i].id = Tile.air;
+							invCrafting[i].item = new NoItem();
 							invCrafting[i].stack = 0;
 							
 							isHolding = true;
-						} else if(isHolding && invCrafting[i].id == Tile.air) {
-							invCrafting[i].id = holdingID;
+						} else if(isHolding && invCrafting[i].item.id == EMPTY) {
+							invCrafting[i].item = holdingItem;
 							invCrafting[i].stack = holdingStack;
 							isHolding = false;
-						} else if(isHolding && invCrafting[i].id != Tile.air) {
-							if(invCrafting[i].id == holdingID) {
+						} else if(isHolding && invCrafting[i].item.id != EMPTY) {
+							if(invCrafting[i].item == holdingItem) {
 								if(invCrafting[i].stack + holdingStack > 99) {
 									int placeCount = (invCrafting[i].stack + holdingStack) - 99;
 									invCrafting[i].stack = 99;
@@ -435,12 +433,12 @@ public class Inventory {
 									isHolding = false;
 								}
 							} else {
-							int[] con = invCrafting[i].id;
+							Item con = invCrafting[i].item;
 							int con2 = invCrafting[i].stack;
 							
-							invCrafting[i].id = holdingID;
+							invCrafting[i].item = holdingItem;
 							invCrafting[i].stack = holdingStack;
-							holdingID = con;
+							holdingItem = con;
 							holdingStack = con2;
 							}
 						}
@@ -449,22 +447,22 @@ public class Inventory {
 				//For crafting pickup
 				if(invCrafted[0].contains(new Point(Component.mse.x / Component.pixelSize,Component.mse.y / Component.pixelSize))) {
 					//If the box is holding something and you are not...
-					if(invCrafted[0].id != Tile.air && !isHolding) {
-						holdingID = invCrafted[0].id;
+					if(invCrafted[0].item.id != EMPTY && !isHolding) {
+						holdingItem = invCrafted[0].item;
 						holdingStack = invCrafted[0].stack;
 						craftedItemPickedUp();
-						invCrafted[0].id = Tile.air;
+						invCrafted[0].item = new NoItem();
 						invCrafted[0].stack = 0;
 						
 						isHolding = true;
 					//If the box is empty and you are holding something
 					} 
-					if(invCrafted[0].id != Tile.air && isHolding) {
-						if(invCrafted[0].id == holdingID) {
+					if(invCrafted[0].item.id != EMPTY && isHolding) {
+						if(invCrafted[0].item.id == holdingItem.id) {
 							if(invCrafted[0].stack + holdingStack < 100) {
 								holdingStack += invCrafted[0].stack;
 								craftedItemPickedUp();
-								invCrafted[0].id = Tile.air;
+								invCrafted[0].item = new NoItem();
 								invCrafted[0].stack = 0;
 							}
 						}
@@ -496,15 +494,15 @@ public class Inventory {
 		invCrafted[0].render(g, false);
 
 		if(isHolding) {
-			g.drawImage(Tile.tileset_terrain, 
-					(Component.mse.x / Component.pixelSize) -(Tile.invCellSize / 2)+Tile.invItemBorder,
-					(Component.mse.y / Component.pixelSize) -(Tile.invCellSize / 2)+ Tile.invItemBorder,
-					(Component.mse.x / Component.pixelSize)-(Tile.invCellSize / 2) + Tile.invCellSize - Tile.invItemBorder,
-					(Component.mse.y / Component.pixelSize)-(Tile.invCellSize / 2)+Tile.invCellSize - Tile.invItemBorder,
-					holdingID[0] * Tile.tileSize,
-					holdingID[1] * Tile.tileSize,
-					holdingID[0] * Tile.tileSize + Tile.tileSize,
-					holdingID[1] * Tile.tileSize + Tile.tileSize,
+			g.drawImage(ImageAssets.TERRAIN_IMAGE, 
+					(Component.mse.x / Component.pixelSize) -(INVENTORY_CELL_SIZE / 2)+INVENTORY_ITEM_BORDER,
+					(Component.mse.y / Component.pixelSize) -(INVENTORY_CELL_SIZE / 2)+ INVENTORY_ITEM_BORDER,
+					(Component.mse.x / Component.pixelSize)-(INVENTORY_CELL_SIZE / 2) + INVENTORY_CELL_SIZE - INVENTORY_ITEM_BORDER,
+					(Component.mse.y / Component.pixelSize)-(INVENTORY_CELL_SIZE / 2)+INVENTORY_CELL_SIZE - INVENTORY_ITEM_BORDER,
+					holdingItem.imageXPos * TILE_SIZE,
+					holdingItem.imageYPos * TILE_SIZE,
+					holdingItem.imageXPos * TILE_SIZE + TILE_SIZE,
+					holdingItem.imageYPos * TILE_SIZE + TILE_SIZE,
 					null);
 			if(holdingStack > 1) {
 				Font font = new Font("Helvetica", Font.PLAIN, 12);
@@ -514,15 +512,15 @@ public class Inventory {
 				FontMetrics fontMetrics = g.getFontMetrics(font);
 				
 				g.drawString(Integer.toString(holdingStack), 
-						(Component.mse.x / Component.pixelSize) -(Tile.invCellSize / 2)+Tile.invCellSize-4 - fontMetrics.stringWidth(stack2),
-						(Component.mse.y / Component.pixelSize) -(Tile.invCellSize / 2) +Tile.invCellSize-5
-						//g.drawString(Integer.toString(stack), x +Tile.invCellSize-4 - fontMetrics.stringWidth(stack2), y+Tile.invCellSize-5);
+						(Component.mse.x / Component.pixelSize) -(INVENTORY_CELL_SIZE / 2)+INVENTORY_CELL_SIZE-4 - fontMetrics.stringWidth(stack2),
+						(Component.mse.y / Component.pixelSize) -(INVENTORY_CELL_SIZE / 2) +INVENTORY_CELL_SIZE-5
+						//g.drawString(Integer.toString(stack), x +INVENTORY_CELL_SIZE-4 - fontMetrics.stringWidth(stack2), y+INVENTORY_CELL_SIZE-5);
 						);
 			}
 		}
 	}
 	public static void toggleInventoryState() {
-		if(Component.currentState.type == Component.INVENTORY_STATE) {
+		if(Component.currentState.type == INVENTORY_STATE) {
 			Component.currentState = new MainState();
 		} else {
 			Component.currentState = new InventoryState();

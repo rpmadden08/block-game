@@ -390,3 +390,321 @@ Command-line arguments:  -os macosx -ws carbon -arch x86 -keyring /Users/chrisma
 
 !ENTRY org.eclipse.core.net 1 0 2013-06-03 12:56:20.724
 !MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences
+!SESSION 2013-06-07 08:24:42.521 -----------------------------------------------
+eclipse.buildId=M20080221-1800
+java.version=1.6.0_45
+java.vendor=Apple Inc.
+BootLoader constants: OS=macosx, ARCH=x86, WS=carbon, NL=en_US
+Framework arguments:  -keyring /Users/chrismadden/.eclipse_keyring -showlocation
+Command-line arguments:  -os macosx -ws carbon -arch x86 -keyring /Users/chrismadden/.eclipse_keyring -consoleLog -showlocation
+
+!ENTRY org.eclipse.core.net 1 0 2013-06-07 08:24:47.680
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences
+!SESSION 2013-06-17 07:57:24.346 -----------------------------------------------
+eclipse.buildId=M20080221-1800
+java.version=1.6.0_45
+java.vendor=Apple Inc.
+BootLoader constants: OS=macosx, ARCH=x86, WS=carbon, NL=en_US
+Framework arguments:  -keyring /Users/chrismadden/.eclipse_keyring -showlocation
+Command-line arguments:  -os macosx -ws carbon -arch x86 -keyring /Users/chrismadden/.eclipse_keyring -consoleLog -showlocation
+
+!ENTRY org.eclipse.core.net 1 0 2013-06-17 07:57:29.639
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences
+
+!ENTRY org.eclipse.core.jobs 4 2 2013-06-24 09:56:51.969
+!MESSAGE An internal error occurred during: "Launching Component (3)".
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.debug.internal.core.LaunchConfiguration.getLaunchManager(LaunchConfiguration.java:415)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.getInfo(LaunchConfiguration.java:394)
+	at org.eclipse.debug.internal.core.LaunchConfigurationWorkingCopy.copyFrom(LaunchConfigurationWorkingCopy.java:445)
+	at org.eclipse.debug.internal.core.LaunchConfigurationWorkingCopy.<init>(LaunchConfigurationWorkingCopy.java:144)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.copy(LaunchConfiguration.java:223)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$7.run(DebugUIPlugin.java:1072)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+
+!ENTRY org.eclipse.core.jobs 4 2 2013-06-24 09:56:51.970
+!MESSAGE An internal error occurred during: "Launching Component (3)".
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.debug.internal.core.LaunchConfiguration.getLaunchManager(LaunchConfiguration.java:415)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.getInfo(LaunchConfiguration.java:394)
+	at org.eclipse.debug.internal.core.LaunchConfigurationWorkingCopy.copyFrom(LaunchConfigurationWorkingCopy.java:445)
+	at org.eclipse.debug.internal.core.LaunchConfigurationWorkingCopy.<init>(LaunchConfigurationWorkingCopy.java:144)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.copy(LaunchConfiguration.java:223)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$7.run(DebugUIPlugin.java:1072)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+
+!ENTRY org.eclipse.core.jobs 4 2 2013-06-24 09:56:51.970
+!MESSAGE An internal error occurred during: "Launching Component (3)".
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.debug.internal.core.LaunchConfiguration.getLaunchManager(LaunchConfiguration.java:415)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.getInfo(LaunchConfiguration.java:394)
+	at org.eclipse.debug.internal.core.LaunchConfigurationWorkingCopy.copyFrom(LaunchConfigurationWorkingCopy.java:445)
+	at org.eclipse.debug.internal.core.LaunchConfigurationWorkingCopy.<init>(LaunchConfigurationWorkingCopy.java:144)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.copy(LaunchConfiguration.java:223)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$7.run(DebugUIPlugin.java:1072)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+
+!ENTRY org.eclipse.core.jobs 4 2 2013-06-24 09:56:51.970
+!MESSAGE An internal error occurred during: "Launching Component (3)".
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.debug.internal.core.LaunchConfiguration.getLaunchManager(LaunchConfiguration.java:415)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.getInfo(LaunchConfiguration.java:394)
+	at org.eclipse.debug.internal.core.LaunchConfigurationWorkingCopy.copyFrom(LaunchConfigurationWorkingCopy.java:445)
+	at org.eclipse.debug.internal.core.LaunchConfigurationWorkingCopy.<init>(LaunchConfigurationWorkingCopy.java:144)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.copy(LaunchConfiguration.java:223)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$7.run(DebugUIPlugin.java:1072)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+
+!ENTRY org.eclipse.core.jobs 4 2 2013-06-24 09:56:51.971
+!MESSAGE An internal error occurred during: "Launching Component (3)".
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.debug.internal.core.LaunchConfiguration.getLaunchManager(LaunchConfiguration.java:415)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.getInfo(LaunchConfiguration.java:394)
+	at org.eclipse.debug.internal.core.LaunchConfigurationWorkingCopy.copyFrom(LaunchConfigurationWorkingCopy.java:445)
+	at org.eclipse.debug.internal.core.LaunchConfigurationWorkingCopy.<init>(LaunchConfigurationWorkingCopy.java:144)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.copy(LaunchConfiguration.java:223)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$7.run(DebugUIPlugin.java:1072)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+
+!ENTRY org.eclipse.core.jobs 4 2 2013-06-24 09:56:51.971
+!MESSAGE An internal error occurred during: "Launching Component (3)".
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.debug.internal.core.LaunchConfiguration.getLaunchManager(LaunchConfiguration.java:415)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.getInfo(LaunchConfiguration.java:394)
+	at org.eclipse.debug.internal.core.LaunchConfigurationWorkingCopy.copyFrom(LaunchConfigurationWorkingCopy.java:445)
+	at org.eclipse.debug.internal.core.LaunchConfigurationWorkingCopy.<init>(LaunchConfigurationWorkingCopy.java:144)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.copy(LaunchConfiguration.java:223)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$7.run(DebugUIPlugin.java:1072)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+
+!ENTRY org.eclipse.core.jobs 4 2 2013-06-24 09:56:51.972
+!MESSAGE An internal error occurred during: "Launching Component (3)".
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.debug.internal.core.LaunchConfiguration.getLaunchManager(LaunchConfiguration.java:415)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.getInfo(LaunchConfiguration.java:394)
+	at org.eclipse.debug.internal.core.LaunchConfigurationWorkingCopy.copyFrom(LaunchConfigurationWorkingCopy.java:445)
+	at org.eclipse.debug.internal.core.LaunchConfigurationWorkingCopy.<init>(LaunchConfigurationWorkingCopy.java:144)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.copy(LaunchConfiguration.java:223)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$7.run(DebugUIPlugin.java:1072)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+
+!ENTRY org.eclipse.core.jobs 4 2 2013-06-24 09:56:51.973
+!MESSAGE An internal error occurred during: "Launching Component (2)".
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.debug.internal.core.LaunchConfiguration.getLaunchManager(LaunchConfiguration.java:415)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.getInfo(LaunchConfiguration.java:394)
+	at org.eclipse.debug.internal.core.LaunchConfigurationWorkingCopy.copyFrom(LaunchConfigurationWorkingCopy.java:445)
+	at org.eclipse.debug.internal.core.LaunchConfigurationWorkingCopy.<init>(LaunchConfigurationWorkingCopy.java:144)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.copy(LaunchConfiguration.java:223)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$7.run(DebugUIPlugin.java:1072)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+
+!ENTRY org.eclipse.core.jobs 4 2 2013-06-24 09:56:51.973
+!MESSAGE An internal error occurred during: "Launching Component (3)".
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.debug.internal.core.LaunchConfiguration.getLaunchManager(LaunchConfiguration.java:415)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.getInfo(LaunchConfiguration.java:394)
+	at org.eclipse.debug.internal.core.LaunchConfigurationWorkingCopy.copyFrom(LaunchConfigurationWorkingCopy.java:445)
+	at org.eclipse.debug.internal.core.LaunchConfigurationWorkingCopy.<init>(LaunchConfigurationWorkingCopy.java:144)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.copy(LaunchConfiguration.java:223)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$7.run(DebugUIPlugin.java:1072)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+
+!ENTRY org.eclipse.core.jobs 4 2 2013-06-24 09:56:51.973
+!MESSAGE An internal error occurred during: "Launching Component".
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.debug.internal.core.LaunchConfiguration.getLaunchManager(LaunchConfiguration.java:415)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.getInfo(LaunchConfiguration.java:394)
+	at org.eclipse.debug.internal.core.LaunchConfigurationWorkingCopy.copyFrom(LaunchConfigurationWorkingCopy.java:445)
+	at org.eclipse.debug.internal.core.LaunchConfigurationWorkingCopy.<init>(LaunchConfigurationWorkingCopy.java:144)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.copy(LaunchConfiguration.java:223)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$7.run(DebugUIPlugin.java:1072)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+
+!ENTRY org.eclipse.core.jobs 4 2 2013-06-24 09:56:51.974
+!MESSAGE An internal error occurred during: "Launching SaveGame".
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.debug.internal.core.LaunchConfiguration.getLaunchManager(LaunchConfiguration.java:415)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.getInfo(LaunchConfiguration.java:394)
+	at org.eclipse.debug.internal.core.LaunchConfigurationWorkingCopy.copyFrom(LaunchConfigurationWorkingCopy.java:445)
+	at org.eclipse.debug.internal.core.LaunchConfigurationWorkingCopy.<init>(LaunchConfigurationWorkingCopy.java:144)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.copy(LaunchConfiguration.java:223)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$7.run(DebugUIPlugin.java:1072)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+
+!ENTRY org.eclipse.core.jobs 4 2 2013-06-24 09:56:51.974
+!MESSAGE An internal error occurred during: "Launching Component (3)".
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.debug.internal.core.LaunchConfiguration.getLaunchManager(LaunchConfiguration.java:415)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.getInfo(LaunchConfiguration.java:394)
+	at org.eclipse.debug.internal.core.LaunchConfigurationWorkingCopy.copyFrom(LaunchConfigurationWorkingCopy.java:445)
+	at org.eclipse.debug.internal.core.LaunchConfigurationWorkingCopy.<init>(LaunchConfigurationWorkingCopy.java:144)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.copy(LaunchConfiguration.java:223)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$7.run(DebugUIPlugin.java:1072)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+
+!ENTRY org.eclipse.core.jobs 4 2 2013-06-24 09:56:51.975
+!MESSAGE An internal error occurred during: "Launching Component (3)".
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.debug.internal.core.LaunchConfiguration.getLaunchManager(LaunchConfiguration.java:415)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.getInfo(LaunchConfiguration.java:394)
+	at org.eclipse.debug.internal.core.LaunchConfigurationWorkingCopy.copyFrom(LaunchConfigurationWorkingCopy.java:445)
+	at org.eclipse.debug.internal.core.LaunchConfigurationWorkingCopy.<init>(LaunchConfigurationWorkingCopy.java:144)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.copy(LaunchConfiguration.java:223)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$7.run(DebugUIPlugin.java:1072)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+
+!ENTRY org.eclipse.core.jobs 4 2 2013-06-24 09:56:51.976
+!MESSAGE An internal error occurred during: "Launching Component (2)".
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.debug.internal.core.LaunchConfiguration.getLaunchManager(LaunchConfiguration.java:415)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.getInfo(LaunchConfiguration.java:394)
+	at org.eclipse.debug.internal.core.LaunchConfigurationWorkingCopy.copyFrom(LaunchConfigurationWorkingCopy.java:445)
+	at org.eclipse.debug.internal.core.LaunchConfigurationWorkingCopy.<init>(LaunchConfigurationWorkingCopy.java:144)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.copy(LaunchConfiguration.java:223)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$7.run(DebugUIPlugin.java:1072)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+
+!ENTRY org.eclipse.core.jobs 4 2 2013-06-24 09:56:51.976
+!MESSAGE An internal error occurred during: "Launching Component (3)".
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.debug.internal.core.LaunchConfiguration.getLaunchManager(LaunchConfiguration.java:415)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.getInfo(LaunchConfiguration.java:394)
+	at org.eclipse.debug.internal.core.LaunchConfigurationWorkingCopy.copyFrom(LaunchConfigurationWorkingCopy.java:445)
+	at org.eclipse.debug.internal.core.LaunchConfigurationWorkingCopy.<init>(LaunchConfigurationWorkingCopy.java:144)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.copy(LaunchConfiguration.java:223)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$7.run(DebugUIPlugin.java:1072)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+
+!ENTRY org.eclipse.core.jobs 4 2 2013-06-24 09:56:51.976
+!MESSAGE An internal error occurred during: "Launching Component (3)".
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.debug.internal.core.LaunchConfiguration.getLaunchManager(LaunchConfiguration.java:415)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.getInfo(LaunchConfiguration.java:394)
+	at org.eclipse.debug.internal.core.LaunchConfigurationWorkingCopy.copyFrom(LaunchConfigurationWorkingCopy.java:445)
+	at org.eclipse.debug.internal.core.LaunchConfigurationWorkingCopy.<init>(LaunchConfigurationWorkingCopy.java:144)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.copy(LaunchConfiguration.java:223)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$7.run(DebugUIPlugin.java:1072)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+
+!ENTRY org.eclipse.core.jobs 4 2 2013-06-24 09:56:51.977
+!MESSAGE An internal error occurred during: "Launching Component (3)".
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.debug.internal.core.LaunchConfiguration.getLaunchManager(LaunchConfiguration.java:415)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.getInfo(LaunchConfiguration.java:394)
+	at org.eclipse.debug.internal.core.LaunchConfigurationWorkingCopy.copyFrom(LaunchConfigurationWorkingCopy.java:445)
+	at org.eclipse.debug.internal.core.LaunchConfigurationWorkingCopy.<init>(LaunchConfigurationWorkingCopy.java:144)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.copy(LaunchConfiguration.java:223)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$7.run(DebugUIPlugin.java:1072)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+
+!ENTRY org.eclipse.core.jobs 4 2 2013-06-24 09:56:51.977
+!MESSAGE An internal error occurred during: "Launching Component (3)".
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.debug.internal.core.LaunchConfiguration.getLaunchManager(LaunchConfiguration.java:415)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.getInfo(LaunchConfiguration.java:394)
+	at org.eclipse.debug.internal.core.LaunchConfigurationWorkingCopy.copyFrom(LaunchConfigurationWorkingCopy.java:445)
+	at org.eclipse.debug.internal.core.LaunchConfigurationWorkingCopy.<init>(LaunchConfigurationWorkingCopy.java:144)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.copy(LaunchConfiguration.java:223)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$7.run(DebugUIPlugin.java:1072)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+
+!ENTRY org.eclipse.core.jobs 4 2 2013-06-24 09:56:51.978
+!MESSAGE An internal error occurred during: "Launching Component (3)".
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.debug.internal.core.LaunchConfiguration.getLaunchManager(LaunchConfiguration.java:415)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.getInfo(LaunchConfiguration.java:394)
+	at org.eclipse.debug.internal.core.LaunchConfigurationWorkingCopy.copyFrom(LaunchConfigurationWorkingCopy.java:445)
+	at org.eclipse.debug.internal.core.LaunchConfigurationWorkingCopy.<init>(LaunchConfigurationWorkingCopy.java:144)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.copy(LaunchConfiguration.java:223)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$7.run(DebugUIPlugin.java:1072)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+
+!ENTRY org.eclipse.core.jobs 4 2 2013-06-24 09:56:51.978
+!MESSAGE An internal error occurred during: "Launching Component (3)".
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.debug.internal.core.LaunchConfiguration.getLaunchManager(LaunchConfiguration.java:415)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.getInfo(LaunchConfiguration.java:394)
+	at org.eclipse.debug.internal.core.LaunchConfigurationWorkingCopy.copyFrom(LaunchConfigurationWorkingCopy.java:445)
+	at org.eclipse.debug.internal.core.LaunchConfigurationWorkingCopy.<init>(LaunchConfigurationWorkingCopy.java:144)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.copy(LaunchConfiguration.java:223)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$7.run(DebugUIPlugin.java:1072)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+
+!ENTRY org.eclipse.core.jobs 4 2 2013-06-24 09:56:51.979
+!MESSAGE An internal error occurred during: "Launching Component (3)".
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.debug.internal.core.LaunchConfiguration.getLaunchManager(LaunchConfiguration.java:415)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.getInfo(LaunchConfiguration.java:394)
+	at org.eclipse.debug.internal.core.LaunchConfigurationWorkingCopy.copyFrom(LaunchConfigurationWorkingCopy.java:445)
+	at org.eclipse.debug.internal.core.LaunchConfigurationWorkingCopy.<init>(LaunchConfigurationWorkingCopy.java:144)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.copy(LaunchConfiguration.java:223)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$7.run(DebugUIPlugin.java:1072)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+
+!ENTRY org.eclipse.core.jobs 4 2 2013-06-24 09:56:51.979
+!MESSAGE An internal error occurred during: "Launching Component (3)".
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.debug.internal.core.LaunchConfiguration.getLaunchManager(LaunchConfiguration.java:415)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.getInfo(LaunchConfiguration.java:394)
+	at org.eclipse.debug.internal.core.LaunchConfigurationWorkingCopy.copyFrom(LaunchConfigurationWorkingCopy.java:445)
+	at org.eclipse.debug.internal.core.LaunchConfigurationWorkingCopy.<init>(LaunchConfigurationWorkingCopy.java:144)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.copy(LaunchConfiguration.java:223)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$7.run(DebugUIPlugin.java:1072)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+
+!ENTRY org.eclipse.core.jobs 4 2 2013-06-24 09:56:51.979
+!MESSAGE An internal error occurred during: "Launching Component (3)".
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.debug.internal.core.LaunchConfiguration.getLaunchManager(LaunchConfiguration.java:415)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.getInfo(LaunchConfiguration.java:394)
+	at org.eclipse.debug.internal.core.LaunchConfigurationWorkingCopy.copyFrom(LaunchConfigurationWorkingCopy.java:445)
+	at org.eclipse.debug.internal.core.LaunchConfigurationWorkingCopy.<init>(LaunchConfigurationWorkingCopy.java:144)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.copy(LaunchConfiguration.java:223)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$7.run(DebugUIPlugin.java:1072)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+
+!ENTRY org.eclipse.core.jobs 4 2 2013-06-24 09:56:51.980
+!MESSAGE An internal error occurred during: "Launching Component (3)".
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.debug.internal.core.LaunchConfiguration.getLaunchManager(LaunchConfiguration.java:415)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.getInfo(LaunchConfiguration.java:394)
+	at org.eclipse.debug.internal.core.LaunchConfigurationWorkingCopy.copyFrom(LaunchConfigurationWorkingCopy.java:445)
+	at org.eclipse.debug.internal.core.LaunchConfigurationWorkingCopy.<init>(LaunchConfigurationWorkingCopy.java:144)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.copy(LaunchConfiguration.java:223)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$7.run(DebugUIPlugin.java:1072)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+!SESSION 2013-06-24 09:56:58.222 -----------------------------------------------
+eclipse.buildId=M20080221-1800
+java.version=1.6.0_45
+java.vendor=Apple Inc.
+BootLoader constants: OS=macosx, ARCH=x86, WS=carbon, NL=en_US
+Framework arguments:  -keyring /Users/chrismadden/.eclipse_keyring -showlocation
+Command-line arguments:  -os macosx -ws carbon -arch x86 -keyring /Users/chrismadden/.eclipse_keyring -consoleLog -showlocation
+
+!ENTRY org.eclipse.core.net 1 0 2013-06-24 09:57:02.906
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences

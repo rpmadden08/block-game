@@ -68,7 +68,7 @@ public class Day {
 	}
 	
 	public void render(Graphics gr) {
-//		gr.setColor(tint);
-//	    gr.fillRect (0, 0, Component.pixel.width, Component.pixel.height);
+		gr.setColor(tint);
+	    gr.fillRect (0, 0, Component.pixel.width, Component.pixel.height);
 	}
 }

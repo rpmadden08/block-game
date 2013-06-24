@@ -4,6 +4,8 @@ package com.companyname.blockgame;
 import java.awt.Dimension;
 import java.awt.event.*;
 
+import static com.companyname.blockgame.Constants.*;
+
 
 public class Listening implements KeyListener, MouseListener, MouseMotionListener, MouseWheelListener{
 	public void keyPressed(KeyEvent e) {
@@ -115,7 +117,7 @@ public class Listening implements KeyListener, MouseListener, MouseMotionListene
 	
 	public void mouseWheelMoved(MouseWheelEvent e) {
 		if(e.getWheelRotation()> 0) { //Down
-			if(Inventory.selected < Tile.invLength-1) {
+			if(Inventory.selected < INVENTORY_LENGTH-1) {
 				Inventory.selected += 1;
 			} else {
 				Inventory.selected = 0;
@@ -124,7 +126,7 @@ public class Listening implements KeyListener, MouseListener, MouseMotionListene
 			if(Inventory.selected > 0) {
 				Inventory.selected -= 1;
 			} else {
-				Inventory.selected = Tile.invLength-1;
+				Inventory.selected = INVENTORY_LENGTH-1;
 			}
 		}
 	}

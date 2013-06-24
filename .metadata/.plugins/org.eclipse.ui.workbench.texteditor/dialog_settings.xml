@@ -3,36 +3,36 @@
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
 		<item value="255" key="DIALOG_WIDTH"/>
 		<item value="264" key="DIALOG_Y_ORIGIN"/>
-		<item value="832" key="DIALOG_X_ORIGIN"/>
 		<item value="391" key="DIALOG_HEIGHT"/>
+		<item value="832" key="DIALOG_X_ORIGIN"/>
 		<item value="1|Lucida Grande|11.0|0|CARBON|1|Lucida Grande" key="DIALOG_FONT_NAME"/>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="wrap"/>
-		<item value="false" key="casesensitive"/>
 		<item value="false" key="isRegEx"/>
+		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wholeword"/>
-		<item value="3" key="selection"/>
+		<item value="chunkOffsetY" key="selection"/>
 		<list key="findhistory">
+			<item value="chunkY"/>
+			<item value="chunkX"/>
+			<item value="building"/>
 			<item value="3"/>
 			<item value="Size"/>
 			<item value="test3"/>
 			<item value="Component.weapon.collisionArea"/>
 			<item value="isMoving"/>
-			<item value="listening"/>
-			<item value="isMovingUp = false;"/>
-			<item value="Character.isMovingUp = false;"/>
 		</list>
 		<list key="replacehistory">
+			<item value="chunkOffsetY"/>
+			<item value="chunkOffsetX"/>
 			<item value="font"/>
 			<item value="Component.character.bounds"/>
 			<item value="isKnocking"/>
 			<item value="wasMoving"/>
 			<item value="Component.weapon.animation"/>
 			<item value="y"/>
-			<item value="x"/>
-			<item value="id"/>
 		</list>
 	</section>
 </section>
