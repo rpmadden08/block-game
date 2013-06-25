@@ -708,3 +708,39 @@ Command-line arguments:  -os macosx -ws carbon -arch x86 -keyring /Users/chrisma
 
 !ENTRY org.eclipse.core.net 1 0 2013-06-24 09:57:02.906
 !MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences
+
+!ENTRY org.eclipse.jdt.ui 4 10001 2013-06-25 12:56:48.111
+!MESSAGE Internal Error
+!STACK 1
+Java Model Exception: Java Model Status [/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/classes.jar is not on its project's build path]
+	at org.eclipse.jdt.internal.core.PackageFragmentRoot.getRawClasspathEntry(PackageFragmentRoot.java:588)
+	at org.eclipse.jdt.internal.core.JavaElement.getJavadocBaseLocation(JavaElement.java:642)
+	at org.eclipse.jdt.internal.core.BinaryType.getJavadocContents(BinaryType.java:1031)
+	at org.eclipse.jdt.internal.core.BinaryMethod.getAttachedJavadoc(BinaryMethod.java:554)
+	at org.eclipse.jdt.internal.ui.text.java.ProposalInfo.getHTMLContentReader(ProposalInfo.java:112)
+	at org.eclipse.jdt.internal.ui.text.java.ProposalInfo.extractJavadoc(ProposalInfo.java:99)
+	at org.eclipse.jdt.internal.ui.text.java.ProposalInfo.computeInfo(ProposalInfo.java:76)
+	at org.eclipse.jdt.internal.ui.text.java.ProposalInfo.getInfo(ProposalInfo.java:59)
+	at org.eclipse.jdt.internal.ui.text.java.AbstractJavaCompletionProposal.getAdditionalProposalInfo(AbstractJavaCompletionProposal.java:521)
+	at org.eclipse.jface.text.contentassist.AdditionalInfoController$3.run(AdditionalInfoController.java:102)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+!SUBENTRY 1 org.eclipse.jdt.core 4 1006 2013-06-25 12:56:48.112
+!MESSAGE /System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/classes.jar is not on its project's build path
+
+!ENTRY org.eclipse.jdt.ui 4 10001 2013-06-25 12:56:48.727
+!MESSAGE Internal Error
+!STACK 1
+Java Model Exception: Java Model Status [/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/classes.jar is not on its project's build path]
+	at org.eclipse.jdt.internal.core.PackageFragmentRoot.getRawClasspathEntry(PackageFragmentRoot.java:588)
+	at org.eclipse.jdt.internal.core.JavaElement.getJavadocBaseLocation(JavaElement.java:642)
+	at org.eclipse.jdt.internal.core.BinaryType.getJavadocContents(BinaryType.java:1031)
+	at org.eclipse.jdt.internal.core.BinaryMethod.getAttachedJavadoc(BinaryMethod.java:554)
+	at org.eclipse.jdt.internal.ui.text.java.ProposalInfo.getHTMLContentReader(ProposalInfo.java:112)
+	at org.eclipse.jdt.internal.ui.text.java.ProposalInfo.extractJavadoc(ProposalInfo.java:99)
+	at org.eclipse.jdt.internal.ui.text.java.ProposalInfo.computeInfo(ProposalInfo.java:76)
+	at org.eclipse.jdt.internal.ui.text.java.ProposalInfo.getInfo(ProposalInfo.java:59)
+	at org.eclipse.jdt.internal.ui.text.java.AbstractJavaCompletionProposal.getAdditionalProposalInfo(AbstractJavaCompletionProposal.java:521)
+	at org.eclipse.jface.text.contentassist.AdditionalInfoController$3.run(AdditionalInfoController.java:102)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+!SUBENTRY 1 org.eclipse.jdt.core 4 1006 2013-06-25 12:56:48.727
+!MESSAGE /System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/classes.jar is not on its project's build path

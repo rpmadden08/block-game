@@ -23,6 +23,7 @@ public class Constants {
 	//game states (might convert to an enum)
 	public static final int MAIN_STATE = 0;
 	public static final int INVENTORY_STATE = 1;
+	public static final int MAIN_MENU_STATE = 2;
 	
 	//Blocks
 	public static final int AIR = 0;
