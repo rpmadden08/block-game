@@ -7,7 +7,7 @@ import java.awt.event.*;
 import static com.companyname.blockgame.Constants.*;
 
 
-public class ListeningMainMenu implements KeyListener, MouseListener, MouseMotionListener, MouseWheelListener{
+public class ListeningMainMenu extends Listening{
 	public void keyPressed(KeyEvent e) {
 	
 	}

@@ -3,6 +3,7 @@ package com.companyname.blockgame.GameStates;
 import static com.companyname.blockgame.Constants.*;
 import com.companyname.blockgame.Component;
 import com.companyname.blockgame.GameState;
+import com.companyname.blockgame.ListeningMainMenu;
 
 
 public class MainState extends GameState {
@@ -36,6 +37,7 @@ public class MainState extends GameState {
 
 	public void renderToBuffer() { 
 		//public void render(Graphics g, int camX, int camY, int renW, int renH)
+		Component.listening = new ListeningMainMenu();
 		Component.level.render(dbg, 
 							(int) Component.sX, 
 							(int) Component.sY, 

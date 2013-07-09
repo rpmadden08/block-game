@@ -1,0 +1,10 @@
+package com.companyname.blockgame;
+
+public class StartUp {
+	
+	public static Component component;
+	
+	public StartUp(){
+		//component = new Component();
+	}
+}

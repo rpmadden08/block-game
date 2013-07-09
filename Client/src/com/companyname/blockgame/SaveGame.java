@@ -16,7 +16,7 @@ public class SaveGame{
 		// Create some data objects for us to save.
 		try{  // Catch errors in I/O if necessary.
 			// Open a file to write to, named SavedObj.sav.
-			FileOutputStream saveFile = new FileOutputStream("chunks/"+chunkX+"-"+chunkY+".sav");
+			FileOutputStream saveFile = new FileOutputStream("saves/"+Component.level.saveName+"/map/chunks/"+chunkX+"-"+chunkY+".sav");
 			//System.out.println("Working Directory = " + System.getProperty("user.dir"));
 			// Create an ObjectOutputStream to put objects into save file.
 			ObjectOutputStream save = new ObjectOutputStream(saveFile);
@@ -46,7 +46,7 @@ public class SaveGame{
 		// Wrap all in a try/catch block to trap I/O errors.
 		try{
 		// Open file to read from, named SavedObj
-		FileInputStream saveFile = new FileInputStream("chunks/"+chunkX+"-"+chunkY+".sav");
+		FileInputStream saveFile = new FileInputStream("saves/"+Component.level.saveName+"/map/chunks/"+chunkX+"-"+chunkY+".sav");
 		// Create an ObjectInputStream to get objects from save file.
 		ObjectInputStream save = new ObjectInputStream(saveFile);
 

@@ -9,6 +9,7 @@ import com.companyname.blockgame.BlockTypes.*;
 
 public class Level {
 	public static int worldW = CHUNK_SIZE * NUMBER_OF_CHUNKS_ON_ONE_SIDE, worldH = CHUNK_SIZE * NUMBER_OF_CHUNKS_ON_ONE_SIDE;
+	public String saveName;
 	//public static Chunk[][] chunk = new Chunk [3][3];
 //	public int tile[][] = new int [worldW][worldH];
 //	public int tileNX[][] = new int [worldW][worldH];
@@ -645,6 +646,18 @@ public class Level {
 		//System.out.println(block[2][2].autoTile1[0]+","+ block[2][2].autoTile1[1]);
 	}
 	
+	public void saveCurrentRender() {
+		test.saveChunk(chunk[0][0].chunkX,chunk[0][0].chunkY,2,0);
+		test.saveChunk(chunk[0][1].chunkX,chunk[0][1].chunkY,2,1);
+		test.saveChunk(chunk[0][2].chunkX,chunk[0][2].chunkY,2,2);
+		test.saveChunk(chunk[1][0].chunkX,chunk[1][0].chunkY,2,0);
+		test.saveChunk(chunk[1][1].chunkX,chunk[1][1].chunkY,2,1);
+		test.saveChunk(chunk[1][2].chunkX,chunk[1][2].chunkY,2,2);
+		test.saveChunk(chunk[2][0].chunkX,chunk[2][0].chunkY,2,0);
+		test.saveChunk(chunk[2][1].chunkX,chunk[2][1].chunkY,2,1);
+		test.saveChunk(chunk[2][2].chunkX,chunk[2][2].chunkY,2,2);
+	}
+	
 	public void tick(int camX, int camY, int renW, int renH) {
 		//System.out.println(chunkOffsetX);
 		if(!Inventory.isOpen) {
@@ -684,7 +697,7 @@ public class Level {
 				chunk[1][1] = chunk[0][1];
 				chunk[1][2] = chunk[0][2];
 				
-				f = new File("chunks/"+chunkOffsetX+"-"+chunkOffsetY +".sav");
+				f = new File("saves/"+saveName+"/map/chunks/"+chunkOffsetX+"-"+chunkOffsetY +".sav");
 				if(f.exists()) {
 					test.loadChunk(chunkOffsetX,chunkOffsetY);
 					chunk[0][0] = tempChunk;
@@ -692,7 +705,7 @@ public class Level {
 					chunk[0][0] = new Chunk(chunkOffsetX,chunkOffsetY);
 				}
 				
-				f = new File("chunks/"+chunkOffsetX+"-"+(chunkOffsetY +1)+".sav");
+				f = new File("saves/"+saveName+"/map/chunks/"+chunkOffsetX+"-"+(chunkOffsetY +1)+".sav");
 				if(f.exists()) {
 					
 					test.loadChunk(chunkOffsetX,chunkOffsetY+1);
@@ -701,7 +714,7 @@ public class Level {
 					chunk[0][1] = new Chunk(chunkOffsetX,chunkOffsetY+1);
 				}
 				
-				f = new File("chunks/"+chunkOffsetX+"-"+(chunkOffsetY +2)+".sav");
+				f = new File("saves/"+saveName+"/map/chunks/"+chunkOffsetX+"-"+(chunkOffsetY +2)+".sav");
 				if(f.exists()) {
 					test.loadChunk(chunkOffsetX,chunkOffsetY+2);
 					chunk[0][2] = tempChunk;
@@ -739,7 +752,7 @@ public class Level {
 				chunk[1][1] = chunk[1][0];
 				chunk[2][1] = chunk[2][0];
 				
-				File f = new File("chunks/"+chunkOffsetX+"-"+chunkOffsetY+".sav");
+				File f = new File("saves/"+saveName+"/map/chunks/"+chunkOffsetX+"-"+chunkOffsetY+".sav");
 				if(f.exists()) {
 					
 					test.loadChunk(chunkOffsetX,chunkOffsetY);
@@ -748,7 +761,7 @@ public class Level {
 					chunk[0][0] = new Chunk(chunkOffsetX,chunkOffsetY);
 				}
 				
-				f = new File("chunks/"+(chunkOffsetX+1)+"-"+chunkOffsetY+".sav");
+				f = new File("saves/"+saveName+"/map/chunks/"+(chunkOffsetX+1)+"-"+chunkOffsetY+".sav");
 				if(f.exists()) {
 					test.loadChunk(chunkOffsetX+1,chunkOffsetY);
 					chunk[1][0] = tempChunk;
@@ -756,7 +769,7 @@ public class Level {
 					chunk[1][0] = new Chunk(chunkOffsetX+1,chunkOffsetY);
 				}
 				
-				f = new File("chunks/"+(chunkOffsetX+2)+"-"+chunkOffsetY+".sav");
+				f = new File("saves/"+saveName+"/map/chunks/"+(chunkOffsetX+2)+"-"+chunkOffsetY+".sav");
 				if(f.exists()) {
 					test.loadChunk(chunkOffsetX+2,chunkOffsetY);
 					chunk[2][0] = tempChunk;
@@ -798,7 +811,7 @@ public class Level {
 			chunk[1][1] = chunk[2][1];
 			chunk[1][2] = chunk[2][2];
 			
-			File f = new File("chunks/"+(chunkOffsetX+2)+"-"+chunkOffsetY+".sav");
+			File f = new File("saves/"+saveName+"/map/chunks/"+(chunkOffsetX+2)+"-"+chunkOffsetY+".sav");
 			if(f.exists()) {
 				
 				test.loadChunk(chunkOffsetX+2,chunkOffsetY);
@@ -807,7 +820,7 @@ public class Level {
 				chunk[2][0] = new Chunk(2+chunkOffsetX,chunkOffsetY);
 			}
 			
-			f = new File("chunks/"+(chunkOffsetX+2)+"-"+(chunkOffsetY+1)+".sav");
+			f = new File("saves/"+saveName+"/map/chunks/"+(chunkOffsetX+2)+"-"+(chunkOffsetY+1)+".sav");
 			if(f.exists()) {
 				test.loadChunk(chunkOffsetX+2,chunkOffsetY+1);
 				chunk[2][1] = tempChunk;
@@ -816,7 +829,7 @@ public class Level {
 				chunk[2][1] = new Chunk(2+chunkOffsetX,chunkOffsetY+1);
 			}
 			
-			f = new File("chunks/"+(chunkOffsetX+2)+"-"+(chunkOffsetY+2)+".sav");
+			f = new File("saves/"+saveName+"/map/chunks/"+(chunkOffsetX+2)+"-"+(chunkOffsetY+2)+".sav");
 			if(f.exists()) {
 				test.loadChunk(chunkOffsetX+2,chunkOffsetY+2);
 				chunk[2][2] = tempChunk;
@@ -860,7 +873,7 @@ public class Level {
 			chunk[1][1] = chunk[1][2];
 			chunk[2][1] = chunk[2][2];
 			
-			File f = new File("chunks/"+(chunkOffsetX)+"-"+(chunkOffsetY+2)+".sav");
+			File f = new File("saves/"+saveName+"/map/chunks/"+(chunkOffsetX)+"-"+(chunkOffsetY+2)+".sav");
 			if(f.exists()) {
 				test.loadChunk(chunkOffsetX,chunkOffsetY+2);
 				chunk[0][2] = tempChunk;
@@ -868,7 +881,7 @@ public class Level {
 				chunk[0][2] = new Chunk(chunkOffsetX,2+chunkOffsetY);
 			}
 			
-			f = new File("chunks/"+(chunkOffsetX+1)+"-"+(chunkOffsetY+2)+".sav");
+			f = new File("saves/"+saveName+"/map/chunks/"+(chunkOffsetX+1)+"-"+(chunkOffsetY+2)+".sav");
 			if(f.exists()) {
 				test.loadChunk(chunkOffsetX+1,chunkOffsetY+2);
 				chunk[1][2] = tempChunk;
@@ -876,7 +889,7 @@ public class Level {
 				chunk[1][2] = new Chunk(chunkOffsetX+1,2+chunkOffsetY);
 			}
 			
-			f = new File("chunks/"+(chunkOffsetX+2)+"-"+(chunkOffsetY+2)+".sav");
+			f = new File("saves/"+saveName+"/map/chunks/"+(chunkOffsetX+2)+"-"+(chunkOffsetY+2)+".sav");
 			if(f.exists()) {
 				test.loadChunk(chunkOffsetX+2,chunkOffsetY+2);
 				chunk[2][2] = tempChunk;

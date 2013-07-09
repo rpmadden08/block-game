@@ -2,37 +2,37 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
 		<item value="255" key="DIALOG_WIDTH"/>
-		<item value="264" key="DIALOG_Y_ORIGIN"/>
+		<item value="266" key="DIALOG_Y_ORIGIN"/>
+		<item value="1173" key="DIALOG_X_ORIGIN"/>
 		<item value="391" key="DIALOG_HEIGHT"/>
-		<item value="832" key="DIALOG_X_ORIGIN"/>
 		<item value="1|Lucida Grande|11.0|0|CARBON|1|Lucida Grande" key="DIALOG_FONT_NAME"/>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="wrap"/>
-		<item value="false" key="isRegEx"/>
 		<item value="false" key="casesensitive"/>
+		<item value="false" key="isRegEx"/>
 		<item value="false" key="incremental"/>
-		<item value="true" key="wholeword"/>
-		<item value="chunkOffsetY" key="selection"/>
+		<item value="false" key="wholeword"/>
+		<item value="start()" key="selection"/>
 		<list key="findhistory">
-			<item value="chunkY"/>
-			<item value="chunkX"/>
-			<item value="building"/>
-			<item value="3"/>
-			<item value="Size"/>
-			<item value="test3"/>
-			<item value="Component.weapon.collisionArea"/>
-			<item value="isMoving"/>
+			<item value="start()"/>
+			<item value="add"/>
+			<item value="main"/>
+			<item value="remove"/>
+			<item value="Tile.tileset_terrain"/>
+			<item value="Level.chunkSize"/>
+			<item value="Component.level.chunkSize"/>
+			<item value="chunkSize"/>
 		</list>
 		<list key="replacehistory">
+			<item value="remove"/>
+			<item value="ImageAssets.TERRAIN_IMAGE"/>
+			<item value="CHUNK_SIZE"/>
+			<item value="TILE_SIZE"/>
 			<item value="chunkOffsetY"/>
 			<item value="chunkOffsetX"/>
 			<item value="font"/>
 			<item value="Component.character.bounds"/>
-			<item value="isKnocking"/>
-			<item value="wasMoving"/>
-			<item value="Component.weapon.animation"/>
-			<item value="y"/>
 		</list>
 	</section>
 </section>
