@@ -16,7 +16,7 @@ public class Constants {
 	public static final int INVENTORY_ITEM_BORDER = 4;
 	
 	//level constants
-	public static final int CHUNK_SIZE = 20;
+	public static final int CHUNK_SIZE = 40;
 	public static final int NUMBER_OF_CHUNKS_ON_ONE_SIDE = 3;
 	
 	/* convert these to enums? */
