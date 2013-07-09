@@ -34,7 +34,7 @@ public class Level {
 	
 
 	public Level() {
-		//SaveGame test = new SaveGame();
+		SaveGame test = new SaveGame();
 		
 		//Perlin Noise Generator
 		long rgenseed = System.currentTimeMillis();

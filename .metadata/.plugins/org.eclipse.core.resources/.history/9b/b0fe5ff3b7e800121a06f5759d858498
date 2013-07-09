@@ -32,12 +32,12 @@ public class MainMenu {
 			  }
 			});
 		int y = 24;
-		if(files != null) {
+		if(files.length >-1) {
 		mainMenuButtons2 = new MainMenuButton[files.length];
-			for(int x=0; x<files.length;x++) {
-				mainMenuButtons2[x] = new MainMenuButton(x,files[x], y);
-				y = y +24;
-			}
+		for(int x=0; x<files.length;x++) {
+			mainMenuButtons2[x] = new MainMenuButton(x,files[x], y);
+			y = y +24;
+		}
 		}
 		
 	}

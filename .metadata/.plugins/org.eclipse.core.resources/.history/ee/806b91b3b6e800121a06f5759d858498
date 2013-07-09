@@ -1,9 +1,18 @@
 package com.companyname.blockgame;
 
 import java.awt.*;
+import java.util.*;
 import java.io.*;
+import java.awt.image.*;
 
+import javax.imageio.*;
 
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+
+import static com.companyname.blockgame.Constants.*;
+import com.companyname.blockgame.BlockTypes.*;
 
 
 
@@ -32,12 +41,10 @@ public class MainMenu {
 			  }
 			});
 		int y = 24;
-		if(files != null) {
 		mainMenuButtons2 = new MainMenuButton[files.length];
-			for(int x=0; x<files.length;x++) {
-				mainMenuButtons2[x] = new MainMenuButton(x,files[x], y);
-				y = y +24;
-			}
+		for(int x=0; x<files.length;x++) {
+			mainMenuButtons2[x] = new MainMenuButton(x+100,files[x], y);
+			y = y +24;
 		}
 		
 	}
@@ -58,9 +65,6 @@ public class MainMenu {
 	}
 	
 	public void buttonClicked(int c) {
-		if(mainMenuSection == 2) {
-			System.out.println(c);
-		}
 		switch(c) {
 		case 0://NEW GAME
 			

@@ -34,13 +34,12 @@ public class Level {
 	
 
 	public Level() {
-		//SaveGame test = new SaveGame();
+		SaveGame test = new SaveGame();
 		
 		//Perlin Noise Generator
 		long rgenseed = System.currentTimeMillis();
 		Random rgen = new Random();
-		Random rgen2 = new Random();
-		rgen2.setSeed(rgenseed);
+		//rgen.setSeed(rgenseed);
 		rgen.setSeed(0);
 		//System.out.println("Random number generator seed is " + rgenseed);
 		//perlin = new PerlinGenerator((int) rgenseed);

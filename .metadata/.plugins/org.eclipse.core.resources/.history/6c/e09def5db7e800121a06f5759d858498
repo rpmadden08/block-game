@@ -1,11 +1,13 @@
 package com.companyname.blockgame;
 
 //import java.awt.Dimension;
+import java.awt.Dimension;
 import java.awt.event.*;
 
+import static com.companyname.blockgame.Constants.*;
 
 
-public class Listening implements KeyListener, MouseListener, MouseMotionListener, MouseWheelListener{
+public class ListeningMainMenu extends Listening{
 	public void keyPressed(KeyEvent e) {
 	
 	}
@@ -23,9 +25,11 @@ public class Listening implements KeyListener, MouseListener, MouseMotionListene
 	}
 	
 	public void mouseDragged(MouseEvent e) {
+		Component.mse.setLocation(e.getX(),e.getY());
 	}
 	
 	public void mouseMoved(MouseEvent e) {
+		Component.mse.setLocation(e.getX(),e.getY());
 	}
 	
 	public void mouseClicked(MouseEvent e) {
@@ -41,10 +45,20 @@ public class Listening implements KeyListener, MouseListener, MouseMotionListene
 	}	
 	
 	public void mousePressed(MouseEvent e) {
-
+		if(e.getButton() == MouseEvent.BUTTON1) {
+			Component.isMouseLeft = true;
+		} else if (e.getButton() == MouseEvent.BUTTON3) {
+			Component.isMouseRight = true;
+		}
+		//Inventory.click(e);
 	}	
 	
 	public void mouseReleased(MouseEvent e) {
+		if(e.getButton() == MouseEvent.BUTTON1) {
+			Component.isMouseLeft = false;
+		} else if (e.getButton() == MouseEvent.BUTTON3) {
+			Component.isMouseRight = false;
+		}
 	}	
 	
 }

@@ -1,5 +1,8 @@
 package com.companyname.blockgame;
 
+import static com.companyname.blockgame.Constants.CHUNK_SIZE;
+import static com.companyname.blockgame.Constants.TILE_SIZE;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontMetrics;
@@ -8,7 +11,7 @@ import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
-public class MainMenuButtonFiles extends Rectangle{
+public class MainMenuButton extends Rectangle{
 	private static final long serialVersionUID = 1L;
 	public String name;
 	public int id;
@@ -18,7 +21,7 @@ public class MainMenuButtonFiles extends Rectangle{
 	public int fWidth;
 	public int fHeight;
 
-	public MainMenuButtonFiles(int id, String n, int y) {
+	public MainMenuButton(int id, String n, int y) {
 		name = n;
 		this.id = id;
 		Font font = new Font("Helvetica", Font.PLAIN, 12);

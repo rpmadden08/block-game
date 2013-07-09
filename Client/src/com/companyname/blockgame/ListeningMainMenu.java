@@ -1,10 +1,7 @@
 package com.companyname.blockgame;
 
 //import java.awt.Dimension;
-import java.awt.Dimension;
 import java.awt.event.*;
-
-import static com.companyname.blockgame.Constants.*;
 
 
 public class ListeningMainMenu extends Listening{

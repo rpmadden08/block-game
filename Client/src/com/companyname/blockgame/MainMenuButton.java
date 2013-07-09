@@ -1,7 +1,5 @@
 package com.companyname.blockgame;
 
-import static com.companyname.blockgame.Constants.CHUNK_SIZE;
-import static com.companyname.blockgame.Constants.TILE_SIZE;
 
 import java.awt.Color;
 import java.awt.Font;
