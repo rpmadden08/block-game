@@ -74,11 +74,11 @@ public class SaveGame{
 					
 			}
 		}
-		for(int y=1; y<Component.level.block.length-1;y++) {
-			for(int x=1; x<Component.level.block[0].length-1;x++) {
-					Component.level.checkAutoTile(x, y);
-			}
-		}
+//		for(int y=1; y<Component.level.block.length-1;y++) {
+//			for(int x=1; x<Component.level.block[0].length-1;x++) {
+//					Component.level.checkAutoTile(x, y);
+//			}
+//		}
 		
 		//Component.character.HP = HP;
 //		x = (Integer) save.readObject();
@@ -92,7 +92,7 @@ public class SaveGame{
 		}
 		catch(Exception exc){
 			exc.printStackTrace(); // If there was an error, print the info.
-			System.out.println("FAILURE!");
+			System.out.println("FAILURE TO LOAD CHUNK:  "+ chunkX+"/"+chunkY);
 		}
 	}
 	

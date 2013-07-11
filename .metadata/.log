@@ -754,3 +754,16 @@ Command-line arguments:  -os macosx -ws carbon -arch x86 -keyring /Users/chrisma
 
 !ENTRY org.eclipse.core.net 1 0 2013-07-03 21:34:17.244
 !MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences
+!SESSION 2013-07-11 10:00:41.714 -----------------------------------------------
+eclipse.buildId=M20080221-1800
+java.version=1.6.0_51
+java.vendor=Apple Inc.
+BootLoader constants: OS=macosx, ARCH=x86, WS=carbon, NL=en_US
+Framework arguments:  -keyring /Users/chrismadden/.eclipse_keyring -showlocation
+Command-line arguments:  -os macosx -ws carbon -arch x86 -keyring /Users/chrismadden/.eclipse_keyring -consoleLog -showlocation
+
+!ENTRY org.eclipse.core.net 1 0 2013-07-11 10:00:45.486
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences
+
+!ENTRY org.eclipse.ui 4 4 2013-07-11 10:09:30.215
+!MESSAGE Invalid preference page path: Cache

@@ -25,7 +25,9 @@ public class Level {
 	public Random rand2 = new Random();
 	public Random seed = new Random();
 	public int Size = 100;
-	public PerlinGenerator perlin = new PerlinGenerator(0);
+	private long rgenseed = System.currentTimeMillis();
+	
+	public PerlinGenerator perlin = new PerlinGenerator((int) rgenseed);
 	public BlockTypess test2 = new BlockTypess();
 	public Font font = new Font("Arial", Font.PLAIN, 23);
 	public SaveGame test = new SaveGame();
@@ -35,32 +37,18 @@ public class Level {
 
 	public Level() {
 		//SaveGame test = new SaveGame();
+		saveName = Component.saveName;
 		
 		//Perlin Noise Generator
 		long rgenseed = System.currentTimeMillis();
 		Random rgen = new Random();
-		Random rgen2 = new Random();
-		rgen2.setSeed(rgenseed);
-		rgen.setSeed(0);
+		//Random rgen2 = new Random();
+		rgen.setSeed(rgenseed);
+		//rgen.setSeed(0);
 		//System.out.println("Random number generator seed is " + rgenseed);
 		//perlin = new PerlinGenerator((int) rgenseed);
 		
-		//perlin = new PerlinGenerator(0);
-		
-		
-		//Get MapHeight
-//		for(int y=0; y<chunk.length;y++) {
-//			for(int x=0; x<chunk[0].length;x++) {
-//				for(int y2=0; y2<CHUNK_SIZE;y2++) {
-//					for(int x2=0; x2<CHUNK_SIZE;x2++) {
-//						mapHeight[(x*CHUNK_SIZE)+x2][(y*CHUNK_SIZE)+y2] = perlin.Noise(4 * ((y*CHUNK_SIZE)+y2) / (float)Size, 4 * ((x*CHUNK_SIZE)+x2) / (float)Size, 0);
-//					}
-//				}
-//			}
-//		}
-		
-		
-
+		//perlin = new PerlinGenerator(0);		
 		
 		//Render air for block2
 		for(int y=0; y<block2.length;y++) {
@@ -69,110 +57,58 @@ public class Level {
 				
 			}
 		}
+	}
+	
+	public void loadWorld() {
+		for(int y=0; y<chunk.length;y++) {
+			for(int x=0; x<chunk[0].length;x++) {
+				chunk[x][y] = new Chunk(x,y);
+				//System.out.println(x+","+y);
+			}
+		}
 		
-
+		test.loadChunk(chunkOffsetX,chunkOffsetY);
+		chunk[0][0] = tempChunk;
+		//System.out.println(tempChunk.cBlock[0][0].x);
+		test.loadChunk(chunkOffsetX+1,chunkOffsetY);
+		chunk[1][0] = tempChunk;
+		test.loadChunk(chunkOffsetX+2,chunkOffsetY);
+		chunk[2][0] = tempChunk;
+		test.loadChunk(chunkOffsetX,chunkOffsetY+1);
+		chunk[0][1] = tempChunk;
+		test.loadChunk(chunkOffsetX+1,chunkOffsetY+1);
+		chunk[1][1] = tempChunk;
+		test.loadChunk(chunkOffsetX+2,chunkOffsetY+1);
+		chunk[2][1] = tempChunk;
+		test.loadChunk(chunkOffsetX,chunkOffsetY+2);
+		chunk[0][2] = tempChunk;
+		test.loadChunk(chunkOffsetX+1,chunkOffsetY+2);
+		chunk[1][2] = tempChunk;
+		test.loadChunk(chunkOffsetX+2,chunkOffsetY+2);
+		chunk[2][2] = tempChunk;
 		
-		
-//		for(int y=0; y<chunk.length;y++) {
-//			for(int x=0; x<chunk[0].length;x++) {
-//				test.saveChunk(x, y);
-//				//System.out.println(x+","+y);
-//			}
-//		}
-		
-		
-		//test.loadSave();
-
-		//Copy chunk 0,0
-
-		
-		
-		
-/*
-//		SaveGame test = new SaveGame();
-//		test.loadSave();
-
-		long rgenseed = System.currentTimeMillis();
-		Random rgen = new Random();
-		rgen.setSeed(rgenseed);
-		//System.out.println("Random number generator seed is " + rgenseed);
-		
-		perlin = new PerlinGenerator((int) rgenseed);
-		//Perlin = new PerlinGenerator(0);
-
-		
-		for(int y=0; y<block.length;y++) {
-			for(int x=0; x<block[0].length;x++) {
-				//block[x][y].id = Tile.earth;
+		for(int y=0; y<chunk.length;y++) {
+			for(int x=0; x<chunk[0].length;x++) {
 				
-				block2[x][y] = new Block(new Rectangle(x * TILE_SIZE + (int) Component.sX, y * TILE_SIZE + (int) Component.sY, TILE_SIZE, TILE_SIZE), Tile.air);
-			}
-		}
-		
-		for(int y=0; y<block.length;y++) {
-			for(int x=0; x<block[0].length;x++) {
-				block[x][y] = new Grass(new Rectangle(x * TILE_SIZE + (int) Component.sX, y * TILE_SIZE + (int) Component.sY, TILE_SIZE, TILE_SIZE), Tile.grass);
-				mapHeight[x][y] = perlin.Noise(4 * y / (float)Size, 4 * x / (float)Size, 0);
-			}
-		}
-		for(int y=0; y<block.length;y++) {
-			for(int x=0; x<block[0].length;x++) {
-				if(y == 0 || x == 0 || y == block.length-1 || x == block[0].length-1) {
-					block2[x][y] = new Bedrock(new Rectangle(x * TILE_SIZE + (int) Component.sX, y * TILE_SIZE + (int) Component.sY, TILE_SIZE, TILE_SIZE), Tile.bedrock);	
+				for(int y2=0; y2<chunk[x][y].cBlock.length;y2++) {
+					for(int x2=0; x2<chunk[x][y].cBlock[0].length;x2++) {
+						//System.out.println("Chunk: "+ x+","+y+"   "+ x2+","+y2);
+						//System.out.println(chunk[x][y].cBlock[x][y].id[0]+","+chunk[x][y].cBlock[x][y].id[1]);
+						//System.out.println(x2+(x*CHUNK_SIZE) +","+(y2+(y*CHUNK_SIZE)));
+						block[(x*CHUNK_SIZE)+x2][(y*CHUNK_SIZE)+y2] = chunk[x][y].cBlock[x2][y2];
+						
+						//block2[(x*CHUNK_SIZE)+x2][(y*CHUNK_SIZE)+y2] = chunk[x][y].cBlock2[x2][y2];
+					}
 				}
 			}
 		}
 		
-		
-		
-
-//		
-		for(int y=0; y<block.length;y++) {
-			for(int x=0; x<block[0].length;x++) {
-				if(mapHeight[x][y] < -0.2) {
-					block[x][y] = new Water(new Rectangle(x * TILE_SIZE + (int) Component.sX, y * TILE_SIZE + (int) Component.sY, TILE_SIZE, TILE_SIZE), Tile.water);
-					
-				
-				}
-			}
-		}
-//TREES
-//		for(int y=0; y<block2.length;y++) {
-//			for(int x=0; x<block2[0].length;x++) {
-//				Random rand = new Random();
-//				int  n = rand.nextInt(10) + 1;
-//				if(n == 1 && block[x][y].id == Tile.grass && block2[x][y].id != Tile.bedrock) {
-//					block2[x][y] = new Tree(new Rectangle(x * TILE_SIZE + (int) Component.sX, y * TILE_SIZE + (int) Component.sY, TILE_SIZE, TILE_SIZE), Tile.tree);
-//				}
-//			}
-//		}
-
 		for(int y=1; y<block.length-1;y++) {
 			for(int x=1; x<block[0].length-1;x++) {
-					checkAutoTile(x, y);
+				checkAutoTile(x, y);
 			}
 		}
 		
-		//TESTING FOR SAVE FILE STUFF...
-		//block[14][20].id = Tile.air;
-		//checkAutoTile(6, 2);
-		//System.out.println(block[6][2].id[0]+","+block[6][2].id[1]);
-
-		//block[5][5] = new Block(new Rectangle(5 * TILE_SIZE + (int) Component.sX, 5 * TILE_SIZE + (int) Component.sY, TILE_SIZE, TILE_SIZE), Tile.bedrock);
-
-		//System.out.println(block[6][2].id[1]);
-		BlockType test2 = new BlockType();
-		System.out.println(test2.example.get("Wayne"));
-		String test15 = "Wayne";
-		test2.x1 = 5;
-		test2.y1 = 5;
-		test2.newBlock();
-		block[5][5] = test2.example.get(test15);
-//		test2.x1 = 5;
-//		test2.y1 = 7;
-//		test2.newBlock();
-//		block[5][7] = test2.example.get(test15);
- */
 	}
 	
 	public void createWorld() {
@@ -195,6 +131,7 @@ public class Level {
 						//System.out.println(chunk[x][y].cBlock[x][y].id[0]+","+chunk[x][y].cBlock[x][y].id[1]);
 						//System.out.println(x2+(x*CHUNK_SIZE) +","+(y2+(y*CHUNK_SIZE)));
 						block[(x*CHUNK_SIZE)+x2][(y*CHUNK_SIZE)+y2] = chunk[x][y].cBlock[x2][y2];
+						
 						//block2[(x*CHUNK_SIZE)+x2][(y*CHUNK_SIZE)+y2] = chunk[x][y].cBlock2[x2][y2];
 					}
 				}
@@ -648,12 +585,12 @@ public class Level {
 	}
 	
 	public void saveCurrentRender() {
-		test.saveChunk(chunk[0][0].chunkX,chunk[0][0].chunkY,2,0);
-		test.saveChunk(chunk[0][1].chunkX,chunk[0][1].chunkY,2,1);
-		test.saveChunk(chunk[0][2].chunkX,chunk[0][2].chunkY,2,2);
-		test.saveChunk(chunk[1][0].chunkX,chunk[1][0].chunkY,2,0);
-		test.saveChunk(chunk[1][1].chunkX,chunk[1][1].chunkY,2,1);
-		test.saveChunk(chunk[1][2].chunkX,chunk[1][2].chunkY,2,2);
+		test.saveChunk(chunk[0][0].chunkX,chunk[0][0].chunkY,0,0);
+		test.saveChunk(chunk[0][1].chunkX,chunk[0][1].chunkY,0,1);
+		test.saveChunk(chunk[0][2].chunkX,chunk[0][2].chunkY,0,2);
+		test.saveChunk(chunk[1][0].chunkX,chunk[1][0].chunkY,1,0);
+		test.saveChunk(chunk[1][1].chunkX,chunk[1][1].chunkY,1,1);
+		test.saveChunk(chunk[1][2].chunkX,chunk[1][2].chunkY,1,2);
 		test.saveChunk(chunk[2][0].chunkX,chunk[2][0].chunkY,2,0);
 		test.saveChunk(chunk[2][1].chunkX,chunk[2][1].chunkY,2,1);
 		test.saveChunk(chunk[2][2].chunkX,chunk[2][2].chunkY,2,2);

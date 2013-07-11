@@ -3,18 +3,19 @@
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
 		<item value="255" key="DIALOG_WIDTH"/>
 		<item value="266" key="DIALOG_Y_ORIGIN"/>
-		<item value="1173" key="DIALOG_X_ORIGIN"/>
 		<item value="391" key="DIALOG_HEIGHT"/>
+		<item value="1173" key="DIALOG_X_ORIGIN"/>
 		<item value="1|Lucida Grande|11.0|0|CARBON|1|Lucida Grande" key="DIALOG_FONT_NAME"/>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="wrap"/>
-		<item value="false" key="casesensitive"/>
 		<item value="false" key="isRegEx"/>
+		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="false" key="wholeword"/>
-		<item value="start()" key="selection"/>
+		<item value="saveName" key="selection"/>
 		<list key="findhistory">
+			<item value="saveName"/>
 			<item value="start()"/>
 			<item value="add"/>
 			<item value="main"/>
@@ -22,7 +23,6 @@
 			<item value="Tile.tileset_terrain"/>
 			<item value="Level.chunkSize"/>
 			<item value="Component.level.chunkSize"/>
-			<item value="chunkSize"/>
 		</list>
 		<list key="replacehistory">
 			<item value="remove"/>

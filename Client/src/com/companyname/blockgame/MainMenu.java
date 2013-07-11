@@ -59,56 +59,62 @@ public class MainMenu {
 	
 	public void buttonClicked(int c) {
 		if(mainMenuSection == 2) {
-			System.out.println(c);
-		}
-		switch(c) {
-		case 0://NEW GAME
 			
-			mainMenuSection = 1;
-
-			textField  = new TextField("New World",30);
-			component.add(textField);
-			Font font = new Font("Ariel", Font.PLAIN, 22);
-			
-			
-			textField.requestFocus();
-			textField.setFont(font);
-			textField.setSize(300,23);
-			textField.setLocation(250,24);
-			createNewWorld = new MainMenuButton(11, "CREATE NEW WORLD", 48);
-			
-			
-			break;
-			
-		case 1://LOAD GAME
-			mainMenuSection = 2;
-			break;
-			
-		case 2://OPTIONS
-			break;
-			
-		case 3: //QUIT
-			break;
-			
-		case 11: //  STARTING A NEW WORLD
-			//System.out.println("Create New World");
-			
-
-			
-			File f = new File("saves/"+textField.getText());
-			
-			
-			if(f.exists()) {
-				System.out.println("GameSave Already exists!");
-			} else {
-				new File("saves/"+textField.getText()+"/map/chunks").mkdirs();
-				component.remove(textField);
-				component.changeListener(0);
-				component.startGame();
-				Component.level.saveName = textField.getText();
-				Component.level.saveCurrentRender();
+			//new File("saves/"+mainMenuButtons2[c].name+"/map/chunks").mkdirs();
+			component.changeListener(0);
+			component.saveName = mainMenuButtons2[c].name;
+			component.loadGame();
+			Component.level.saveCurrentRender();
+		} else {
+			switch(c) {
+			case 0://NEW GAME
+				
+				mainMenuSection = 1;
+	
+				textField  = new TextField("New World",30);
+				component.add(textField);
+				Font font = new Font("Ariel", Font.PLAIN, 22);
+				
+				
+				textField.requestFocus();
+				textField.setFont(font);
+				textField.setSize(300,23);
+				textField.setLocation(250,24);
+				createNewWorld = new MainMenuButton(11, "CREATE NEW WORLD", 48);
+				
+				
+				break;
+				
+			case 1://LOAD GAME
+				mainMenuSection = 2;
+				break;
+				
+			case 2://OPTIONS
+				break;
+				
+			case 3: //QUIT
+				break;
+				
+			case 11: //  STARTING A NEW WORLD
+				//System.out.println("Create New World");
+				
+	
+				
+				File f = new File("saves/"+textField.getText());
+				
+				
+				if(f.exists()) {
+					System.out.println("GameSave Already exists!");
+				} else {
+					new File("saves/"+textField.getText()+"/map/chunks").mkdirs();
+					component.remove(textField);
+					component.changeListener(0);
+					component.startGame();
+					Component.level.saveName = textField.getText();
+					Component.level.saveCurrentRender();
+				}
+				break;
 			}
-			break;
 		}
 			
 	}

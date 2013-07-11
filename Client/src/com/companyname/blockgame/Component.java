@@ -56,6 +56,7 @@ public class Component extends JApplet implements Runnable {
 	//public ListeningMainMenu listeningMainMenu = new ListeningMainMenu();
 	public static Listening listening = new Listening();
 	public static JTextField textField;
+	public static String saveName;
 
 	public Component() {
 		
@@ -147,6 +148,17 @@ public class Component extends JApplet implements Runnable {
 		currentState = new MainState();
 		level = new Level();
 		level.createWorld();
+		//level.saveChunk();
+		character = new Character(24, TILE_SIZE*2);
+		weapon = new Weapon(TILE_SIZE, TILE_SIZE, SWORD);
+		inventory = new Inventory();
+		day = new Day();
+	}
+	
+	public void loadGame() {
+		currentState = new MainState();
+		level = new Level();
+		level.loadWorld();
 		//level.saveChunk();
 		character = new Character(24, TILE_SIZE*2);
 		weapon = new Weapon(TILE_SIZE, TILE_SIZE, SWORD);
