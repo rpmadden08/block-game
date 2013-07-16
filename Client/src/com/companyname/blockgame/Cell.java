@@ -1,17 +1,18 @@
 package com.companyname.blockgame;
 
 import java.awt.*;
-import java.awt.FontMetrics;
+
+import static com.companyname.blockgame.Constants.*;
+import com.companyname.blockgame.Items.*;
 
 public class Cell extends Rectangle{
 	private static final long serialVersionUID = 1L;
 	
-	public int[] id = {0, 0};
+	public Item item = new NoItem();
 	public int stack = 0;
 	
-	public Cell(Rectangle size, int[] id) {
+	public Cell(Rectangle size) {
 		setBounds(size);
-		this.id = id;
 	}
 	
 	public void render(Graphics g, boolean isSelected) {
@@ -20,14 +21,14 @@ public class Cell extends Rectangle{
 			g.fillRect(x, y, width, height);
 		}
 		
-		g.drawImage(Tile.tile_cell, x, y, width, height, null);
+		g.drawImage(ImageAssets.CELL_IMAGE, x, y, width, height, null);
 		
-		if(id != Tile.air) {
-			g.drawImage(Tile.tileset_terrain, x +Tile.invItemBorder,y +Tile.invItemBorder, x - Tile.invItemBorder+ width, y-Tile.invItemBorder + height, id[0] * Tile.tileSize, id[1] * Tile.tileSize, id[0] * Tile.tileSize + Tile.tileSize, id[1] * Tile.tileSize + Tile.tileSize, null);
+		if(item.id != EMPTY) {
+			g.drawImage(ImageAssets.TERRAIN_IMAGE, x +INVENTORY_ITEM_BORDER,y +INVENTORY_ITEM_BORDER, x - INVENTORY_ITEM_BORDER+ width, y-INVENTORY_ITEM_BORDER + height, item.imageXPos * TILE_SIZE, item.imageYPos * TILE_SIZE, item.imageXPos * TILE_SIZE + TILE_SIZE, item.imageYPos * TILE_SIZE + TILE_SIZE, null);
 		}
 		
 		if(isSelected && !Inventory.isOpen) {
-			g.drawImage(Tile.tile_select, x-1, y-1, width +3, height +3, null);
+			g.drawImage(ImageAssets.SELECT_IMAGE, x-1, y-1, width +2, height +2, null);
 		}
 		if(stack > 1) {
 			Font font = new Font("Helvetica", Font.PLAIN, 12);
@@ -36,7 +37,7 @@ public class Cell extends Rectangle{
 			String stack2 = Integer.toString(stack);
 			FontMetrics fontMetrics = g.getFontMetrics(font);
 			
-			g.drawString(Integer.toString(stack), x +Tile.invCellSize-4 - fontMetrics.stringWidth(stack2), y+Tile.invCellSize-5);
+			g.drawString(Integer.toString(stack), x +INVENTORY_CELL_SIZE-4 - fontMetrics.stringWidth(stack2), y+INVENTORY_CELL_SIZE-5);
 		}
 	}
 }

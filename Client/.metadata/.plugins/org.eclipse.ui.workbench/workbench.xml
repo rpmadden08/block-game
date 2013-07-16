@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<workbench progressCount="25" version="2.0">
+<workbench progressCount="23" version="2.0">
 <workbenchAdvisor/>
 <window height="768" width="1024" x="0" y="22">
 <fastViewData fastViewLocation="1024"/>
@@ -30,7 +30,9 @@
 </editorArea>
 </editors>
 <views>
-<view id="org.eclipse.jdt.ui.TypeHierarchy" partName="Hierarchy"/>
+<view id="org.eclipse.jdt.ui.TypeHierarchy" partName="Hierarchy">
+<viewState hidefields="false" hidelocaltypes="false" hidenonpublic="false" hidestatic="false" isWindowWorkingSet="false" link_editors="0" mv_vertical_scroll="0" orientation="3" qualified_names="0" ratio="350" showinherited="false" sortbydefiningtype="false" vertical_scroll="0" view="2" workingSetName=""/>
+</view>
 <view id="org.eclipse.ui.views.ProblemView" partName="Problems">
 <viewState columnWidth0="274" columnWidth1="99" columnWidth2="174" columnWidth3="84" columnWidth4="0" horizontalPosition="0" verticalPosition="0">
 <columnOrder columnOrderIndex="0"/>
@@ -164,7 +166,7 @@
 <presentation id="org.eclipse.ui.internal.presentations.r33.WorkbenchPresentationFactory_33"/>
 </folder>
 </info>
-<info part="org.eclipse.ui.editorss" ratio="0.25" ratioLeft="254" ratioRight="762" relationship="2" relative="left"/>
+<info part="org.eclipse.ui.editorss" ratio="0.36722606" ratioLeft="372" ratioRight="641" relationship="2" relative="left"/>
 <info folder="true" part="bottom" ratio="0.7493225" ratioLeft="553" ratioRight="185" relationship="4" relative="org.eclipse.ui.editorss">
 <folder activePageID="org.eclipse.ui.views.ProblemView" appearance="2" expanded="2">
 <page content="org.eclipse.ui.views.ProblemView" label="Problems"/>

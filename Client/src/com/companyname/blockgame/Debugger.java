@@ -5,6 +5,8 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.text.DecimalFormat;
 
+import static com.companyname.blockgame.Constants.*;
+
 public class Debugger {
 	private static int NUM_FRAMES_USED_FOR_SAMPLE_MEAN = 10;
 	private static long MAX_STATS_INTERVAL = 1000000000L;	//how often to record stats
@@ -105,11 +107,16 @@ public class Debugger {
 		if (isDebugging) {
 			g.setColor(Color.white);
 			g.setFont(font);
+//			String totalMemory = String.valueOf(Runtime.getRuntime().totalMemory());
+//			String maxMemory = String.valueOf(Runtime.getRuntime().maxMemory());
+//			String memory = String.valueOf((Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory()) / (1024* 1024));
+			
 	
 			g.drawString("Average FPS/UPS: " + df.format(averageFPS) + ", " + df.format(averageUPS), 20, 25);
 			g.drawString("Frame Count/Loss: " + frameCount + " / " + totalFramesSkipped, 20, 35);
 			g.drawString("Time Spent In Game: " + timeSpentInGame + " secs", 20, 45);
 			g.drawString("x/y: " + Component.sX + " / " + Component.sY, 20, 55);
+			g.drawString("Character Tile x/y: " + Component.character.x / TILE_SIZE + "/" + Component.character.y/ TILE_SIZE, 20,65);
 		}
 	}
 	

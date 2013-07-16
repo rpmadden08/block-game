@@ -1,182 +1,452 @@
 package com.companyname.blockgame;
-
+//THIS IS THE ORIGINAL (a reminder for Chris when he merged code)...
 import java.awt.*;
-import java.awt.image.*;
+import java.util.Random;
 
-public class Character {
-	public static int width = 32;
-	public static int height = 36;
-	private int x = (int) (Component.initialGameWidth / 2) - (int) (width / 2);
-	private int y = (int) (Component.initialGameHeight/ 2) - (int) (height / 2);
+import static com.companyname.blockgame.Constants.*;
 
-	/* Movement */
-	public double maxSpeed = 1;
+public class Character extends DoubleRectangle {
+	public double fallingSpeed = 1;
+	public double movementSpeed = 1;
+	public double maxSpeed = 5; //Should be 1
+	public double speed = maxSpeed;
+	public double knockBackSpeed = 3;
+	public double jumpingSpeed = 8;
+	public int maxHP = 20;
+	public int HP = maxHP;
+	public int Attack = 5;
+	public Rectangle collisionArea = bounds();
+	public int jumpingHeight = 8, jumpingCount = 0;
+	public int animation = 0;  
+	public int animationFrame = 0, animationTime = 8;
+	public int imageXPos = 0;
+	public int imageYPos = 14;
 	
 	public static boolean isMovingUp = false;
 	public static boolean isMovingDown = false;
 	public static boolean isMovingRight = false;
 	public static boolean isMovingLeft = false;
 	
-	private double moveX = 0;
-	private double moveY = 0;
+	public static boolean isKnockingUp = false;
+	public static boolean isKnockingDown = false;
+	public static boolean isKnockingRight = false;
+	public static boolean isKnockingLeft = false;
 	
-	/* Collision Detection */
-	//TODO: Adjust these values to match actual offset.
-	public static double frameOffsetLeft = 10;
+	public static boolean isFacingUp = false;
+	public static boolean isFacingDown = true;
+	public static boolean isFacingRight = false;
+	public static boolean isFacingLeft = false;
+	
+	public static boolean isRunning = false;
+	
+	public boolean isKnockingBack = false;
+	public int stepsToTake = 0;
+	public int dir;
+	public Random rand = new Random();
+	public Random rand2 = new Random();
+	public double vX;
+	public double vY;
+	
+	public int xVelocity = 0;
+	public int yVelocity = 0;
+	public int offsetX = 0;
+	public int offsetY = 0;
+	public int xDistance = 0;
+	public int yDistance = 0;
+	public int step = 0;
+	public int[] stepArr = {0,1,0,2};
+	
+	public double moveX = 0;
+	public double moveY = 0;
+	
+	//1,14,31,16
+	public static double frameOffsetLeft = 4;
 	public static double frameOffsetRight = 20;
-	public static double frameOffsetBottom = 35;
-	public static double frameOffsetTop = 24;
+	public static double frameOffsetBottom = 31;
+	public static double frameOffsetTop = 16;
+	
+	
+	
+	public Character(int width, int height) {
+		setBounds((Component.pixel.width / 2) - (width / 2), (Component.pixel.height / 2) - (height / 2), width, height);
+		x = (CHUNK_SIZE /2+ CHUNK_SIZE)* TILE_SIZE-TILE_SIZE;
+		y = (CHUNK_SIZE /2+ CHUNK_SIZE)* TILE_SIZE-TILE_SIZE;
+		Component.sX = (CHUNK_SIZE /2+ CHUNK_SIZE)* TILE_SIZE-TILE_SIZE - (Component.pixel.width/2)+TILE_SIZE;
+		Component.sY = (CHUNK_SIZE /2+ CHUNK_SIZE)* TILE_SIZE-TILE_SIZE - (Component.pixel.height/2)+TILE_SIZE;
 
-	/* Animation */
-	public int step = 1;
-	public int[] stepArr = {0,1,2,1};
-	public int animation = 0;  
-	public int animationFrame = 0, animationTime = 11;
-	
-	private int framePos[] = {0, 2};
-	
-	/* Render variables */
-	public static BufferedImage img;
-	public static BufferedImage base;
-	public static BufferedImage eyes;
-	public static BufferedImage hair;
-	public static BufferedImage outfit;
-	
-	private int dx1, dy1, dx2, dy2, sx1, sy1, sx2, sy2;
-	
-	public Character() {
-		dx1 = x - (int) Component.sX;
-		dy1 = y - (int) Component.sY;
-		dx2 = x + width - (int) Component.sX;
-		dy2 = y + height - (int) Component.sY;
-		
-		sx1 = framePos[0] * width + width * animation;
-		sy1 = framePos[1] * height;
-		sx2 = sx1 + width;
-		sy2 = sy1 + height;
+	}
+	public Rectangle bounds() {
+		return (new Rectangle((int) x + (int) frameOffsetLeft -(int)Component.sX,(int) y + 9- (int)Component.sY,(int) frameOffsetRight - (int) frameOffsetLeft,(int)frameOffsetBottom - 8));
+	  //return (new Rectangle(x + frameOffsetLeft,y + frameOffsetTop,frameWidth,frameHeight));
 	}
 	
-	public void tick() {
-		if(isMovingLeft || isMovingRight || isMovingUp || isMovingDown) {
-			moveX = 0;
-			moveY = 0;
-			
-			if(isMovingRight) {
-				moveX += maxSpeed;
-				framePos[1] = 1;
-			}
-			if(isMovingLeft) {
-				moveX += -maxSpeed;
-				framePos[1] = 3;
-			}
-			if(isMovingDown) {
-				moveY += maxSpeed;
-				framePos[1] = 2;
-			}
-			if(isMovingUp) {
-				moveY += -maxSpeed;
-				framePos[1] = 0;
-			}
-			moveX = getCollisionX();
-			moveY = getCollisionY();
-			
-			x += moveX;
-			y += moveY;
-			Component.sX += moveX;
-			Component.sY += moveY;
-			
-			if(animationFrame >= animationTime) {
-				if(step > 2) {
-					step = 0;
-				} else {
-					step += 1;
-				}
-				animation = stepArr[step];
-				animationFrame = 0;
-			} else {
-				animationFrame += 1;
-			}
-		} else {
-			animation = 1;
-			step = 1;
-		}
+	public void knockBack(int mobX, int mobY) {
+//		x = x+(vX*knockBackSpeed);
+//		y = y+(vY*knockBackSpeed);
+		//getKnockBackDir
+//		float angle = (float) Math.atan2(((y+24- (int) Component.sY) - (Component.character.y+20-(int) Component.sY)), 
+//				((x+8 -(int) Component.sX) - (Component.character.x+8 - (int) Component.sX)));
+		float angle = (float) Math.atan2(((y+20-(int) Component.sY)-(mobY+24- (int) Component.sY)), 
+				((x+8 - (int) Component.sX)-(mobX+8 -(int) Component.sX)));
+		//Convert the Radian to degrees
+		angle = angle * 180 / (int) Math.PI;
+		if(angle < 0){
+	        angle += 360;
+	    } 
+		dir = (int) angle;
+		speed = knockBackSpeed;
+		stepsToTake = 10;
 		
-		dx1 = x - (int) Component.sX;
-		dy1 = y - (int) Component.sY;
-		dx2 = x + width - (int) Component.sX;
-		dy2 = y + height - (int) Component.sY;
-		
-		sx1 = framePos[0] * width + width * animation;
-		sy1 = framePos[1] * height;
-		sx2 = sx1 + width;
-		sy2 = sy1 + height;
 	}
-	
 	public double getCollisionX() {
 		double horizontalExtra = 0;
-		double x1 = Math.floor((x+frameOffsetLeft + moveX) /Tile.tileSize);
-		double x2 = Math.floor((x+frameOffsetRight + moveX) /Tile.tileSize);
-		double y1 = Math.floor((y+frameOffsetTop) /Tile.tileSize);
-		double y2 = Math.floor((y+frameOffsetBottom) /Tile.tileSize);
-		
+		double x1 = Math.floor((x+frameOffsetLeft + moveX) /TILE_SIZE-(Component.level.chunkOffsetX * CHUNK_SIZE));
+		double x3 = Math.floor((x+frameOffsetLeft + moveX) /TILE_SIZE);
+		double x2 = Math.floor((x+frameOffsetRight + moveX) /TILE_SIZE-(Component.level.chunkOffsetX * CHUNK_SIZE));
+		double x4 = Math.floor((x+frameOffsetRight + moveX) /TILE_SIZE);
+		double y1 = Math.floor((y+frameOffsetTop) /TILE_SIZE-(Component.level.chunkOffsetY * CHUNK_SIZE));
+		double y2 = Math.floor((y+frameOffsetBottom) /TILE_SIZE-(Component.level.chunkOffsetY * CHUNK_SIZE));
+	
 		if(isMovingLeft) {
-			if(Component.level.block[(int)x1][(int)y1].isPassable == false || Component.level.block[(int)x1][(int)y2].isPassable == false) {
-				horizontalExtra = (x + frameOffsetLeft) - x1 * Tile.tileSize - Tile.tileSize;
+			if(Component.level.block[(int)x1][(int)y1].isPassable == false || Component.level.block[(int)x1][(int)y2].isPassable == false
+					||Component.level.block2[(int)x1][(int)y1].isPassable == false || Component.level.block2[(int)x1][(int)y2].isPassable == false) {
+				horizontalExtra = (x + frameOffsetLeft) - x3 * TILE_SIZE - TILE_SIZE;
+				
 				return Math.min(0, -(horizontalExtra));
 			}
 		}
 		if(isMovingRight) {
-			if(Component.level.block[(int)x2][(int)y1].isPassable == false || Component.level.block[(int)x2][(int)y2].isPassable == false) {
-				horizontalExtra = x2 * Tile.tileSize - (x + frameOffsetRight) - 1;
+			if(Component.level.block[(int)x2][(int)y1].isPassable == false || Component.level.block[(int)x2][(int)y2].isPassable == false
+					|| Component.level.block2[(int)x2][(int)y1].isPassable == false || Component.level.block2[(int)x2][(int)y2].isPassable == false) {
+				
+				//horizontalExtra = x2 * TILE_SIZE - (x + frameOffsetRight) - 1;
+				horizontalExtra = x4 * TILE_SIZE - (x + frameOffsetRight) - 1;
 				return Math.max(0, horizontalExtra);
 			}
+
 		}
 		return moveX;
 	}
-	
 	public double getCollisionY() {
 		double verticalExtra = 0;
-		double x1 = Math.floor((x+frameOffsetLeft) /Tile.tileSize);
-		double x2 = Math.floor((x+frameOffsetRight) /Tile.tileSize);
-		double y1 = Math.floor((y+frameOffsetTop + moveY) /Tile.tileSize);
-		double y2 = Math.floor((y+frameOffsetBottom + moveY) /Tile.tileSize);
+		double x1 = Math.floor((x+frameOffsetLeft) /TILE_SIZE-(Component.level.chunkOffsetX * CHUNK_SIZE));
+		double x2 = Math.floor((x+frameOffsetRight) /TILE_SIZE-(Component.level.chunkOffsetX * CHUNK_SIZE));
+		double y1 = Math.floor((y+frameOffsetTop + moveY) /TILE_SIZE-(Component.level.chunkOffsetY * CHUNK_SIZE));
+		double y3 = Math.floor((y+frameOffsetTop + moveY) /TILE_SIZE);
+		double y2 = Math.floor((y+frameOffsetBottom + moveY) /TILE_SIZE-(Component.level.chunkOffsetY * CHUNK_SIZE));
+		double y4 = Math.floor((y+frameOffsetBottom + moveY) /TILE_SIZE);
 		
 		if(isMovingDown) {
-			if(Component.level.block[(int)x2][(int)y2].isPassable == false || Component.level.block[(int)x1][(int)y2].isPassable == false) {
-				verticalExtra = y2 * Tile.tileSize - (y + frameOffsetBottom) - 1;
+			if(Component.level.block[(int)x2][(int)y2].isPassable == false || Component.level.block[(int)x1][(int)y2].isPassable == false
+					|| Component.level.block2[(int)x2][(int)y2].isPassable == false || Component.level.block2[(int)x1][(int)y2].isPassable == false) {
+				verticalExtra = y4 * TILE_SIZE - (y + frameOffsetBottom) - 1;
 				return Math.max(0, verticalExtra);
 				
 			}
 		}
 		if(isMovingUp) {
-			if(Component.level.block[(int)x1][(int)y1].isPassable == false || Component.level.block[(int)x2][(int)y1].isPassable == false) {
-				verticalExtra = (y + frameOffsetTop) - y1 * Tile.tileSize - Tile.tileSize;
+			if(Component.level.block[(int)x1][(int)y1].isPassable == false || Component.level.block[(int)x2][(int)y1].isPassable == false
+					|| Component.level.block2[(int)x1][(int)y1].isPassable == false || Component.level.block2[(int)x2][(int)y1].isPassable == false) {
+				verticalExtra = (y + frameOffsetTop) - y3 * TILE_SIZE - TILE_SIZE;
 				return Math.min(0, -(verticalExtra));
 			}
 		}
 		return moveY;	
 	}
-	
-	public Rectangle bounds() {
-		return (new Rectangle((int) x + (int) frameOffsetLeft,(int) y + 9,(int) frameOffsetRight,(int)frameOffsetBottom - 8));
+	public double getCollisionXKnock() {
+		double horizontalExtra = 0;
+		double x1 = Math.floor((x+frameOffsetLeft + moveX) /TILE_SIZE-(Component.level.chunkOffsetX * CHUNK_SIZE));
+		double x3 = Math.floor((x+frameOffsetLeft + moveX) /TILE_SIZE);
+		double x2 = Math.floor((x+frameOffsetRight + moveX) /TILE_SIZE-(Component.level.chunkOffsetX * CHUNK_SIZE));
+		double x4 = Math.floor((x+frameOffsetRight + moveX) /TILE_SIZE);
+		double y1 = Math.floor((y+frameOffsetTop) /TILE_SIZE-(Component.level.chunkOffsetY * CHUNK_SIZE));
+		double y2 = Math.floor((y+frameOffsetBottom) /TILE_SIZE-(Component.level.chunkOffsetY * CHUNK_SIZE));
+		
+		
+		if(isKnockingLeft) {
+			if(Component.level.block[(int)x1][(int)y1].isPassable == false || Component.level.block[(int)x1][(int)y2].isPassable == false
+					||Component.level.block2[(int)x1][(int)y1].isPassable == false || Component.level.block2[(int)x1][(int)y2].isPassable == false) {
+				horizontalExtra = (x + frameOffsetLeft) - x3 * TILE_SIZE - TILE_SIZE;
+				return Math.min(0, -(horizontalExtra));
+			}
+		}
+		if(isKnockingRight) {
+			if(Component.level.block[(int)x2][(int)y1].isPassable == false || Component.level.block[(int)x2][(int)y2].isPassable == false
+					|| Component.level.block2[(int)x2][(int)y1].isPassable == false || Component.level.block2[(int)x2][(int)y2].isPassable == false) {
+				horizontalExtra = x4 * TILE_SIZE - (x + frameOffsetRight) - 1;
+				return Math.max(0, horizontalExtra);
+			}
+		}
+		return moveX;
 	}
+	public double getCollisionYKnock() {
+		double verticalExtra = 0;
+		double x1 = Math.floor((x+frameOffsetLeft) /TILE_SIZE-(Component.level.chunkOffsetX * CHUNK_SIZE));
+		double x2 = Math.floor((x+frameOffsetRight) /TILE_SIZE-(Component.level.chunkOffsetX * CHUNK_SIZE));
+		double y1 = Math.floor((y+frameOffsetTop + moveY) /TILE_SIZE-(Component.level.chunkOffsetY * CHUNK_SIZE));
+		double y3 = Math.floor((y+frameOffsetTop + moveY) /TILE_SIZE);
+		double y2 = Math.floor((y+frameOffsetBottom + moveY) /TILE_SIZE-(Component.level.chunkOffsetY * CHUNK_SIZE));
+		double y4 = Math.floor((y+frameOffsetBottom + moveY) /TILE_SIZE);
+		if(isKnockingDown) {
+			if(Component.level.block[(int)x2][(int)y2].isPassable == false || Component.level.block[(int)x1][(int)y2].isPassable == false
+					|| Component.level.block2[(int)x2][(int)y2].isPassable == false || Component.level.block2[(int)x1][(int)y2].isPassable == false) {
+				verticalExtra = y4 * TILE_SIZE - (y + frameOffsetBottom) - 1;
+				return Math.max(0, verticalExtra);
+				
+			}
+		}
+		if(isKnockingUp) {
+			if(Component.level.block[(int)x1][(int)y1].isPassable == false || Component.level.block[(int)x2][(int)y1].isPassable == false
+					|| Component.level.block2[(int)x1][(int)y1].isPassable == false || Component.level.block2[(int)x2][(int)y1].isPassable == false) {
+				verticalExtra = (y + frameOffsetTop) - y3 * TILE_SIZE - TILE_SIZE;
+				return Math.min(0, -(verticalExtra));
+			}
+		}
+		return moveY;	
+	}
+	public void tick() {
+		
+		if(isKnockingBack == true) {
+			if(stepsToTake == 0) {
+				if(isKnockingBack == true) {
+					isKnockingBack = false;
+					speed = maxSpeed;
+					
+				}
+				speed = maxSpeed;
+				
+			}
+		
+		stepsToTake = stepsToTake - 1;
+		//stepsToTake = 1;
+		
+		
+		
+		//dir = 270;
+	if(isKnockingBack == false ) {
+	} else {
+				if(dir > 180 && dir < 360) {
+					isKnockingUp = true;
+					isKnockingDown = false;
+			
+				}
+				if(dir > 0 && dir < 180) {
+					isKnockingUp = false;
+					isKnockingDown = true;
+			
+				}
+				if(dir > 90 && dir < 270) {
+					isKnockingLeft = true;
+					isKnockingRight = false;
+			
+				}
+				if(dir > 270 || dir < 90) {
+					isKnockingLeft = false;
+					isKnockingRight = true;
+			
+				}
+				
+				if(Inventory.isOpen == false) {
+					boolean canMove = false;
+					moveX = 0;
+					moveY = 0;
+					
+					
+					double newX = ((int) x) + 100 * Math.cos(Math.toRadians(dir));
+					double newY = ((int) y) + 100 * Math.sin(Math.toRadians(dir));
+					
+					vX = newX - x;
+					vY = newY - y;
+					
+					double length = Math.sqrt((vX*vX)+(vY*vY));
+					
+					vX = vX/length;
+					vY = vY/length;
+					
+					moveX = (vX*speed);
+					moveY = (vY*speed);
+		
+					
+	
+					moveX = getCollisionXKnock();
+					moveY = getCollisionYKnock();
+					
+		
+					
+					if(!canMove) {
+						
+						x += moveX;
+						y += moveY;
+				
+						
+						if(x > Component.initialGameWidth /2 /Component.pixelSize && x < Level.worldW * TILE_SIZE - (Component.initialGameWidth /2/Component.pixelSize)) {
+							Component.sX += moveX;
+						} else if(Component.sX < 16){
+							Component.sX = 0;
+						} else if(Component.sX > Level.worldW * TILE_SIZE - (Component.initialGameWidth /2/Component.pixelSize)-(Component.initialGameWidth/4)-16) {
+							Component.sX = Level.worldW * TILE_SIZE - (Component.initialGameWidth /2/Component.pixelSize)-(Component.initialGameWidth/4);
+						}
+						if(y > Component.initialGameHeight /2 /Component.pixelSize && y < Level.worldH * TILE_SIZE - (Component.initialGameHeight /2/Component.pixelSize)) {
+							Component.sY += moveY;
+						} else if(Component.sY < 16){
+							Component.sY = 0;
+						} else if(Component.sY > Level.worldH * TILE_SIZE - (Component.initialGameHeight/2/Component.pixelSize)-(Component.initialGameHeight/4)-16) {
+							Component.sY = Level.worldH * TILE_SIZE - (Component.initialGameHeight /2/Component.pixelSize)-(Component.initialGameHeight/4);
+						}
+						
+						if(animationFrame >= animationTime) {
+							
+							
+							if(step > 2) {
+								step = 0;
+							} else {
+								step += 1;
+								
+							}
+							animation = stepArr[step];
+							animationFrame = 0;
+						} else {
+							animationFrame += 1;
+						}
+					}
+					
+				} else {
+					animation = 0;
+				}
+			}
+		} else if(isMovingLeft || isMovingRight || isMovingUp || isMovingDown && Inventory.isOpen == false) {
+			if(Component.weapon.isInUse == false) {
+					boolean canMove = false;
+					moveX = 0;
+					moveY = 0;
+		
+					
+					if(isMovingRight) {
+						moveX += maxSpeed;
+						if(Component.weapon.isInUse == false) {
+							Character.isFacingUp = false;
+							Character.isFacingDown = false;
+							Character.isFacingLeft = false;
+							Character.isFacingRight = true;
+						}
+					}
+					if(isMovingLeft) {
+						moveX += -maxSpeed;
+						if(Component.weapon.isInUse == false) {
+							Character.isFacingUp = false;
+							Character.isFacingDown = false;
+							Character.isFacingLeft = true;
+							Character.isFacingRight = false;
+						}
+					}
+					if(isMovingDown) {
+						moveY += maxSpeed;
+						if(Component.weapon.isInUse == false) {
+							Character.isFacingUp = false;
+							Character.isFacingDown = true;
+							Character.isFacingLeft = false;
+							Character.isFacingRight = false;
+						}
+					}
+					if(isMovingUp) {
+						moveY += -maxSpeed;
+						if(Component.weapon.isInUse == false) {
+							Character.isFacingUp = true;
+							Character.isFacingDown = false;
+							Character.isFacingLeft = false;
+							Character.isFacingRight = false;
+						}
+					}
+					moveX = getCollisionX();
+					moveY = getCollisionY();
+					
+		
+					
+					if(!canMove) {
+						
+						x += moveX;
+						y += moveY;
+//						Component.cameraX += moveX;
+//						Component.cameraY += moveY;
+						Component.sX += moveX;
+						Component.sY += moveY;
+						
+//						if(x > Component.initialGameWidth /2 /Component.pixelSize && x < Level.worldW * TILE_SIZE - (Component.initialGameWidth /2/Component.pixelSize)) {
+//							Component.sX += moveX;
+//						} else if(Component.sX < 16){
+//							Component.sX = 0;
+//						} else if(Component.sX > Level.worldW * TILE_SIZE - (Component.initialGameWidth /2/Component.pixelSize)-(Component.initialGameWidth/4)-16) {
+//							Component.sX = Level.worldW * TILE_SIZE - (Component.initialGameWidth /2/Component.pixelSize)-(Component.initialGameWidth/4);
+//						}
+//						if(y > Component.initialGameHeight /2 /Component.pixelSize && y < Level.worldH * TILE_SIZE - (Component.initialGameHeight /2/Component.pixelSize)) {
+//							Component.sY += moveY;
+//						} else if(Component.sY < 16){
+//							Component.sY = 0;
+//						} else if(Component.sY > Level.worldH * TILE_SIZE - (Component.initialGameHeight/2/Component.pixelSize)-(Component.initialGameHeight/4)-16) {
+//							Component.sY = Level.worldH * TILE_SIZE - (Component.initialGameHeight /2/Component.pixelSize)-(Component.initialGameHeight/4);
+//						}
+						
+						if(animationFrame >= animationTime) {
+							
+							
+							if(step > 2) {
+								step = 0;
+							} else {
+								step += 1;
+								
+							}
+							animation = stepArr[step];
+							animationFrame = 0;
+						} else {
+							animationFrame += 1;
+						}
+					}
+			} else {
+				animation = 0;
+			}
+		}
+	}
+	
+	
+
 	
 	public void render(Graphics g) {
-		g.drawImage(base, dx1, dy1, dx2, dy2, sx1, sy1, sx2, sy2, null);
-		g.drawImage(eyes, dx1, dy1, dx2, dy2, sx1, sy1, sx2, sy2, null);
-		g.drawImage(outfit, dx1, dy1, dx2, dy2, sx1, sy1, sx2, sy2, null);
-		g.drawImage(hair, dx1, dy1, dx2, dy2, sx1, sy1, sx2, sy2, null);
-	}
-	
-	public void renderBig(Graphics g) {
-		//g.drawImage(base, dx1, dy1, width, height, null);
-		int xx = 290;
-		int yy = 50;
-		int xx2 = xx + width*4;
-		int yy2 = yy + height*4;
-		g.drawImage(base, xx, yy, xx2, yy2, sx1, sy1, sx2, sy2, null);
-		g.drawImage(eyes, xx, yy, xx2, yy2, sx1, sy1, sx2, sy2, null);
-		g.drawImage(outfit, xx, yy, xx2, yy2, sx1, sy1, sx2, sy2, null);
-		g.drawImage(hair, xx, yy, xx2, yy2, sx1, sy1, sx2, sy2, null);
+
+		int a;
+		int c;
+		if (Component.weapon.isInUse) {
+			a = Component.weapon.animation;
+			c = 288;
+		} else {
+			a = animation;
+			c = 0;
+		}
+		
+		if (isFacingRight) {
+			a += 3;
+		} else if(isFacingUp) {
+			a += 6;
+		} else if(isFacingLeft || isMovingLeft) {
+			a += 9;
+		}
+		
+		g.drawImage(ImageAssets.TERRAIN_IMAGE, 
+				(int) x - (int) Component.sX, 
+				(int) y - (int) Component.sY, 
+				(int) (x + width) - (int) Component.sX, 
+				(int) (y + height) - (int) Component.sY, 
+				/*Where it's cut out*/
+				(imageXPos * 24) + (24 * a) + c, 
+				imageYPos * TILE_SIZE, 
+				imageXPos * 24 +(24 * a) + (int) width + c, 
+				imageYPos * TILE_SIZE +(int) height, 
+				null);
+		
+//		g.setColor(new Color(0,0,255, 255));
+//		g.drawRect (
+//				(int)x+(int)frameOffsetLeft,
+//				(int)y+ (int)frameOffsetTop,
+//				(int)frameOffsetRight-(int)frameOffsetLeft,
+//				(int)frameOffsetBottom-(int)frameOffsetTop);
 	}
 }

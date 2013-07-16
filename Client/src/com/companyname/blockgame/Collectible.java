@@ -2,9 +2,12 @@ package com.companyname.blockgame;
 
 import java.awt.*;
 
+import static com.companyname.blockgame.Constants.*;
+import com.companyname.blockgame.Items.NoItem;
+
 public class Collectible extends Rectangle{
 	private static final long serialVersionUID = 1L;
-	public int[] id = {-1, -1};
+	public Item item = new NoItem();
 	public int x = 0;
 	public int y = 0;
 	public int arrayId = 0;
@@ -13,9 +16,8 @@ public class Collectible extends Rectangle{
 	public int frameOffsetTop = 4;
 	public int frameHeight = 8;
 	
-	
-	public Collectible(int xPosition, int yPosition, int idOfArray, int[] idOfCollectible) {
-		id = idOfCollectible;
+	public Collectible(int xPosition, int yPosition, int idOfArray, int idOfCollectible) {
+		item = getItemFromItemId(idOfCollectible);
 		arrayId = idOfArray;
 		x = xPosition;
 		y = yPosition;		
@@ -23,7 +25,7 @@ public class Collectible extends Rectangle{
 	}
 	
 	public Rectangle bounds() {
-		return (new Rectangle(x + frameOffsetLeft,y + frameOffsetTop,frameWidth,frameHeight));
+		return (new Rectangle(x + frameOffsetLeft- (int)Component.sX,y + frameOffsetTop-(int)Component.sY,frameWidth,frameHeight));
 	}
 	
 	public void tick() {
@@ -31,26 +33,25 @@ public class Collectible extends Rectangle{
 		Rectangle rectangle1 = bounds();
 		Rectangle rectangle2 = Component.character.bounds();
 		if (rectangle1.intersects(rectangle2)) {
-			for(int i = 0; i < Component.collectible.toArray().length; i ++) {
-				if(Component.collectible.get(i).arrayId == arrayId) {
-					Inventory.addToInventory(id, 1);
-					Component.collectible.remove(i);
+			for(int i = 0; i < Component.collectibles.toArray().length; i ++) {
+				if(Component.collectibles.get(i).arrayId == arrayId) {
+					Inventory.addToInventory(item.id, 1);
+					Component.collectibles.remove(i);
 				}
 			}
 		}
 	}
 	
 	public void render(Graphics g) {
-		
-		g.drawImage(Tile.tileset_terrain,
+				g.drawImage(ImageAssets.TERRAIN_IMAGE,
 				x - (int) Component.sX,
 				y - (int) Component.sY,
-				x + Tile.tileSize - (int) Component.sX,
-				y + Tile.tileSize - (int) Component.sY,
-				id[0] * Tile.tileSize,
-				id[1] * Tile.tileSize,
-				id[0] * Tile.tileSize + Tile.tileSize,
-				id[1] * Tile.tileSize + Tile.tileSize,
+				x + TILE_SIZE - (int) Component.sX,
+				y + TILE_SIZE - (int) Component.sY,
+				item.imageXPos * TILE_SIZE,
+				item.imageYPos * TILE_SIZE,
+				item.imageXPos * TILE_SIZE + TILE_SIZE,
+				item.imageYPos * TILE_SIZE + TILE_SIZE,
 				null);
 	}
 }
